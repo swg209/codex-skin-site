@@ -6,7 +6,7 @@
 
 **Architecture:** Next.js 16 App Router uses separate English and Chinese root-layout route groups so the server-rendered `<html lang>` value is correct. Typed content modules feed shared home and guide templates; pure SEO helpers generate metadata and JSON-LD, while only the mobile menu, gallery lightbox, command copy button, and analytics require client behavior. All public content is build-time local data and local images.
 
-**Tech Stack:** Next.js 16.2+, React 19.2+, TypeScript 5.9+, Tailwind CSS 4, Vitest 4, Testing Library, ESLint 9, Vercel Analytics 2, Vercel deployment.
+**Tech Stack:** Next.js 16.2+, React 19.2.4+, TypeScript 5.9+, Tailwind CSS 4, Vitest 4, Testing Library, ESLint 9, Vercel Analytics 2, Vercel deployment.
 
 ## Global Constraints
 
@@ -64,8 +64,8 @@ Create `package.json` with these scripts and dependency families, then run `npm 
   "dependencies": {
     "@vercel/analytics": "^2.0.0",
     "next": "^16.2.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0",
@@ -75,6 +75,7 @@ Create `package.json` with these scripts and dependency families, then run `npm 
     "@types/node": "^24.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
     "eslint": "^9.0.0",
     "eslint-config-next": "^16.2.0",
     "jsdom": "^26.0.0",

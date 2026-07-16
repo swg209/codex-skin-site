@@ -5,3 +5,7 @@ out/
 .env*.local
 work/
 outputs/
+.vercel/
+.worktrees/
+coverage/
+*.tsbuildinfo
