@@ -17,7 +17,7 @@ export function Hero({ locale, content }: { locale: Locale; content: HomeContent
           <div className="button-row hero__actions">
             <Link className="button button--primary" href={routePath(locale, "windows") as Route}>{content.labels.windows}</Link>
             <Link className="button" href={routePath(locale, "macos") as Route}>{content.labels.macos}</Link>
-            <a className="button" href={GITHUB_URL}>{content.labels.github}</a>
+            <a className="button" href={GITHUB_URL} rel="noopener noreferrer" target="_blank">{content.labels.github}<span aria-hidden="true" className="external-mark">↗</span></a>
           </div>
           <ul className="proof-list" aria-label={locale === "en" ? "Product support" : "产品支持"}>
             {content.hero.proofLabels.map((label) => <li key={label}>{label}</li>)}

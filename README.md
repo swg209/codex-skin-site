@@ -1,6 +1,10 @@
-# Codex Dream Skin Website
+# CodexSkin Website
 
-The bilingual, static-first website for [Codex Dream Skin](https://github.com/swg209/Codex-Dream-Skin), built with Next.js App Router, TypeScript, and Tailwind CSS.
+The bilingual, static-first website for independent Codex Desktop themes, customization tools, and setup guides, built with Next.js App Router, TypeScript, and Tailwind CSS.
+
+CodexSkin.site is an independent tutorial and customization website. It is not affiliated with OpenAI or the developers of the third-party tools referenced in its guides. The original Codex Dream Skin source belongs to [Fei-Away and its contributors](https://github.com/Fei-Away/Codex-Dream-Skin).
+
+This website does not host, modify, repackage, proxy, or automatically download the upstream Windows or macOS installers. Visitors are directed to the original repository and should review third-party scripts before running them.
 
 ## Local development
 
@@ -32,6 +36,6 @@ npm run build
 - `/guide/restore` and `/zh/guide/restore`
 - `/sitemap.xml`, `/robots.txt`, and `/manifest.webmanifest`
 
-Product claims and installation commands come from the product repository. The site does not host an unofficial installer or modify the theme tool.
+Third-party behavior claims and installation commands are checked against the original project documentation. CodexSkin's guides and future customization resources remain independently maintained.
 
 See [docs/deployment.md](docs/deployment.md) for Vercel, domain, analytics, and Google Search Console setup.

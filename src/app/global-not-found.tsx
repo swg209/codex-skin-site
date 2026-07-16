@@ -4,8 +4,8 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "404 – Page Not Found | Codex Dream Skin",
-  description: "The requested Codex Dream Skin page could not be found.",
+  title: "404 – Page Not Found | CodexSkin",
+  description: "The requested CodexSkin page could not be found.",
 };
 
 export default function GlobalNotFound() {
@@ -13,7 +13,7 @@ export default function GlobalNotFound() {
     <html lang="en">
       <body>
         <main id="main-content" className="not-found container">
-          <p className="eyebrow">Codex Dream Skin</p>
+          <p className="eyebrow">CodexSkin</p>
           <h1>404</h1>
           <p className="lead">This page does not exist. Choose a starting point below.</p>
           <div className="button-row">

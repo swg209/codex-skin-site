@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { readFileSync } from "node:fs";
 
 import manifest from "@/app/manifest";
 import robots from "@/app/robots";
@@ -7,7 +8,7 @@ import {
   breadcrumbSchema,
   buildMetadata,
   faqSchema,
-  softwareApplicationSchema,
+  webPageSchema,
 } from "@/lib/seo";
 import { ROUTES } from "@/lib/site";
 
@@ -54,18 +55,37 @@ describe("SEO output", () => {
 
   it("publishes an installable web manifest", () => {
     expect(manifest()).toMatchObject({
-      name: "Codex Dream Skin",
+      name: "CodexSkin",
       start_url: "/",
       display: "standalone",
     });
   });
 
-  it("keeps JSON-LD synchronized with visible content", () => {
+  it("identifies the independent site in metadata", () => {
+    const metadata = buildMetadata("en", "home");
+
+    expect(metadata.openGraph?.siteName).toBe("CodexSkin");
+    expect(metadata.openGraph?.images).toEqual([
+      expect.objectContaining({
+        url: "https://codexskin.site/opengraph-image",
+        alt: expect.stringContaining("Independent"),
+      }),
+    ]);
+  });
+
+  it("uses website JSON-LD instead of claiming authorship of software", () => {
+    const source = readFileSync("src/lib/seo.ts", "utf8");
+
+    expect(source).toContain("export function websiteSchema");
+    expect(source).not.toContain('"@type": "SoftwareApplication"');
     expect(faqSchema("en").mainEntity).toHaveLength(10);
     expect(
       breadcrumbSchema("en", "restore").itemListElement.at(-1)?.name,
     ).toMatch(/Restore/);
-    expect(softwareApplicationSchema("en")).not.toHaveProperty("aggregateRating");
-    expect(softwareApplicationSchema("en")).not.toHaveProperty("downloadUrl");
+    expect(webPageSchema("zh", "windows")).toMatchObject({
+      "@type": "WebPage",
+      inLanguage: "zh-CN",
+      url: "https://codexskin.site/zh/install/windows",
+    });
   });
 });

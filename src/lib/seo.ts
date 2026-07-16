@@ -1,12 +1,9 @@
-import { existsSync } from "node:fs";
-import { join } from "node:path";
-
 import type { Metadata } from "next";
 
+import { siteConfig } from "@/config/site";
 import { contentByLocale } from "@/content";
 import type { Locale, RouteKey } from "@/lib/site";
 import {
-  GITHUB_URL,
   SITE_URL,
   absoluteUrl,
   alternatePaths,
@@ -29,18 +26,14 @@ function languageAlternates(locale: Locale, key: RouteKey) {
 }
 
 function socialImages() {
-  const hasSocialCard = existsSync(join(process.cwd(), "public", "og.png"));
-
-  return hasSocialCard
-    ? [
-        {
-          url: absoluteUrl("/og.png"),
-          width: 1200,
-          height: 630,
-          alt: "Codex Dream Skin — Custom Themes for Codex Desktop",
-        },
-      ]
-    : undefined;
+  return [
+    {
+      url: absoluteUrl("/opengraph-image"),
+      width: 1200,
+      height: 630,
+      alt: "CodexSkin — Independent themes, tools, and guides for Codex Desktop",
+    },
+  ];
 }
 
 export function buildMetadata(locale: Locale, key: RouteKey): Metadata {
@@ -59,7 +52,7 @@ export function buildMetadata(locale: Locale, key: RouteKey): Metadata {
     },
     openGraph: {
       type: "website",
-      siteName: "Codex Dream Skin",
+      siteName: siteConfig.name,
       title: copy.title,
       description: copy.description,
       url: canonical,
@@ -77,18 +70,37 @@ export function buildMetadata(locale: Locale, key: RouteKey): Metadata {
   };
 }
 
-export function softwareApplicationSchema(locale: Locale) {
+export function websiteSchema(locale: Locale) {
   const home = contentByLocale[locale].home;
 
   return {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Codex Dream Skin",
+    "@type": "WebSite",
+    name: siteConfig.name,
     description: home.seo.description,
-    applicationCategory: "DeveloperApplication",
-    operatingSystem: "Windows, macOS",
-    isAccessibleForFree: true,
-    url: GITHUB_URL,
+    inLanguage: locale === "en" ? "en" : "zh-CN",
+    url: absoluteUrl(routePath(locale, "home")),
+  };
+}
+
+export function webPageSchema(
+  locale: Locale,
+  key: Exclude<RouteKey, "home">,
+) {
+  const copy = contentByLocale[locale].guides[key];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: copy.seo.title,
+    description: copy.seo.description,
+    inLanguage: locale === "en" ? "en" : "zh-CN",
+    url: absoluteUrl(routePath(locale, key)),
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
   };
 }
 

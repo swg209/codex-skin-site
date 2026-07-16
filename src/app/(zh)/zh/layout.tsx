@@ -8,7 +8,7 @@ import "../../globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  applicationName: "Codex Dream Skin",
+  applicationName: "CodexSkin",
   manifest: "/manifest.webmanifest",
   icons: { icon: [{ url: "/icon", type: "image/png" }] },
   category: "technology",

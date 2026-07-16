@@ -17,9 +17,14 @@ describe("Header", () => {
     const user = userEvent.setup();
     render(<Header locale="en" />);
 
+    expect(screen.getByRole("link", { name: "CodexSkin home" })).toBeVisible();
     expect(screen.getAllByRole("link", { name: "GitHub" })[0]).toHaveAttribute(
       "href",
-      expect.stringContaining("github.com/swg209"),
+      "https://github.com/Fei-Away/Codex-Dream-Skin",
+    );
+    expect(screen.getAllByRole("link", { name: "GitHub" })[0]).toHaveAttribute(
+      "rel",
+      "noopener noreferrer",
     );
     expect(screen.getAllByRole("link", { name: "中文" })[0]).toHaveAttribute(
       "href",

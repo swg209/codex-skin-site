@@ -36,7 +36,7 @@ function NavLinks({ locale, onNavigate }: NavLinksProps) {
           {link.label}
         </Link>
       ))}
-      <a href={GITHUB_URL} rel="noreferrer" target="_blank" onClick={onNavigate}>
+      <a href={GITHUB_URL} rel="noopener noreferrer" target="_blank" onClick={onNavigate}>
         {nav.github}
       </a>
       <LocaleSwitcher locale={locale} onNavigate={onNavigate} />
@@ -62,9 +62,9 @@ export function Header({ locale }: HeaderProps) {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <Link className="brand" href={routePath(locale, "home") as Route} aria-label="Codex Dream Skin home">
-          <span className="brand__mark" aria-hidden="true">DS</span>
-          <span>Codex Dream Skin</span>
+        <Link className="brand" href={routePath(locale, "home") as Route} aria-label="CodexSkin home">
+          <span className="brand__mark" aria-hidden="true">CS</span>
+          <span>CodexSkin</span>
         </Link>
 
         <nav className="desktop-nav" aria-label={locale === "en" ? "Desktop" : "桌面导航"}>

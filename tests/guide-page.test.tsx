@@ -1,0 +1,50 @@
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+
+import { GuidePage } from "@/components/guides/guide-page";
+
+describe("GuidePage source attribution", () => {
+  it("identifies the English install guide as independent", () => {
+    render(<GuidePage locale="en" routeKey="windows" />);
+
+    expect(
+      screen.getByText(
+        "This guide references a third-party open-source project. CodexSkin.site is not the project developer and does not host or modify its installer.",
+      ),
+    ).toBeVisible();
+    expect(
+      screen.getByText(
+        "Before running third-party scripts, review the source code and confirm that you are downloading from the original repository.",
+      ),
+    ).toBeVisible();
+
+    const source = screen.getByRole("link", {
+      name: "Get from Original Repository",
+    });
+    expect(source).toHaveAttribute(
+      "href",
+      "https://github.com/Fei-Away/Codex-Dream-Skin/tree/main/windows",
+    );
+    expect(source).toHaveAttribute("target", "_blank");
+    expect(source).toHaveAttribute("rel", "noopener noreferrer");
+  });
+
+  it("shows the localized disclosure on the Chinese macOS guide", () => {
+    render(<GuidePage locale="zh" routeKey="macos" />);
+
+    expect(
+      screen.getByText(
+        "本教程引用第三方开源项目。CodexSkin.site 不是该项目开发者，也不托管或修改其安装包。",
+      ),
+    ).toBeVisible();
+    expect(
+      screen.getByText(
+        "运行第三方脚本前，请检查源代码，并确认文件来自原始仓库。",
+      ),
+    ).toBeVisible();
+    expect(screen.getByRole("link", { name: "前往原始仓库" })).toHaveAttribute(
+      "href",
+      "https://github.com/Fei-Away/Codex-Dream-Skin/tree/main/macos",
+    );
+  });
+});

@@ -2,9 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Codex Dream Skin",
-    short_name: "Dream Skin",
-    description: "Custom themes for the Codex desktop app.",
+    name: "CodexSkin",
+    short_name: "CodexSkin",
+    description:
+      "Independent themes, customization tools, and setup guides for Codex Desktop.",
     start_url: "/",
     scope: "/",
     display: "standalone",

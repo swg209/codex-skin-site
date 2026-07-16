@@ -10,6 +10,13 @@ const nav = {
   closeMenu: "Close menu",
 };
 
+const guideAttribution = {
+  sourceNotice:
+    "This guide references a third-party open-source project. CodexSkin.site is not the project developer and does not host or modify its installer.",
+  sourceReviewNotice:
+    "Before running third-party scripts, review the source code and confirm that you are downloading from the original repository.",
+};
+
 export const enContent: LocaleContent = {
   locale: "en",
   chrome: {
@@ -17,8 +24,8 @@ export const enContent: LocaleContent = {
     localeLabel: "中文",
     skipLabel: "Skip to content",
     footerDescription:
-      "A reversible, open-source theme layer for the official Codex desktop app.",
-    repositoryLabel: "GitHub Repository",
+      "Independent themes, tools, and setup guides for Codex Desktop.",
+    repositoryLabel: "View Original Project",
     guidesLabel: "Installation Guides",
     issueLabel: "Report an Issue",
     licenseLabel: "MIT License",
@@ -26,25 +33,25 @@ export const enContent: LocaleContent = {
     privacyText:
       "This static site has no accounts, forms, or uploads. Anonymous analytics only load when the site owner enables them.",
     disclaimer:
-      "Codex Dream Skin is an independent open-source project and is not affiliated with, endorsed by, or sponsored by OpenAI. Codex and OpenAI-related trademarks belong to their respective owners.",
+      "CodexSkin.site is an independent tutorial and customization website. It is not affiliated with OpenAI or the developers of the third-party tools referenced in these guides. Source code belongs to Fei-Away and its contributors.",
   },
   home: {
     seo: {
-      title: "Codex Dream Skin – Custom Themes for Codex Desktop",
+      title: "CodexSkin – Themes, Tools & Guides for Codex Desktop",
       description:
-        "Customize the Codex desktop app with immersive themes and background images. Supports Windows and macOS without modifying the official Codex installation.",
+        "Discover independent Codex desktop themes, customization tools and setup guides for Windows and macOS.",
     },
     nav,
     hero: {
-      eyebrow: "Open-source Codex Desktop theming",
-      h1: "Custom Themes & Backgrounds for Codex Desktop",
+      eyebrow: "Independent Codex themes and guides",
+      h1: "Independent Themes, Tools & Guides for Codex Desktop",
       description:
-        "Turn your Codex workspace into a focused, atmospheric environment. Dream Skin works on macOS and Windows without modifying the official Codex installation.",
-      proofLabels: ["Windows", "macOS", "Open Source", "One-click Restore"],
+        "Explore setup guides, theme inspiration, and customization resources for Codex Desktop. Get referenced tools only from their original repositories.",
+      proofLabels: ["Independent", "Windows Guides", "macOS Guides", "No Installer Hosting"],
     },
     galleryTitle: "Eight moods. One real workspace.",
     galleryIntro:
-      "These repository-provided composites show how Dream Skin can reshape the home and task views while the native interface stays interactive.",
+      "These examples from the referenced open-source project show how a theme can reshape the home and task views while the native interface stays interactive.",
     galleryDisclaimer:
       "Theme images are provided for demonstration. Users are responsible for ensuring they have the right to use and redistribute their chosen images.",
     gallery: [
@@ -57,22 +64,69 @@ export const enContent: LocaleContent = {
       { name: "Virtual Stage", description: "A vivid virtual-stage composition shown as a theme example.", src: "/themes/skin-07.jpg" },
       { name: "Black-Gold Stage", description: "A dramatic black and gold Codex workspace treatment.", src: "/themes/skin-08.jpg" },
     ],
+    quickStart: {
+      eyebrow: "Quick Start",
+      title: "Choose your platform.",
+      description:
+        "Follow the step-by-step guide, then get the required open-source tool from its original repository. CodexSkin.site does not host or modify third-party installers.",
+      externalHint: "opens the original repository in a new tab",
+      platforms: [
+        {
+          platform: "macos",
+          label: "macOS",
+          title: "Apple Silicon & Intel",
+          description:
+            "Follow the macOS setup guide, choose your own image, verify the theme, and learn how to restore the default appearance.",
+          steps: [
+            "Read the macOS installation guide",
+            "Get the tool from the original repository",
+            "Choose an image and verify the result",
+          ],
+          guideLabel: "View macOS Guide",
+          repositoryLabel: "Get from Original Repository",
+        },
+        {
+          platform: "windows",
+          label: "Windows",
+          title: "Codex from Microsoft Store",
+          description:
+            "Follow the Windows setup guide and learn how to install, launch, customize, and restore the appearance.",
+          steps: [
+            "Check the Windows prerequisites",
+            "Read the Windows installation guide",
+            "Get the tool from the original repository",
+          ],
+          guideLabel: "View Windows Guide",
+          repositoryLabel: "Get from Original Repository",
+        },
+      ],
+    },
+    createLook: {
+      eyebrow: "Original resources",
+      title: "Create Your Own Look",
+      description:
+        "Use original background artwork and readability presets to personalize your Codex workspace.",
+      browseLabel: "Browse Themes",
+      createLabel: "Create a Skin",
+      comingSoon: "Coming Soon",
+      href: "#themes",
+    },
     featuresTitle: "A theme layer, not a fake interface",
     featuresIntro:
-      "Dream Skin changes the atmosphere around the official app while preserving the controls you already use.",
+      "The referenced Dream Skin project changes the atmosphere around the official app while preserving the controls you already use.",
     features: [
       { title: "Real Interactive Interface", description: "The sidebar, suggestion cards, project picker, task content, menus, and composer remain native Codex controls." },
       { title: "Use Your Own Image on macOS", description: "The macOS studio can prepare a supported local image and turn it into a home banner and task background." },
       { title: "Windows & macOS Support", description: "The repository includes separate, platform-aware install, start, verify, and restore workflows." },
-      { title: "No Official App Modification", description: "Dream Skin does not patch .app, app.asar, WindowsApps, or the official code signature." },
+      { title: "Documented App Boundary", description: "According to the upstream documentation, Dream Skin does not intentionally patch .app, app.asar, WindowsApps, or the official code signature." },
       { title: "One-click Restore", description: "Platform launchers and scripts stop the themed session and reopen the official appearance." },
       { title: "Local CDP Injection", description: "The theme is applied to expected Codex renderer targets through a loopback-only debugging endpoint." },
     ],
-    stepsTitle: "From repository to a new look",
+    stepsTitle: "From an independent guide to a new look",
     steps: [
-      { title: "1. Install Dream Skin", description: "Follow the platform guide and use the real installer entry included in the repository." },
-      { title: "2. Apply the available theme", description: "Use the platform launcher. On macOS, you can also prepare your own supported image." },
-      { title: "3. Launch Codex", description: "Dream Skin starts the official app with a local themed session; your normal controls remain usable." },
+      { title: "1. Read the guide", description: "Use CodexSkin's original platform guide to understand requirements, restore steps, and risks." },
+      { title: "2. Visit the original project", description: "Review the third-party source and get the tool directly from its original repository." },
+      { title: "3. Apply and verify", description: "Follow the documented platform workflow, then verify the home and task views before regular use." },
     ],
     proofTitle: "Designed around the Codex you already use",
     proofDescription:
@@ -81,33 +135,33 @@ export const enContent: LocaleContent = {
     safetyIntro:
       "CDP is powerful. Dream Skin narrows its use to local Codex targets, but a themed session should still be treated as a sensitive local debugging session.",
     safety: [
-      "The CDP listener binds only to the local loopback address.",
-      "The official .app, app.asar, WindowsApps package, and code signature are not modified.",
-      "API keys, Base URLs, and model-provider settings are not automatically rewritten.",
+      "According to the upstream documentation, the CDP listener binds only to the local loopback address.",
+      "Based on the upstream project's documented behavior, it does not intentionally modify the official .app, app.asar, WindowsApps package, or code signature.",
+      "The upstream documentation says API keys, Base URLs, and model-provider settings are not automatically rewritten.",
       "Do not run untrusted local software while a themed CDP session is active.",
       "A Codex update can require Dream Skin to be reapplied or adapted.",
-      "This is an independent project, not an official OpenAI product.",
+      "CodexSkin.site is an independent guide and is not an official OpenAI or upstream-project website.",
     ],
     faqTitle: "Frequently asked questions",
     faq: [
       { question: "What is Codex Dream Skin?", answer: "It is an open-source theme layer that launches the official Codex Desktop app with CSS and decorative interface elements injected through local CDP." },
       { question: "Is Codex Dream Skin an official OpenAI product?", answer: "No. It is an independent open-source project and is not affiliated with or endorsed by OpenAI." },
-      { question: "Does it modify the Codex installation?", answer: "No. The project does not patch the official .app, app.asar, WindowsApps package, or code signature." },
+      { question: "Does it modify the Codex installation?", answer: "Based on the behavior documented by the upstream project, it does not intentionally patch the official .app, app.asar, WindowsApps package, or code signature." },
       { question: "Does it support Windows?", answer: "Yes. The repository includes Windows install, start, verify, and restore scripts for the official Store-installed Codex app." },
       { question: "Does it support Apple Silicon and Intel Mac?", answer: "Yes. The macOS workflow validates the installed official Codex app and supports both Apple Silicon and Intel Macs." },
       { question: "Can I use my own background image?", answer: "The documented macOS studio supports local PNG, JPEG, HEIC, TIFF, and WebP images. The current Windows workflow does not document the same image picker." },
       { question: "How do I restore the default Codex appearance?", answer: "Use the platform Restore launcher or restore script. It stops the recorded themed session and reopens the official app." },
       { question: "Will it continue working after Codex updates?", answer: "Not always without action. App updates can change renderer details, so you may need to reinstall, reapply, or wait for a compatibility update." },
       { question: "Does it change my API configuration?", answer: "It does not automatically change API keys, Base URLs, or model providers. Theme configuration and API provider configuration are separate." },
-      { question: "Where can I report a problem?", answer: "Use the issue templates in the swg209/Codex-Dream-Skin GitHub repository and include your platform and verification results." },
+      { question: "Where can I report a problem?", answer: "For third-party tool issues, use the issue templates in the original Fei-Away/Codex-Dream-Skin repository and include your platform and verification results." },
     ],
-    finalTitle: "Give Codex a New Look",
+    finalTitle: "Choose a Guide, Then Verify the Source",
     finalDescription:
-      "Choose your platform, read the verified steps, and keep the Restore launcher nearby.",
+      "Start with CodexSkin's independent guide, get third-party tools from the original repository, and keep the restore steps nearby.",
     labels: {
       windows: "Install for Windows",
       macos: "Install for macOS",
-      github: "View on GitHub",
+      github: "View Original Project",
       previous: "Previous theme",
       next: "Next theme",
       close: "Close preview",
@@ -120,9 +174,10 @@ export const enContent: LocaleContent = {
       seo: { title: "Install Codex Dream Skin on Windows", description: "Install, launch, verify, and restore Codex Dream Skin for the official Windows Codex desktop app." },
       eyebrow: "Windows installation",
       h1: "Install Codex Dream Skin on Windows",
-      summary: "Use the repository's PowerShell workflow to theme the official Store-installed Codex app without changing WindowsApps.",
-      sourceLabel: "Open the Windows source",
-      issueLabel: "Report a Windows issue",
+      summary: "Use this independent guide to review the upstream PowerShell workflow for the Store-installed Codex app.",
+      ...guideAttribution,
+      sourceLabel: "Get from Original Repository",
+      issueLabel: "View Upstream Issues",
       copyLabel: "Copy",
       copiedLabel: "Copied",
       copyFailedLabel: "Select and copy the command manually",
@@ -130,7 +185,7 @@ export const enContent: LocaleContent = {
       relatedLabel: "Related guides",
       sections: [
         { id: "support", title: "Support and requirements", blocks: [{ type: "list", items: ["Windows with the official Microsoft Store Codex app installed", "Node.js 22 or newer", "PowerShell", "Permission to create Desktop and Start Menu shortcuts"] }] },
-        { id: "prepare", title: "Before you install", tone: "warning", blocks: [{ type: "paragraph", text: "Close Codex before installation. The installer validates the registered Store package and refuses to continue when the official package identity cannot be verified." }, { type: "paragraph", text: "Download or clone the GitHub repository and open PowerShell in its windows directory. There is no published Release package at the time this guide was verified." }] },
+        { id: "prepare", title: "Before you install", tone: "warning", blocks: [{ type: "paragraph", text: "Close Codex before installation. The upstream documentation says its installer validates the registered Store package and stops when the official package identity cannot be verified." }, { type: "paragraph", text: "Get the files only from the original repository, review the scripts, and open PowerShell in its windows directory. Avoid unofficial download mirrors." }] },
         { id: "install", title: "Install the launcher", blocks: [{ type: "code", language: "powershell", code: ".\\scripts\\install-dream-skin.ps1" }, { type: "paragraph", text: "The installer records the existing appearance values, sets the matching base theme, and creates launch and restore shortcuts unless -NoShortcuts is used." }] },
         { id: "launch", title: "Launch the themed session", blocks: [{ type: "code", language: "powershell", code: ".\\scripts\\start-dream-skin.ps1" }, { type: "paragraph", text: "If Codex is already open without the verified Dream Skin endpoint, close it first. Command-line callers must explicitly add -RestartExisting when they want the script to restart an open window." }] },
         { id: "verify", title: "Verify the theme", blocks: [{ type: "code", language: "powershell", code: ".\\scripts\\verify-dream-skin.ps1 -ScreenshotPath \"$env:USERPROFILE\\Desktop\\codex-dream-skin.png\"" }, { type: "paragraph", text: "Check both the home view and a normal task. A missing hero, native composer, sidebar treatment, or injection marker is a verification failure." }] },
@@ -145,9 +200,10 @@ export const enContent: LocaleContent = {
       seo: { title: "Install Codex Dream Skin on macOS", description: "Install Codex Dream Skin on Apple Silicon or Intel Mac, choose a background, verify it, and restore Codex." },
       eyebrow: "macOS installation",
       h1: "Install Codex Dream Skin on macOS",
-      summary: "Install the theme studio for the official Codex Desktop app on Apple Silicon or Intel Mac, then use Finder-friendly launchers to customize, verify, and restore it.",
-      sourceLabel: "Open the macOS source",
-      issueLabel: "Report a macOS issue",
+      summary: "Use this independent guide to review the upstream macOS theme workflow for Apple Silicon and Intel Macs.",
+      ...guideAttribution,
+      sourceLabel: "Get from Original Repository",
+      issueLabel: "View Upstream Issues",
       copyLabel: "Copy",
       copiedLabel: "Copied",
       copyFailedLabel: "Select and copy the command manually",
@@ -155,12 +211,12 @@ export const enContent: LocaleContent = {
       relatedLabel: "Related guides",
       sections: [
         { id: "support", title: "Support and requirements", blocks: [{ type: "list", items: ["Apple Silicon or Intel Mac", "The official Codex Desktop app installed and launched at least once", "A local ~/.codex/config.toml", "No separate global Node.js installation is required"] }] },
-        { id: "download", title: "Get the installer", blocks: [{ type: "paragraph", text: "Open the repository's macos directory. Because no GitHub Release was published when this guide was verified, use the repository files rather than an unofficial download mirror." }] },
+        { id: "download", title: "Get the third-party tool", blocks: [{ type: "paragraph", text: "Open the macos directory in the original repository, review the source, and follow the upstream download instructions shown there. Avoid unofficial download mirrors." }] },
         { id: "install", title: "Install Dream Skin", blocks: [{ type: "paragraph", text: "In Finder, double-click Install Codex Dream Skin.command. The source workflow below performs the same installation without launching immediately." }, { type: "code", language: "bash", code: "./scripts/install-dream-skin-macos.sh --no-launch" }] },
-        { id: "launch", title: "Start and customize", blocks: [{ type: "paragraph", text: "Use Start Codex Dream Skin.command to launch or reapply the theme. Use Customize Codex Dream Skin.command to choose an image through Finder." }, { type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/customize-theme-macos.sh" }] },
-        { id: "verify", title: "Verify the result", blocks: [{ type: "paragraph", text: "Double-click Verify Codex Dream Skin.command. Inspect both the home screen and a normal task so the native sidebar, project picker, composer, and task content remain usable." }, { type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/doctor-macos.sh" }] },
+        { id: "launch", title: "Start and customize", blocks: [{ type: "paragraph", text: "Use Codex Dream Skin.command to launch or reapply the theme. Use Codex Dream Skin - Customize.command to choose an image through Finder." }, { type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/customize-theme-macos.sh" }] },
+        { id: "verify", title: "Verify the result", blocks: [{ type: "paragraph", text: "Double-click Codex Dream Skin - Verify.command. Inspect both the home screen and a normal task so the native sidebar, project picker, composer, and task content remain usable." }, { type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/doctor-macos.sh" }] },
         { id: "image", title: "Background image guidance", blocks: [{ type: "list", items: ["Supported source formats: PNG, JPEG, HEIC, TIFF, and WebP", "Source file limit: 50 MB", "Prepared file limit: 16 MB", "A wide image at least 2000px across is recommended", "Keep the left side relatively calm for native home titles"] }] },
-        { id: "restore", title: "Restore Codex", blocks: [{ type: "paragraph", text: "Double-click Restore Codex Dream Skin.command. Restore stops only the recorded injector and matching themed Codex session, then reopens the official app." }, { type: "code", language: "bash", code: "./scripts/restore-dream-skin-macos.sh" }] },
+        { id: "restore", title: "Restore Codex", blocks: [{ type: "paragraph", text: "Double-click Codex Dream Skin - Restore.command. Restore stops only the recorded injector and matching themed Codex session, then reopens the official app." }, { type: "code", language: "bash", code: "./scripts/restore-dream-skin-macos.sh" }] },
         { id: "menu", title: "Optional menu bar", blocks: [{ type: "paragraph", text: "SwiftBar users can install the optional menu bar commands for apply, pause, and image changes." }, { type: "code", language: "bash", code: "./Install\\ Menu\\ Bar.command" }] },
       ],
       related: ["customize", "restore", "windows"],
@@ -171,8 +227,9 @@ export const enContent: LocaleContent = {
       eyebrow: "Theme guide",
       h1: "Customize Your Codex Dream Skin Theme",
       summary: "Prepare a wide image, keep native text readable, and use the documented macOS studio to generate the theme assets.",
-      sourceLabel: "Open the customization source",
-      issueLabel: "Report a customization issue",
+      ...guideAttribution,
+      sourceLabel: "View Original Project",
+      issueLabel: "View Upstream Issues",
       copyLabel: "Copy",
       copiedLabel: "Copied",
       copyFailedLabel: "Select and copy the command manually",
@@ -193,8 +250,9 @@ export const enContent: LocaleContent = {
       eyebrow: "Restore guide",
       h1: "Restore the Default Codex Appearance",
       summary: "Use the platform's recorded restore workflow to stop the injector, close the local CDP session, and reopen the official app.",
-      sourceLabel: "Open the restore source",
-      issueLabel: "Report a restore issue",
+      ...guideAttribution,
+      sourceLabel: "View Original Project",
+      issueLabel: "View Upstream Issues",
       copyLabel: "Copy",
       copiedLabel: "Copied",
       copyFailedLabel: "Select and copy the command manually",
@@ -202,7 +260,7 @@ export const enContent: LocaleContent = {
       relatedLabel: "Related guides",
       sections: [
         { id: "windows", title: "Restore on Windows", blocks: [{ type: "paragraph", text: "Use the Desktop Restore shortcut or run the repository script. The flag below restores only the appearance keys saved during install." }, { type: "code", language: "powershell", code: ".\\scripts\\restore-dream-skin.ps1 -RestoreBaseTheme" }] },
-        { id: "macos", title: "Restore on macOS", blocks: [{ type: "paragraph", text: "Double-click Restore Codex Dream Skin.command or run the installed restore script." }, { type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/restore-dream-skin-macos.sh" }] },
+        { id: "macos", title: "Restore on macOS", blocks: [{ type: "paragraph", text: "Double-click Codex Dream Skin - Restore.command or run the installed restore script." }, { type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/restore-dream-skin-macos.sh" }] },
         { id: "preserved", title: "What stays in place", blocks: [{ type: "list", items: ["The official Codex application and signature", "Threads, projects, pets/plugins, and authentication state", "API keys, Base URLs, and model-provider settings", "User images and logs in the Dream Skin state directory unless you remove them separately"] }] },
         { id: "verify", title: "Verify the restore", blocks: [{ type: "paragraph", text: "Confirm that Codex reopens without the theme and that the loopback debugging session has closed. Use the platform verification or doctor script if the state is unclear." }] },
         { id: "failure", title: "If restore fails", tone: "warning", blocks: [{ type: "paragraph", text: "Do not delete state files first. Preserve the logs and recorded state, close unverified Codex processes manually if instructed, and open a GitHub Issue with your platform and exact error." }] },

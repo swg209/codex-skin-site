@@ -43,6 +43,34 @@ export interface HeroContent {
   proofLabels: string[];
 }
 
+export interface QuickStartPlatformContent {
+  platform: "macos" | "windows";
+  label: string;
+  title: string;
+  description: string;
+  steps: string[];
+  guideLabel: string;
+  repositoryLabel: string;
+}
+
+export interface QuickStartContent {
+  eyebrow: string;
+  title: string;
+  description: string;
+  externalHint: string;
+  platforms: QuickStartPlatformContent[];
+}
+
+export interface CreateLookContent {
+  eyebrow: string;
+  title: string;
+  description: string;
+  browseLabel: string;
+  createLabel: string;
+  comingSoon: string;
+  href: "#themes";
+}
+
 export interface HomeContent {
   seo: SeoCopy;
   nav: NavCopy;
@@ -51,6 +79,8 @@ export interface HomeContent {
   galleryIntro: string;
   galleryDisclaimer: string;
   gallery: GalleryItem[];
+  quickStart: QuickStartContent;
+  createLook: CreateLookContent;
   featuresTitle: string;
   featuresIntro: string;
   features: FeatureItem[];
@@ -94,6 +124,8 @@ export interface GuideContent {
   eyebrow: string;
   h1: string;
   summary: string;
+  sourceNotice: string;
+  sourceReviewNotice: string;
   sourceLabel: string;
   issueLabel: string;
   copyLabel: string;

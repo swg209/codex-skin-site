@@ -1,9 +1,8 @@
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://codexskin.site"
-).replace(/\/$/, "");
+import { siteConfig } from "@/config/site";
 
-export const GITHUB_URL = "https://github.com/swg209/Codex-Dream-Skin";
-export const ISSUE_URL = `${GITHUB_URL}/issues`;
+export const SITE_URL = siteConfig.url;
+export const GITHUB_URL = siteConfig.upstream.repositoryUrl;
+export const ISSUE_URL = siteConfig.upstream.issuesUrl;
 
 export const ROUTES = [
   "home",

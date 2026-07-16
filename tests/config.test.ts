@@ -1,5 +1,7 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+
+import { GITHUB_URL } from "@/lib/site";
 
 describe("deployment configuration", () => {
   it("permanently redirects www to the canonical host", () => {
@@ -21,5 +23,15 @@ describe("deployment configuration", () => {
     expect(env).toContain("NEXT_PUBLIC_SITE_URL=https://codexskin.site");
     expect(env).toContain("NEXT_PUBLIC_GSC_VERIFICATION=");
     expect(env).toContain("NEXT_PUBLIC_GA_ID=");
+  });
+
+  it("centralizes the verified original repository", () => {
+    const configPath = "src/config/site.ts";
+
+    expect(existsSync(configPath)).toBe(true);
+    const source = readFileSync(configPath, "utf8");
+
+    expect(source).toContain("https://github.com/Fei-Away/Codex-Dream-Skin");
+    expect(GITHUB_URL).toBe("https://github.com/Fei-Away/Codex-Dream-Skin");
   });
 });

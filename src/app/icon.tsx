@@ -21,7 +21,7 @@ export default function Icon() {
         letterSpacing: "0.06em",
       }}
     >
-      DS
+      CS
     </div>,
     size,
   );
