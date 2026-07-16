@@ -43,5 +43,5 @@ export function alternatePaths(_locale: Locale, key: RouteKey) {
 }
 
 export function absoluteUrl(path: string): string {
-  return `${SITE_URL}${path === "/" ? "" : path}`;
+  return `${SITE_URL}${path}`;
 }
