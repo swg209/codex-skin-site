@@ -129,6 +129,8 @@ The OG image is a purpose-built landscape social card that reuses the finished s
 - Every English/Chinese pair emits `en`, `zh-CN`, and `x-default` alternates.
 - Sitemap entries cover only canonical, indexable routes and include alternate-language links when supported by Next.js.
 - Robots allow public pages and reference the absolute sitemap URL.
+- Production must expose `https://codexskin.site/sitemap.xml` and `https://codexskin.site/robots.txt` with HTTP 200 responses. The sitemap contains all ten canonical route URLs, uses only the non-`www` HTTPS origin, and contains no local or preview deployment hosts.
+- All ten public routes remain crawlable: they are not blocked by `robots.txt`, do not emit `noindex`, return a normal page response, and do not canonicalize to a different-language page.
 - `SoftwareApplication` appears on home pages; `FAQPage` appears only where the same FAQ is visible; `BreadcrumbList` appears on guides with matching on-page breadcrumbs.
 - JSON-LD avoids unsupported ratings, pricing, download URLs, or operating-system versions not documented by the product.
 - Internal links connect each home to all four guide intents and connect platform/customize/restore guides to one another.
@@ -170,7 +172,7 @@ Automated checks cover:
 - absence of accidental Windows custom-image claims;
 - internal-link integrity for all local routes.
 
-Release verification runs tests, lint, TypeScript checks, and a production build. A local production-equivalent preview is then checked at desktop and mobile widths for navigation, layout, image loading, gallery interaction, command copying, 404 behavior, console errors, and obvious horizontal overflow.
+Release verification runs tests, lint, TypeScript checks, and a production build. A local production-equivalent preview is then checked at desktop and mobile widths for navigation, layout, image loading, gallery interaction, command copying, 404 behavior, console errors, and obvious horizontal overflow. The preview check also requests every canonical route, `/sitemap.xml`, `/robots.txt`, and `/manifest.webmanifest`, confirms successful responses, and scans rendered metadata for accidental `noindex`, preview-host canonicals, missing hreflang pairs, or duplicate H1 elements.
 
 ## Deployment
 
@@ -191,6 +193,7 @@ The production project must bind `codexskin.site` as primary and redirect `www.c
 - All eight gallery images are visible, lazily loaded outside the hero, and covered by the rights disclaimer.
 - Platform CTAs lead to real guide or GitHub destinations; no fake release or download exists.
 - Canonical, hreflang, social metadata, sitemap, robots, manifest, favicon, 404, and required JSON-LD are present and consistent.
+- The production sitemap and robots endpoints return HTTP 200, the sitemap lists all ten canonical non-`www` HTTPS URLs, and none of the ten pages is blocked or marked `noindex`.
 - Desktop and mobile navigation, lightbox, and copy controls are keyboard accessible.
 - Tests, lint, type checking, and production build pass with no unresolved errors.
 - Deployment and `www` redirect instructions are complete for `codexskin.site`.
