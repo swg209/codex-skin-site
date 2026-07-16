@@ -42,6 +42,13 @@ export function alternatePaths(_locale: Locale, key: RouteKey) {
   };
 }
 
+export function routeKeyFromPath(pathname: string): RouteKey {
+  const normalized = pathname.replace(/^\/zh(?=\/|$)/, "") || "/";
+  const match = ROUTES.find((key) => englishPaths[key] === normalized);
+
+  return match ?? "home";
+}
+
 export function absoluteUrl(path: string): string {
   return `${SITE_URL}${path}`;
 }

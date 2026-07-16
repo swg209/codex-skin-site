@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 
-import { ROUTES, alternatePaths, routePath } from "@/lib/site";
+import {
+  ROUTES,
+  alternatePaths,
+  routeKeyFromPath,
+  routePath,
+} from "@/lib/site";
 
 describe("public route contract", () => {
   it("defines ten unique canonical routes", () => {
@@ -33,5 +38,11 @@ describe("public route contract", () => {
       "zh-CN": "/zh/install/windows",
       "x-default": "/install/windows",
     });
+  });
+
+  it("maps localized paths back to their route key", () => {
+    expect(routeKeyFromPath("/zh/guide/restore")).toBe("restore");
+    expect(routeKeyFromPath("/install/macos")).toBe("macos");
+    expect(routeKeyFromPath("/unknown")).toBe("home");
   });
 });
