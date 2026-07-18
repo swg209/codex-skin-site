@@ -194,17 +194,17 @@ export const enContent: LocaleContent = {
       {
         title: "Adds a visual theme layer",
         description:
-          "It applies CSS and decorative elements to supported views while keeping the official Codex Desktop interface interactive.",
+          "According to the upstream documentation, it applies CSS and decorative elements to supported Codex Desktop views.",
+      },
+      {
+        title: "Keeps native Codex controls interactive",
+        description:
+          "The upstream documentation says navigation, project controls, tasks, and the composer remain native interactive controls.",
       },
       {
         title: "Documents Windows and macOS workflows",
         description:
-          "The upstream repository provides separate install, launch, verification, and restore instructions for each platform.",
-      },
-      {
-        title: "Supports local background customization on macOS",
-        description:
-          "The upstream macOS workflow documents a local image studio for preparing and applying a personal background.",
+          "The upstream repository documents separate install, launch, verification, and restore workflows for Windows and macOS.",
       },
     ],
     boundaryTitle: "What this independent site does not claim",
@@ -212,6 +212,7 @@ export const enContent: LocaleContent = {
       "Codex Dream Skin is not an official OpenAI product.",
       "CodexSkin.site is not the upstream project's official website and its maintainer is not the upstream author.",
       "CodexSkin.site does not host, modify, or repackage the third-party installer.",
+      "CodexSkin.site does not guarantee that third-party tooling will remain compatible after Codex updates.",
     ],
     installTitle: "Choose an independent installation guide",
     guides: [
@@ -220,7 +221,7 @@ export const enContent: LocaleContent = {
         label: "Windows",
         title: "Install Codex Dream Skin on Windows",
         description:
-          "Review requirements, the upstream PowerShell workflow, verification, and safe restore steps.",
+          "Review requirements for the Store-installed official Codex app, the upstream PowerShell workflow, verification, and safe restore steps.",
         linkLabel: "View Windows install guide",
       },
       {
@@ -274,7 +275,7 @@ export const enContent: LocaleContent = {
     ],
     finalTitle: "Verify the source before you install",
     finalDescription:
-      "Open the original repository, review the code and current upstream instructions, then use the platform guide that matches your system.",
+      "CodexSkin is an independent guide and does not distribute the installer. Open the original repository, review its current instructions, then choose your platform guide.",
   },
   guides: {
     windows: {

@@ -47,6 +47,18 @@ describe("SEO output", () => {
       ),
     ).toBe(true);
     expect(entries.some((entry) => entry.url.includes("www."))).toBe(false);
+
+    const dreamSkinEntries = entries.filter((entry) =>
+      entry.url.endsWith("/codex-dream-skin"),
+    );
+    expect(dreamSkinEntries).toHaveLength(2);
+    for (const entry of dreamSkinEntries) {
+      expect(entry.changeFrequency).toBe("weekly");
+      expect(entry.priority).toBe(0.9);
+      expect(entry.lastModified).toEqual(
+        new Date("2026-07-18T00:00:00.000Z"),
+      );
+    }
   });
 
   it("allows crawling and publishes the sitemap", () => {

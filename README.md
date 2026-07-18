@@ -30,11 +30,14 @@ npm run build
 ## Public routes
 
 - `/` and `/zh`
+- `/codex-dream-skin` and `/zh/codex-dream-skin`
 - `/install/windows` and `/zh/install/windows`
 - `/install/macos` and `/zh/install/macos`
 - `/guide/customize` and `/zh/guide/customize`
 - `/guide/restore` and `/zh/guide/restore`
 - `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest`, and `/ads.txt`
+
+The Codex Dream Skin landing pages point visitors to the verified original `Fei-Away/Codex-Dream-Skin` source. They are independent project guides, not the upstream project's official website.
 
 Third-party behavior claims and installation commands are checked against the original project documentation. CodexSkin's guides and future customization resources remain independently maintained.
 

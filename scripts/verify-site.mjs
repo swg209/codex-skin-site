@@ -17,6 +17,8 @@ function normalizedRootUrl(url) {
 export const PUBLIC_PATHS = [
   { path: "/", locale: "en" },
   { path: "/zh", locale: "zh" },
+  { path: "/codex-dream-skin", locale: "en" },
+  { path: "/zh/codex-dream-skin", locale: "zh" },
   { path: "/install/windows", locale: "en" },
   { path: "/install/macos", locale: "en" },
   { path: "/guide/customize", locale: "en" },

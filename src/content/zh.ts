@@ -167,15 +167,15 @@ export const zhContent: LocaleContent = {
     whatItems: [
       {
         title: "添加视觉主题层",
-        description: "它为支持的页面应用 CSS 和装饰元素，同时保留官方 Codex 桌面端原生界面的交互能力。",
+        description: "根据上游文档，它会为支持的 Codex 桌面端页面应用 CSS 和装饰元素。",
+      },
+      {
+        title: "保留 Codex 原生控件交互",
+        description: "上游文档说明导航、项目控件、任务内容和输入框仍是原生可交互控件。",
       },
       {
         title: "记录 Windows 与 macOS 流程",
-        description: "上游仓库分别提供两个平台的安装、启动、验证和恢复说明。",
-      },
-      {
-        title: "在 macOS 使用本地背景",
-        description: "上游 macOS 流程记录了用于准备和应用个人背景图的本机图片编辑器。",
+        description: "上游仓库分别记录了 Windows 与 macOS 的安装、启动、验证和恢复流程。",
       },
     ],
     boundaryTitle: "本独立网站不会声称什么",
@@ -183,6 +183,7 @@ export const zhContent: LocaleContent = {
       "Codex Dream Skin 不是 OpenAI 官方产品。",
       "CodexSkin.site 不是该上游项目的官方网站，本站维护者也不是上游作者。",
       "CodexSkin.site 不托管、不修改、不重新打包第三方安装程序。",
+      "CodexSkin.site 不保证第三方工具在 Codex 更新后持续兼容。",
     ],
     installTitle: "选择独立安装教程",
     guides: [
@@ -190,7 +191,7 @@ export const zhContent: LocaleContent = {
         routeKey: "windows",
         label: "Windows",
         title: "在 Windows 安装 Codex Dream Skin",
-        description: "查看环境要求、上游 PowerShell 流程、验证方法与安全恢复步骤。",
+        description: "查看微软商店官方 Codex 应用的环境要求、上游 PowerShell 流程、验证方法与安全恢复步骤。",
         linkLabel: "查看 Windows 安装教程",
       },
       {
@@ -221,7 +222,7 @@ export const zhContent: LocaleContent = {
         answer: "不是。它是独立开源项目，与 OpenAI 没有隶属关系，也未获得 OpenAI 官方认可。",
       },
       {
-        question: "CodexSkin.site 会维护或分发 Codex Dream Skin 吗？",
+        question: "CodexSkin.site 是否维护或分发 Codex Dream Skin？",
         answer: "不会。CodexSkin.site 是独立教程、主题素材与工具网站；本站维护者不是上游作者，也不托管、不修改、不重新打包其安装程序。",
       },
       {
@@ -229,12 +230,12 @@ export const zhContent: LocaleContent = {
         answer: "请在本页选择 Windows 或 macOS 教程，检查平台要求、核对上游源码，并保留对应的验证与恢复步骤。",
       },
       {
-        question: "可以使用自己的 Codex 皮肤或背景图片吗？",
+        question: "可以使用自己的 Codex 皮肤或背景图吗？",
         answer: "上游 macOS 流程记录了支持多种图片格式的本机编辑器；当前 Windows 流程没有记录相同的图片选择器。本站图库目前展示演示示例，并非 CodexSkin 自有下载素材。",
       },
     ],
     finalTitle: "安装前先核对源码",
-    finalDescription: "打开原始仓库，检查源码和当前上游说明，再选择与你的系统相符的平台教程。",
+    finalDescription: "CodexSkin 是不分发安装程序的独立指南站。请打开原始仓库，检查当前说明，再选择与你的系统相符的平台教程。",
   },
   guides: {
     windows: {

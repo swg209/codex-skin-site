@@ -58,6 +58,8 @@ describe("localized product content", () => {
       expect(dreamSkin.hero.h1).toContain("Codex Dream Skin");
       expect(dreamSkin.faq).toHaveLength(6);
       expect(dreamSkin.guides).toHaveLength(2);
+      expect(dreamSkin.whatItems).toHaveLength(3);
+      expect(dreamSkin.boundaryItems).toHaveLength(4);
       expect(dreamSkin.identityNotice.length).toBeGreaterThan(30);
       expect(dreamSkin.sourceLabel.length).toBeGreaterThan(10);
       expect(localeContent.chrome.nav.dreamSkin.length).toBeGreaterThan(0);
