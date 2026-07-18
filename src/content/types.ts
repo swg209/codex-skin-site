@@ -1,4 +1,4 @@
-import type { Locale, RouteKey } from "@/lib/site";
+import type { GuideRouteKey, Locale } from "@/lib/site";
 
 export interface SeoCopy {
   title: string;
@@ -7,6 +7,7 @@ export interface SeoCopy {
 
 export interface NavCopy {
   themes: string;
+  dreamSkin: string;
   features: string;
   install: string;
   faq: string;
@@ -119,7 +120,7 @@ export interface GuideSection {
 }
 
 export interface GuideContent {
-  key: Exclude<RouteKey, "home">;
+  key: GuideRouteKey;
   seo: SeoCopy;
   eyebrow: string;
   h1: string;
@@ -127,6 +128,7 @@ export interface GuideContent {
   sourceNotice: string;
   sourceReviewNotice: string;
   sourceLabel: string;
+  overviewLabel: string;
   issueLabel: string;
   copyLabel: string;
   copiedLabel: string;
@@ -134,7 +136,42 @@ export interface GuideContent {
   contentsLabel: string;
   relatedLabel: string;
   sections: GuideSection[];
-  related: Exclude<RouteKey, "home">[];
+  related: GuideRouteKey[];
+}
+
+export interface DreamSkinGuideCard {
+  routeKey: Extract<GuideRouteKey, "windows" | "macos">;
+  label: string;
+  title: string;
+  description: string;
+}
+
+export interface DreamSkinContent {
+  seo: SeoCopy;
+  hero: {
+    eyebrow: string;
+    h1: string;
+    summary: string;
+  };
+  identityNotice: string;
+  sourceTitle: string;
+  sourceLabel: string;
+  sourceHint: string;
+  whatTitle: string;
+  whatItems: FeatureItem[];
+  boundaryTitle: string;
+  boundaryItems: string[];
+  installTitle: string;
+  guides: DreamSkinGuideCard[];
+  materialsTitle: string;
+  materialsDescription: string;
+  materialsDisclaimer: string;
+  materialsLabel: string;
+  customizeLabel: string;
+  faqTitle: string;
+  faq: FaqItem[];
+  finalTitle: string;
+  finalDescription: string;
 }
 
 export interface SiteChromeContent {
@@ -143,6 +180,7 @@ export interface SiteChromeContent {
   skipLabel: string;
   footerDescription: string;
   repositoryLabel: string;
+  dreamSkinLabel: string;
   guidesLabel: string;
   issueLabel: string;
   licenseLabel: string;
@@ -155,5 +193,6 @@ export interface LocaleContent {
   locale: Locale;
   chrome: SiteChromeContent;
   home: HomeContent;
-  guides: Record<Exclude<RouteKey, "home">, GuideContent>;
+  dreamSkin: DreamSkinContent;
+  guides: Record<GuideRouteKey, GuideContent>;
 }

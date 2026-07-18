@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { siteConfig } from "@/config/site";
 import { contentByLocale } from "@/content";
-import type { Locale, RouteKey } from "@/lib/site";
+import type { GuideRouteKey, Locale, RouteKey } from "@/lib/site";
 import {
   SITE_URL,
   absoluteUrl,
@@ -11,9 +11,9 @@ import {
 } from "@/lib/site";
 
 function seoCopy(locale: Locale, key: RouteKey) {
-  return key === "home"
-    ? contentByLocale[locale].home.seo
-    : contentByLocale[locale].guides[key].seo;
+  if (key === "home") return contentByLocale[locale].home.seo;
+  if (key === "dreamSkin") return contentByLocale[locale].dreamSkin.seo;
+  return contentByLocale[locale].guides[key].seo;
 }
 
 function languageAlternates(locale: Locale, key: RouteKey) {
@@ -85,7 +85,7 @@ export function websiteSchema(locale: Locale) {
 
 export function webPageSchema(
   locale: Locale,
-  key: Exclude<RouteKey, "home">,
+  key: GuideRouteKey,
 ) {
   const copy = contentByLocale[locale].guides[key];
 
@@ -121,7 +121,7 @@ export function faqSchema(locale: Locale) {
 
 export function breadcrumbSchema(
   locale: Locale,
-  key: Exclude<RouteKey, "home">,
+  key: GuideRouteKey,
 ) {
   const content = contentByLocale[locale];
 

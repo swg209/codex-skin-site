@@ -4,19 +4,22 @@ export const SITE_URL = siteConfig.url;
 export const GITHUB_URL = siteConfig.upstream.repositoryUrl;
 export const ISSUE_URL = siteConfig.upstream.issuesUrl;
 
-export const ROUTES = [
-  "home",
+export const GUIDE_ROUTES = [
   "windows",
   "macos",
   "customize",
   "restore",
 ] as const;
 
+export const ROUTES = ["home", "dreamSkin", ...GUIDE_ROUTES] as const;
+
 export type RouteKey = (typeof ROUTES)[number];
+export type GuideRouteKey = (typeof GUIDE_ROUTES)[number];
 export type Locale = "en" | "zh";
 
 const englishPaths: Record<RouteKey, string> = {
   home: "/",
+  dreamSkin: "/codex-dream-skin",
   windows: "/install/windows",
   macos: "/install/macos",
   customize: "/guide/customize",

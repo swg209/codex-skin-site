@@ -2,6 +2,7 @@ import type { LocaleContent } from "@/content/types";
 
 const nav = {
   themes: "Themes",
+  dreamSkin: "Dream Skin",
   features: "Features",
   install: "Install",
   faq: "FAQ",
@@ -15,6 +16,7 @@ const guideAttribution = {
     "This guide references a third-party open-source project. CodexSkin.site is not the project developer and does not host or modify its installer.",
   sourceReviewNotice:
     "Before running third-party scripts, review the source code and confirm that you are downloading from the original repository.",
+  overviewLabel: "About Codex Dream Skin",
 };
 
 export const enContent: LocaleContent = {
@@ -26,6 +28,7 @@ export const enContent: LocaleContent = {
     footerDescription:
       "Independent themes, tools, and setup guides for Codex Desktop.",
     repositoryLabel: "View Original Project",
+    dreamSkinLabel: "About Codex Dream Skin",
     guidesLabel: "Installation Guides",
     issueLabel: "Report an Issue",
     licenseLabel: "MIT License",
@@ -167,6 +170,109 @@ export const enContent: LocaleContent = {
       close: "Close preview",
       viewTheme: "View theme",
     },
+  },
+  dreamSkin: {
+    seo: {
+      title: "Codex Dream Skin – GitHub, Install Guides & Themes",
+      description:
+        "Learn what Codex Dream Skin is, open the original GitHub repository, and follow independent Windows and macOS install guides from CodexSkin.",
+    },
+    hero: {
+      eyebrow: "Independent project guide",
+      h1: "Codex Dream Skin: GitHub Source, Install Guides & Themes",
+      summary:
+        "Codex Dream Skin is an independent open-source visual theme layer for the official Codex Desktop app. Start with the verified source, then use CodexSkin's independent platform guides.",
+    },
+    identityNotice:
+      "CodexSkin.site is not an OpenAI website or the official Codex Dream Skin website. We are not the upstream author and do not host, modify, or repackage its installer.",
+    sourceTitle: "Verified original GitHub repository",
+    sourceLabel: "Open Original GitHub Repository",
+    sourceHint:
+      "Opens the third-party repository in a new tab. Review its source before running scripts.",
+    whatTitle: "What Codex Dream Skin does",
+    whatItems: [
+      {
+        title: "Adds a visual theme layer",
+        description:
+          "It applies CSS and decorative elements to supported views while keeping the official Codex Desktop interface interactive.",
+      },
+      {
+        title: "Documents Windows and macOS workflows",
+        description:
+          "The upstream repository provides separate install, launch, verification, and restore instructions for each platform.",
+      },
+      {
+        title: "Supports local background customization on macOS",
+        description:
+          "The upstream macOS workflow documents a local image studio for preparing and applying a personal background.",
+      },
+    ],
+    boundaryTitle: "What this independent site does not claim",
+    boundaryItems: [
+      "Codex Dream Skin is not an official OpenAI product.",
+      "CodexSkin.site is not the upstream project's official website and its maintainer is not the upstream author.",
+      "CodexSkin.site does not host, modify, or repackage the third-party installer.",
+    ],
+    installTitle: "Choose an independent installation guide",
+    guides: [
+      {
+        routeKey: "windows",
+        label: "Windows",
+        title: "Install Codex Dream Skin on Windows",
+        description:
+          "Review requirements, the upstream PowerShell workflow, verification, and safe restore steps.",
+      },
+      {
+        routeKey: "macos",
+        label: "macOS",
+        title: "Install Codex Dream Skin on macOS",
+        description:
+          "Follow the independent guide for Apple Silicon or Intel Mac, including image selection and restore.",
+      },
+    ],
+    materialsTitle: "Codex skins and background materials",
+    materialsDescription:
+      "Explore visual examples and learn how image composition, contrast, and native controls work together in a Codex skin.",
+    materialsDisclaimer:
+      "The current gallery contains demonstration examples from the referenced project, not CodexSkin-owned theme downloads.",
+    materialsLabel: "Browse Codex skin examples",
+    customizeLabel: "Read the background customization guide",
+    faqTitle: "Codex Dream Skin questions",
+    faq: [
+      {
+        question: "What is Codex Dream Skin?",
+        answer:
+          "Codex Dream Skin is an independent open-source visual theme layer for the official Codex Desktop app. It uses a local debugging workflow to apply CSS and decorative interface elements.",
+      },
+      {
+        question: "Where is the original Codex Dream Skin GitHub repository?",
+        answer:
+          "The original repository verified for this guide is Fei-Away/Codex-Dream-Skin on GitHub. Use the source button on this page and review the repository before running scripts.",
+      },
+      {
+        question: "Is Codex Dream Skin an official OpenAI product?",
+        answer:
+          "No. It is an independent open-source project and is not affiliated with or endorsed by OpenAI.",
+      },
+      {
+        question: "Does CodexSkin.site maintain or distribute Codex Dream Skin?",
+        answer:
+          "No. CodexSkin.site is an independent guide, theme-material, and tools website. Its maintainer is not the upstream author, and the site does not host, modify, or repackage the installer.",
+      },
+      {
+        question: "How do I install Codex Dream Skin on Windows or macOS?",
+        answer:
+          "Choose the Windows or macOS guide on this page, check the platform requirements, review the upstream source, and keep the documented verification and restore steps nearby.",
+      },
+      {
+        question: "Can I use my own Codex skin or background image?",
+        answer:
+          "The upstream macOS workflow documents a local image studio for supported image formats. The current Windows workflow does not document the same image picker. The gallery on this site currently shows demonstration examples rather than CodexSkin-owned downloads.",
+      },
+    ],
+    finalTitle: "Verify the source before you install",
+    finalDescription:
+      "Open the original repository, review the code and current upstream instructions, then use the platform guide that matches your system.",
   },
   guides: {
     windows: {

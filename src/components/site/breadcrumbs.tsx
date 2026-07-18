@@ -1,10 +1,10 @@
 import type { Route } from "next";
 import Link from "next/link";
 
-import type { Locale, RouteKey } from "@/lib/site";
+import type { GuideRouteKey, Locale } from "@/lib/site";
 import { routePath } from "@/lib/site";
 
-export function Breadcrumbs({ locale, current }: { locale: Locale; current: Exclude<RouteKey, "home"> }) {
+export function Breadcrumbs({ locale, current }: { locale: Locale; current: GuideRouteKey }) {
   return (
     <nav className="breadcrumbs" aria-label={locale === "en" ? "Breadcrumb" : "面包屑导航"}>
       <Link href={routePath(locale, "home") as Route}>{locale === "en" ? "Home" : "首页"}</Link>

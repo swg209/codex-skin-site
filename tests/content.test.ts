@@ -49,6 +49,51 @@ describe("localized product content", () => {
     });
   });
 
+  it.each(["en", "zh"] as const)(
+    "defines the complete %s Dream Skin search-intent content",
+    (locale) => {
+      const localeContent = contentByLocale[locale];
+      const dreamSkin = localeContent.dreamSkin;
+
+      expect(dreamSkin.hero.h1).toContain("Codex Dream Skin");
+      expect(dreamSkin.faq).toHaveLength(6);
+      expect(dreamSkin.guides).toHaveLength(2);
+      expect(dreamSkin.identityNotice.length).toBeGreaterThan(30);
+      expect(dreamSkin.sourceLabel.length).toBeGreaterThan(10);
+      expect(localeContent.chrome.nav.dreamSkin.length).toBeGreaterThan(0);
+      expect(localeContent.chrome.dreamSkinLabel.length).toBeGreaterThan(0);
+
+      for (const guide of Object.values(localeContent.guides)) {
+        expect(guide.overviewLabel.length).toBeGreaterThan(0);
+      }
+    },
+  );
+
+  it("uses the approved GSC-aligned Dream Skin metadata", () => {
+    expect(contentByLocale.en.dreamSkin.seo).toEqual({
+      title: "Codex Dream Skin – GitHub, Install Guides & Themes",
+      description:
+        "Learn what Codex Dream Skin is, open the original GitHub repository, and follow independent Windows and macOS install guides from CodexSkin.",
+    });
+    expect(contentByLocale.zh.dreamSkin.seo).toEqual({
+      title: "Codex Dream Skin - GitHub、安装教程与 Codex 皮肤",
+      description:
+        "了解 Codex Dream Skin，访问原始 GitHub 仓库，并查看 CodexSkin 提供的 Windows、macOS 独立安装教程与皮肤素材说明。",
+    });
+  });
+
+  it("states the Dream Skin site identity without official or ownership claims", () => {
+    const english = JSON.stringify(contentByLocale.en.dreamSkin);
+    const chinese = JSON.stringify(contentByLocale.zh.dreamSkin);
+
+    expect(english).toContain("not an OpenAI website");
+    expect(english).toContain("or the official Codex Dream Skin website");
+    expect(english).toContain("do not host, modify, or repackage");
+    expect(chinese).toContain("不是 OpenAI 网站");
+    expect(chinese).toContain("不是 Codex Dream Skin 官方网站");
+    expect(chinese).toContain("不托管、不修改、不重新打包");
+  });
+
   it("defines two platform quick-start cards and a future-tool teaser", () => {
     const englishHome = contentByLocale.en.home as unknown as {
       quickStart?: { platforms: unknown[] };

@@ -2,6 +2,7 @@ import type { LocaleContent } from "@/content/types";
 
 const nav = {
   themes: "主题效果",
+  dreamSkin: "Dream Skin",
   features: "功能",
   install: "安装",
   faq: "常见问题",
@@ -13,6 +14,7 @@ const nav = {
 const guideAttribution = {
   sourceNotice: "本教程引用第三方开源项目。CodexSkin.site 不是该项目开发者，也不托管或修改其安装包。",
   sourceReviewNotice: "运行第三方脚本前，请检查源代码，并确认文件来自原始仓库。",
+  overviewLabel: "了解 Codex Dream Skin",
 };
 
 export const zhContent: LocaleContent = {
@@ -23,6 +25,7 @@ export const zhContent: LocaleContent = {
     skipLabel: "跳到正文",
     footerDescription: "独立的 Codex 桌面端主题、工具与安装指南。",
     repositoryLabel: "查看原始项目",
+    dreamSkinLabel: "了解 Codex Dream Skin",
     guidesLabel: "安装教程",
     issueLabel: "反馈问题",
     licenseLabel: "MIT 许可",
@@ -142,6 +145,94 @@ export const zhContent: LocaleContent = {
       close: "关闭预览",
       viewTheme: "查看主题",
     },
+  },
+  dreamSkin: {
+    seo: {
+      title: "Codex Dream Skin - GitHub、安装教程与 Codex 皮肤",
+      description:
+        "了解 Codex Dream Skin，访问原始 GitHub 仓库，并查看 CodexSkin 提供的 Windows、macOS 独立安装教程与皮肤素材说明。",
+    },
+    hero: {
+      eyebrow: "独立项目指南",
+      h1: "Codex Dream Skin：原始 GitHub、安装教程与 Codex 皮肤",
+      summary:
+        "Codex Dream Skin 是面向官方 Codex 桌面端的独立开源视觉主题层。请先核对原始源码，再阅读 CodexSkin 提供的独立平台教程。",
+    },
+    identityNotice:
+      "CodexSkin.site 不是 OpenAI 网站，也不是 Codex Dream Skin 官方网站。本站维护者不是上游作者，不托管、不修改、不重新打包其安装程序。",
+    sourceTitle: "已核验的原始 GitHub 仓库",
+    sourceLabel: "打开原始 GitHub 仓库",
+    sourceHint: "将在新标签页打开第三方仓库；运行脚本前请先检查源码。",
+    whatTitle: "Codex Dream Skin 能做什么",
+    whatItems: [
+      {
+        title: "添加视觉主题层",
+        description: "它为支持的页面应用 CSS 和装饰元素，同时保留官方 Codex 桌面端原生界面的交互能力。",
+      },
+      {
+        title: "记录 Windows 与 macOS 流程",
+        description: "上游仓库分别提供两个平台的安装、启动、验证和恢复说明。",
+      },
+      {
+        title: "在 macOS 使用本地背景",
+        description: "上游 macOS 流程记录了用于准备和应用个人背景图的本机图片编辑器。",
+      },
+    ],
+    boundaryTitle: "本独立网站不会声称什么",
+    boundaryItems: [
+      "Codex Dream Skin 不是 OpenAI 官方产品。",
+      "CodexSkin.site 不是该上游项目的官方网站，本站维护者也不是上游作者。",
+      "CodexSkin.site 不托管、不修改、不重新打包第三方安装程序。",
+    ],
+    installTitle: "选择独立安装教程",
+    guides: [
+      {
+        routeKey: "windows",
+        label: "Windows",
+        title: "在 Windows 安装 Codex Dream Skin",
+        description: "查看环境要求、上游 PowerShell 流程、验证方法与安全恢复步骤。",
+      },
+      {
+        routeKey: "macos",
+        label: "macOS",
+        title: "在 macOS 安装 Codex Dream Skin",
+        description: "查看适用于 Apple Silicon 与 Intel Mac 的独立教程，包括选图和恢复流程。",
+      },
+    ],
+    materialsTitle: "Codex 皮肤与背景素材",
+    materialsDescription: "浏览视觉示例，了解图片构图、文字对比度与 Codex 原生控件如何共同组成一套皮肤。",
+    materialsDisclaimer: "当前图库是所引用项目的演示示例，并非 CodexSkin 自有的主题下载素材。",
+    materialsLabel: "查看 Codex 皮肤示例",
+    customizeLabel: "阅读背景定制教程",
+    faqTitle: "Codex Dream Skin 常见问题",
+    faq: [
+      {
+        question: "Codex Dream Skin 是什么？",
+        answer: "Codex Dream Skin 是面向官方 Codex 桌面端的独立开源视觉主题层，通过本机调试流程应用 CSS 和装饰界面元素。",
+      },
+      {
+        question: "Codex Dream Skin 的原始 GitHub 仓库在哪里？",
+        answer: "本指南核验的原始仓库是 GitHub 上的 Fei-Away/Codex-Dream-Skin。请使用本页源码按钮，并在运行脚本前检查仓库内容。",
+      },
+      {
+        question: "Codex Dream Skin 是 OpenAI 官方产品吗？",
+        answer: "不是。它是独立开源项目，与 OpenAI 没有隶属关系，也未获得 OpenAI 官方认可。",
+      },
+      {
+        question: "CodexSkin.site 会维护或分发 Codex Dream Skin 吗？",
+        answer: "不会。CodexSkin.site 是独立教程、主题素材与工具网站；本站维护者不是上游作者，也不托管、不修改、不重新打包其安装程序。",
+      },
+      {
+        question: "如何在 Windows 或 macOS 安装 Codex Dream Skin？",
+        answer: "请在本页选择 Windows 或 macOS 教程，检查平台要求、核对上游源码，并保留对应的验证与恢复步骤。",
+      },
+      {
+        question: "可以使用自己的 Codex 皮肤或背景图片吗？",
+        answer: "上游 macOS 流程记录了支持多种图片格式的本机编辑器；当前 Windows 流程没有记录相同的图片选择器。本站图库目前展示演示示例，并非 CodexSkin 自有下载素材。",
+      },
+    ],
+    finalTitle: "安装前先核对源码",
+    finalDescription: "打开原始仓库，检查源码和当前上游说明，再选择与你的系统相符的平台教程。",
   },
   guides: {
     windows: {

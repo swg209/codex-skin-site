@@ -6,18 +6,18 @@ import { contentByLocale } from "@/content";
 import { GuideSection } from "@/components/guides/guide-section";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { JsonLd } from "@/components/site/json-ld";
-import type { Locale, RouteKey } from "@/lib/site";
+import type { GuideRouteKey, Locale } from "@/lib/site";
 import { ISSUE_URL, routePath } from "@/lib/site";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seo";
 
-const sourcePaths: Record<Exclude<RouteKey, "home">, string> = {
+const sourcePaths: Record<GuideRouteKey, string> = {
   windows: siteConfig.upstream.windowsUrl,
   macos: siteConfig.upstream.macosUrl,
   customize: siteConfig.upstream.macosUrl,
   restore: siteConfig.upstream.repositoryUrl,
 };
 
-export function GuidePage({ locale, routeKey }: { locale: Locale; routeKey: Exclude<RouteKey, "home"> }) {
+export function GuidePage({ locale, routeKey }: { locale: Locale; routeKey: GuideRouteKey }) {
   const localeContent = contentByLocale[locale];
   const content = localeContent.guides[routeKey];
 
