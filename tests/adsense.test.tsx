@@ -1,21 +1,35 @@
 import { existsSync, readFileSync } from "node:fs";
-
-import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { SiteAnalytics } from "@/components/site/analytics";
+import { siteConfig } from "@/config/site";
 import { contentByLocale } from "@/content";
 
 describe("Google AdSense integration", () => {
-  it("loads the publisher script once with anonymous CORS", () => {
-    render(<SiteAnalytics />);
-    const scripts = document.querySelectorAll(
-      'script[src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5491343418531814"]',
-    );
+  it("places a native publisher script inside both root heads", () => {
+    const componentPath = "src/components/site/adsense-script.tsx";
+    expect(existsSync(componentPath)).toBe(true);
 
-    expect(scripts).toHaveLength(1);
-    expect(scripts[0]).toHaveAttribute("crossorigin", "anonymous");
-    expect(scripts[0]).toHaveAttribute("data-nscript", "afterInteractive");
+    const component = readFileSync(componentPath, "utf8");
+    expect(siteConfig.adsense.publisherId).toBe("ca-pub-5491343418531814");
+    expect(component).toContain("siteConfig.adsense.publisherId");
+    expect(component).toContain("<script");
+    expect(component).not.toContain('from "next/script"');
+    expect(component).toContain("async");
+    expect(component).toContain('crossOrigin="anonymous"');
+
+    for (const layout of [
+      "src/app/(en)/layout.tsx",
+      "src/app/(zh)/zh/layout.tsx",
+    ]) {
+      const source = readFileSync(layout, "utf8");
+      expect(source).toMatch(
+        /<head>\s*<AdSenseHeadScript \/>\s*<\/head>/,
+      );
+    }
+
+    expect(readFileSync("src/components/site/analytics.tsx", "utf8")).not.toContain(
+      "adsbygoogle",
+    );
   });
 
   it("publishes the matching authorized digital seller record", () => {

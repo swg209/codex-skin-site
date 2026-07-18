@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
+import { AdSenseHeadScript } from "@/components/site/adsense-script";
 import { SiteLayout } from "@/components/site/site-layout";
 import { SITE_URL } from "@/lib/site";
 
@@ -23,6 +24,9 @@ export const viewport: Viewport = {
 export default function EnglishLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <AdSenseHeadScript />
+      </head>
       <body>
         <SiteLayout locale="en">{children}</SiteLayout>
       </body>

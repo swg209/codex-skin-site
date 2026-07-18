@@ -2,9 +2,32 @@ import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 
 // @ts-expect-error The production verification script is intentionally plain ESM.
-import { PUBLIC_PATHS, inspectHtml } from "../scripts/verify-site.mjs";
+import * as siteVerifier from "../scripts/verify-site.mjs";
+
+const { PUBLIC_PATHS, inspectHtml } = siteVerifier;
 
 describe("production verification helper", () => {
+  it("distinguishes a real head script from a preload-only response", () => {
+    expect(siteVerifier).toHaveProperty("hasAdsenseHeadScript");
+
+    const hasAdsenseHeadScript = (
+      siteVerifier as typeof siteVerifier & {
+        hasAdsenseHeadScript: (html: string) => boolean;
+      }
+    ).hasAdsenseHeadScript;
+
+    expect(
+      hasAdsenseHeadScript(
+        '<head><link rel="preload" href="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5491343418531814" as="script" /></head><body></body>',
+      ),
+    ).toBe(false);
+    expect(
+      hasAdsenseHeadScript(
+        '<head><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5491343418531814" crossorigin="anonymous"></script></head><body></body>',
+      ),
+    ).toBe(true);
+  });
+
   it("verifies the AdSense authorized seller endpoint", () => {
     const source = readFileSync("scripts/verify-site.mjs", "utf8");
 

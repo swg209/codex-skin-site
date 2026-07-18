@@ -1,6 +1,8 @@
 import { fileURLToPath } from "node:url";
 
 const PRODUCTION_ORIGIN = "https://codexskin.site";
+const ADSENSE_SCRIPT_URL =
+  "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5491343418531814";
 const ADSENSE_SELLER_RECORD =
   "google.com, pub-5491343418531814, DIRECT, f08c47fec0942fa0";
 
@@ -35,6 +37,12 @@ function linkTags(html) {
 
 function metaTags(html) {
   return html.match(/<meta\b[^>]*>/gi) ?? [];
+}
+
+export function hasAdsenseHeadScript(html) {
+  const head = html.match(/<head\b[^>]*>[\s\S]*?<\/head>/i)?.[0] ?? "";
+  const scripts = head.match(/<script\b[^>]*>/gi) ?? [];
+  return scripts.some((tag) => attribute(tag, "src") === ADSENSE_SCRIPT_URL);
 }
 
 function localizedPaths(path, locale) {
@@ -100,6 +108,9 @@ export async function verifySite(origin = process.env.SITE_ORIGIN || "http://127
     if (response.status !== 200) {
       failures.push(`${entry.path}: expected 200, received ${response.status}`);
       continue;
+    }
+    if (!hasAdsenseHeadScript(text)) {
+      failures.push(`${entry.path}: missing AdSense script in head`);
     }
     const canonical = productionUrl(entry.path);
     for (const error of inspectHtml(text, { expectedCanonical: canonical, locale: entry.locale })) {
