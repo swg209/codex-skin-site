@@ -3,7 +3,6 @@ import type { LocaleContent } from "@/content/types";
 const nav = {
   themes: "主题效果",
   dreamSkin: "Dream Skin",
-  features: "功能",
   install: "安装",
   faq: "常见问题",
   github: "GitHub",
@@ -140,6 +139,7 @@ export const zhContent: LocaleContent = {
       windows: "Windows 安装",
       macos: "macOS 安装",
       github: "查看原始项目",
+      dreamSkin: "了解 Codex Dream Skin",
       previous: "上一个主题",
       next: "下一个主题",
       close: "关闭预览",

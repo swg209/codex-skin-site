@@ -27,6 +27,9 @@ describe("GuidePage source attribution", () => {
     );
     expect(source).toHaveAttribute("target", "_blank");
     expect(source).toHaveAttribute("rel", "noopener noreferrer");
+    expect(
+      screen.getByRole("link", { name: "About Codex Dream Skin" }),
+    ).toHaveAttribute("href", "/codex-dream-skin");
   });
 
   it("shows the localized disclosure on the Chinese macOS guide", () => {
@@ -46,5 +49,8 @@ describe("GuidePage source attribution", () => {
       "href",
       "https://github.com/Fei-Away/Codex-Dream-Skin/tree/main/macos",
     );
+    expect(
+      screen.getByRole("link", { name: "了解 Codex Dream Skin" }),
+    ).toHaveAttribute("href", "/zh/codex-dream-skin");
   });
 });

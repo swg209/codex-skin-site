@@ -24,7 +24,7 @@ function NavLinks({ locale, onNavigate }: NavLinksProps) {
   const home = routePath(locale, "home");
   const links = [
     { label: nav.themes, href: `${home}#themes` },
-    { label: nav.features, href: `${home}#features` },
+    { label: nav.dreamSkin, href: routePath(locale, "dreamSkin") },
     { label: nav.install, href: `${home}#install` },
     { label: nav.faq, href: `${home}#faq` },
   ];

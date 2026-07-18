@@ -3,7 +3,6 @@ import type { LocaleContent } from "@/content/types";
 const nav = {
   themes: "Themes",
   dreamSkin: "Dream Skin",
-  features: "Features",
   install: "Install",
   faq: "FAQ",
   github: "GitHub",
@@ -165,6 +164,7 @@ export const enContent: LocaleContent = {
       windows: "Install for Windows",
       macos: "Install for macOS",
       github: "View Original Project",
+      dreamSkin: "About Codex Dream Skin",
       previous: "Previous theme",
       next: "Next theme",
       close: "Close preview",

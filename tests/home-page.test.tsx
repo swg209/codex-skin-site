@@ -50,6 +50,16 @@ describe("HomePage conversion path", () => {
     }
   });
 
+  it("uses the hero to explain Dream Skin before sending users upstream", () => {
+    render(<HomePage locale="en" />);
+
+    const overview = screen.getByRole("link", {
+      name: "About Codex Dream Skin",
+    });
+    expect(overview).toHaveAttribute("href", "/codex-dream-skin");
+    expect(overview).not.toHaveAttribute("target", "_blank");
+  });
+
   it("links original themes and keeps the generator non-navigating", () => {
     render(<HomePage locale="en" />);
 

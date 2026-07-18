@@ -37,6 +37,7 @@ export function GuidePage({ locale, routeKey }: { locale: Locale; routeKey: Guid
           </aside>
           <div className="button-row guide-hero__actions">
             <a className="button button--primary" href={sourcePaths[routeKey]} rel="noopener noreferrer" target="_blank">{content.sourceLabel}<span aria-hidden="true" className="external-mark">↗</span></a>
+            <Link className="button" href={routePath(locale, "dreamSkin") as Route}>{content.overviewLabel}</Link>
             <a className="button" href={ISSUE_URL} rel="noopener noreferrer" target="_blank">{content.issueLabel}<span aria-hidden="true" className="external-mark">↗</span></a>
           </div>
         </header>

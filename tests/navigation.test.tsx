@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { Header } from "@/components/site/header";
+import { Footer } from "@/components/site/footer";
 
 vi.mock("next/navigation", () => ({
   usePathname: vi.fn(() => "/"),
@@ -18,6 +19,10 @@ describe("Header", () => {
     render(<Header locale="en" />);
 
     expect(screen.getByRole("link", { name: "CodexSkin home" })).toBeVisible();
+    expect(screen.getAllByRole("link", { name: "Dream Skin" })[0]).toHaveAttribute(
+      "href",
+      "/codex-dream-skin",
+    );
     expect(screen.getAllByRole("link", { name: "GitHub" })[0]).toHaveAttribute(
       "href",
       "https://github.com/Fei-Away/Codex-Dream-Skin",
@@ -36,5 +41,14 @@ describe("Header", () => {
 
     await user.keyboard("{Escape}");
     expect(screen.queryByRole("navigation", { name: "Mobile" })).toBeNull();
+  });
+
+  it("links the localized Dream Skin overview from the footer", () => {
+    render(<Footer locale="zh" />);
+
+    expect(screen.getByRole("link", { name: "了解 Codex Dream Skin" })).toHaveAttribute(
+      "href",
+      "/zh/codex-dream-skin",
+    );
   });
 });

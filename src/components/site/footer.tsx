@@ -21,6 +21,7 @@ export function Footer({ locale }: FooterProps) {
           <p>{copy.footerDescription}</p>
         </div>
         <nav aria-label={locale === "en" ? "Footer" : "页脚导航"}>
+          <Link href={routePath(locale, "dreamSkin") as Route}>{copy.dreamSkinLabel}</Link>
           <a href={siteConfig.upstream.repositoryUrl} rel="noopener noreferrer" target="_blank">{copy.repositoryLabel}</a>
           <Link href={routePath(locale, "windows") as Route}>{copy.guidesLabel}</Link>
           <a href={siteConfig.upstream.issuesUrl} rel="noopener noreferrer" target="_blank">{copy.issueLabel}</a>

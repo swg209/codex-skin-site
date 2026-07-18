@@ -8,7 +8,6 @@ export interface SeoCopy {
 export interface NavCopy {
   themes: string;
   dreamSkin: string;
-  features: string;
   install: string;
   faq: string;
   github: string;
@@ -100,6 +99,7 @@ export interface HomeContent {
     windows: string;
     macos: string;
     github: string;
+    dreamSkin: string;
     previous: string;
     next: string;
     close: string;
