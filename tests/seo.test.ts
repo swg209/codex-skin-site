@@ -7,6 +7,9 @@ import sitemap from "@/app/sitemap";
 import {
   breadcrumbSchema,
   buildMetadata,
+  dreamSkinBreadcrumbSchema,
+  dreamSkinFaqSchema,
+  dreamSkinPageSchema,
   faqSchema,
   webPageSchema,
 } from "@/lib/seo";
@@ -29,15 +32,15 @@ describe("SEO output", () => {
   it("keeps every route title and description unique by locale", () => {
     for (const locale of ["en", "zh"] as const) {
       const metadata = ROUTES.map((key) => buildMetadata(locale, key));
-      expect(new Set(metadata.map((item) => item.title)).size).toBe(5);
-      expect(new Set(metadata.map((item) => item.description)).size).toBe(5);
+      expect(new Set(metadata.map((item) => item.title)).size).toBe(6);
+      expect(new Set(metadata.map((item) => item.description)).size).toBe(6);
     }
   });
 
-  it("lists all ten canonical routes", () => {
+  it("lists all twelve canonical routes", () => {
     const entries = sitemap();
 
-    expect(entries).toHaveLength(10);
+    expect(entries).toHaveLength(12);
     expect(
       entries.every((entry) =>
         entry.url.startsWith("https://codexskin.site/"),
@@ -87,5 +90,21 @@ describe("SEO output", () => {
       inLanguage: "zh-CN",
       url: "https://codexskin.site/zh/install/windows",
     });
+  });
+
+  it("emits Dream Skin page, FAQ, and breadcrumb structured data", () => {
+    expect(dreamSkinPageSchema("en")).toMatchObject({
+      "@type": "WebPage",
+      inLanguage: "en",
+      url: "https://codexskin.site/codex-dream-skin",
+      mainEntity: {
+        "@type": "SoftwareSourceCode",
+        codeRepository: "https://github.com/Fei-Away/Codex-Dream-Skin",
+      },
+    });
+    expect(dreamSkinFaqSchema("zh").mainEntity).toHaveLength(6);
+    expect(
+      dreamSkinBreadcrumbSchema("zh").itemListElement.at(-1)?.item,
+    ).toBe("https://codexskin.site/zh/codex-dream-skin");
   });
 });

@@ -221,6 +221,7 @@ export const enContent: LocaleContent = {
         title: "Install Codex Dream Skin on Windows",
         description:
           "Review requirements, the upstream PowerShell workflow, verification, and safe restore steps.",
+        linkLabel: "View Windows install guide",
       },
       {
         routeKey: "macos",
@@ -228,6 +229,7 @@ export const enContent: LocaleContent = {
         title: "Install Codex Dream Skin on macOS",
         description:
           "Follow the independent guide for Apple Silicon or Intel Mac, including image selection and restore.",
+        linkLabel: "View macOS install guide",
       },
     ],
     materialsTitle: "Codex skins and background materials",

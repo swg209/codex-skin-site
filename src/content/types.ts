@@ -144,6 +144,7 @@ export interface DreamSkinGuideCard {
   label: string;
   title: string;
   description: string;
+  linkLabel: string;
 }
 
 export interface DreamSkinContent {

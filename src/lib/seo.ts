@@ -144,3 +144,64 @@ export function breadcrumbSchema(
     ],
   };
 }
+
+export function dreamSkinPageSchema(locale: Locale) {
+  const copy = contentByLocale[locale].dreamSkin;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: copy.seo.title,
+    description: copy.seo.description,
+    inLanguage: locale === "en" ? "en" : "zh-CN",
+    url: absoluteUrl(routePath(locale, "dreamSkin")),
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    mainEntity: {
+      "@type": "SoftwareSourceCode",
+      name: "Codex Dream Skin",
+      codeRepository: siteConfig.upstream.repositoryUrl,
+    },
+  };
+}
+
+export function dreamSkinFaqSchema(locale: Locale) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: contentByLocale[locale].dreamSkin.faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+export function dreamSkinBreadcrumbSchema(locale: Locale) {
+  const content = contentByLocale[locale].dreamSkin;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: locale === "en" ? "Home" : "首页",
+        item: absoluteUrl(routePath(locale, "home")),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: content.hero.h1,
+        item: absoluteUrl(routePath(locale, "dreamSkin")),
+      },
+    ],
+  };
+}
