@@ -27,7 +27,7 @@ export const zhContent: LocaleContent = {
     issueLabel: "反馈问题",
     licenseLabel: "MIT 许可",
     privacyTitle: "隐私",
-    privacyText: "本站为静态网站，没有账号、表单或上传功能。只有站长启用后才会加载匿名统计。",
+    privacyText: "本站为静态网站，没有账号、表单或上传功能。本站使用 Google AdSense，并可能启用访问统计；Google 及其他供应商可能依照其政策使用 Cookie 投放和衡量广告。",
     disclaimer: "CodexSkin.site 是独立的 Codex 主题教程与工具网站，与 OpenAI 及教程中引用的第三方工具开发者无隶属或合作关系。源码归 Fei-Away 与贡献者所有。",
   },
   home: {

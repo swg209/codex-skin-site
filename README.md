@@ -34,8 +34,8 @@ npm run build
 - `/install/macos` and `/zh/install/macos`
 - `/guide/customize` and `/zh/guide/customize`
 - `/guide/restore` and `/zh/guide/restore`
-- `/sitemap.xml`, `/robots.txt`, and `/manifest.webmanifest`
+- `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest`, and `/ads.txt`
 
 Third-party behavior claims and installation commands are checked against the original project documentation. CodexSkin's guides and future customization resources remain independently maintained.
 
-See [docs/deployment.md](docs/deployment.md) for Vercel, domain, analytics, and Google Search Console setup.
+See [docs/deployment.md](docs/deployment.md) for Vercel, domain, analytics, Google Search Console, and Google AdSense setup.

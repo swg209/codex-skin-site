@@ -36,6 +36,7 @@ Check these URLs return HTTP 200:
 - `https://codexskin.site/sitemap.xml`
 - `https://codexskin.site/robots.txt`
 - `https://codexskin.site/manifest.webmanifest`
+- `https://codexskin.site/ads.txt`
 
 Confirm `https://www.codexskin.site/install/macos` returns a permanent redirect to `https://codexskin.site/install/macos`. Inspect the public pages and verify canonical tags use the non-`www` HTTPS origin, each language pair has reciprocal `en`, `zh-CN`, and `x-default` hreflang links, and no public page contains `noindex`.
 
@@ -50,3 +51,14 @@ Confirm `https://www.codexskin.site/install/macos` returns a permanent redirect 
 ## 6. Google Analytics
 
 Create a GA4 web data stream for `https://codexskin.site`, add its `G-...` Measurement ID to `NEXT_PUBLIC_GA_ID`, and redeploy. The tracking script is omitted when the value is empty or malformed.
+
+## 7. Google AdSense
+
+The site loads the AdSense publisher script globally for `ca-pub-5491343418531814`. The publisher ID is public configuration and does not require a Vercel environment variable.
+
+After deployment:
+
+1. Add or verify `codexskin.site` in the AdSense dashboard.
+2. Confirm `https://codexskin.site/ads.txt` returns `google.com, pub-5491343418531814, DIRECT, f08c47fec0942fa0`.
+3. Enable Auto ads in AdSense if automatic placements are wanted. The website currently loads the publisher script but does not hard-code display-ad slots.
+4. Configure Google's Privacy & messaging/consent flow for the regions served by the site before enabling personalized advertising where consent is required.

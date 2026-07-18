@@ -1,9 +1,19 @@
 import { describe, expect, it } from "vitest";
+import { readFileSync } from "node:fs";
 
 // @ts-expect-error The production verification script is intentionally plain ESM.
 import { PUBLIC_PATHS, inspectHtml } from "../scripts/verify-site.mjs";
 
 describe("production verification helper", () => {
+  it("verifies the AdSense authorized seller endpoint", () => {
+    const source = readFileSync("scripts/verify-site.mjs", "utf8");
+
+    expect(source).toContain('request(origin, "/ads.txt")');
+    expect(source).toContain(
+      "google.com, pub-5491343418531814, DIRECT, f08c47fec0942fa0",
+    );
+  });
+
   it("covers exactly ten public content routes", () => {
     expect(PUBLIC_PATHS).toHaveLength(10);
     expect(PUBLIC_PATHS.map((entry: { path: string }) => entry.path)).toContain(

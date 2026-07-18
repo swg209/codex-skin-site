@@ -1,6 +1,8 @@
 import { fileURLToPath } from "node:url";
 
 const PRODUCTION_ORIGIN = "https://codexskin.site";
+const ADSENSE_SELLER_RECORD =
+  "google.com, pub-5491343418531814, DIRECT, f08c47fec0942fa0";
 
 function productionUrl(path) {
   return path === "/" ? PRODUCTION_ORIGIN : `${PRODUCTION_ORIGIN}${path}`;
@@ -119,12 +121,16 @@ export async function verifySite(origin = process.env.SITE_ORIGIN || "http://127
   const manifest = await request(origin, "/manifest.webmanifest");
   if (manifest.response.status !== 200) failures.push(`/manifest.webmanifest: ${manifest.response.status}`);
 
+  const ads = await request(origin, "/ads.txt");
+  if (ads.response.status !== 200) failures.push(`/ads.txt: ${ads.response.status}`);
+  if (!ads.text.includes(ADSENSE_SELLER_RECORD)) failures.push("/ads.txt: missing AdSense publisher record");
+
   const missing = await request(origin, "/definitely-not-a-real-page");
   if (missing.response.status !== 404) failures.push(`/404: expected 404, received ${missing.response.status}`);
   if (!/noindex/i.test(missing.text)) failures.push("/404: missing noindex");
 
   if (failures.length) throw new Error(`Site verification failed:\n${failures.join("\n")}`);
-  return { routes: PUBLIC_PATHS.length, endpoints: 4 };
+  return { routes: PUBLIC_PATHS.length, endpoints: 5 };
 }
 
 const isDirectRun = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
