@@ -110,6 +110,7 @@ export interface HomeContent {
 export type GuideBlock =
   | { type: "paragraph"; text: string }
   | { type: "list"; items: string[] }
+  | { type: "prompt"; text: string }
   | { type: "code"; code: string; language: "bash" | "powershell" };
 
 export interface GuideSection {
@@ -133,6 +134,9 @@ export interface GuideContent {
   copyLabel: string;
   copiedLabel: string;
   copyFailedLabel: string;
+  promptCopyLabel: string;
+  promptCopiedLabel: string;
+  promptCopyFailedLabel: string;
   contentsLabel: string;
   relatedLabel: string;
   sections: GuideSection[];

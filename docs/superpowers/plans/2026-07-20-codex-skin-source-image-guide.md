@@ -32,7 +32,6 @@
 - Modify: `src/content/types.ts`
 - Modify: `src/app/globals.css`
 - Create: `tests/prompt-block.test.tsx`
-- Modify: `tests/guide-page.test.tsx`
 
 **Interfaces:**
 - Consumes: existing `GuideContent.copyLabel`, `copiedLabel`, and `copyFailedLabel` strings.
@@ -93,32 +92,17 @@ describe("PromptBlock", () => {
 });
 ```
 
-- [ ] **Step 2: Write a failing guide rendering test**
-
-Add to `tests/guide-page.test.tsx`:
-
-```tsx
-it("renders the customize prompt as prose rather than a shell command", () => {
-  render(<GuidePage locale="zh" routeKey="customize" />);
-
-  const prompt = screen.getByText(/20:9 超宽电影感桌面壁纸/);
-  expect(prompt.closest(".prompt-block")).not.toBeNull();
-  expect(prompt.closest(".command-block")).toBeNull();
-  expect(screen.getByRole("button", { name: "复制提示词" })).toBeVisible();
-});
-```
-
-- [ ] **Step 3: Run the focused tests and verify failure**
+- [ ] **Step 2: Run the focused test and verify failure**
 
 Run:
 
 ```bash
-npm test -- tests/prompt-block.test.tsx tests/guide-page.test.tsx
+npm test -- tests/prompt-block.test.tsx
 ```
 
 Expected: FAIL because `PromptBlock` and the `prompt` block variant do not exist.
 
-- [ ] **Step 4: Extend the guide-block type**
+- [ ] **Step 3: Extend the guide-block type**
 
 In `src/content/types.ts`, use:
 
@@ -138,7 +122,7 @@ promptCopiedLabel: string;
 promptCopyFailedLabel: string;
 ```
 
-- [ ] **Step 5: Implement PromptBlock**
+- [ ] **Step 4: Implement PromptBlock**
 
 Create `src/components/guides/prompt-block.tsx` with the same clipboard fallback, 2.2-second status reset, cleanup, and polite live region pattern used by `CommandBlock`. Render:
 
@@ -156,7 +140,7 @@ Create `src/components/guides/prompt-block.tsx` with the same clipboard fallback
 
 The clipboard payload must be exactly `text`.
 
-- [ ] **Step 6: Render prompt blocks in GuideSection**
+- [ ] **Step 5: Render prompt blocks in GuideSection**
 
 In `src/components/guides/guide-section.tsx`, import `PromptBlock` and add this branch before the code fallback:
 
@@ -174,25 +158,25 @@ if (block.type === "prompt") {
 }
 ```
 
-- [ ] **Step 7: Add prompt styling**
+- [ ] **Step 6: Add prompt styling**
 
 In `src/app/globals.css`, add a `.prompt-block` variant that visually matches `.command-block` but uses wrapped prose (`white-space: pre-wrap`, readable sans-serif text, `overflow-wrap: anywhere`) and preserves a 44px minimum copy-button target. At `max-width: 560px`, place the button above or below the prompt without horizontal overflow.
 
-- [ ] **Step 8: Run focused tests and typecheck**
+- [ ] **Step 7: Run focused tests and typecheck**
 
 Run:
 
 ```bash
-npm test -- tests/prompt-block.test.tsx tests/guide-page.test.tsx
+npm test -- tests/prompt-block.test.tsx
 npm run typecheck
 ```
 
 Expected: all pass.
 
-- [ ] **Step 9: Commit the prompt component**
+- [ ] **Step 8: Commit the prompt component**
 
 ```bash
-git add src/components/guides/prompt-block.tsx src/components/guides/guide-section.tsx src/content/types.ts src/app/globals.css tests/prompt-block.test.tsx tests/guide-page.test.tsx
+git add src/components/guides/prompt-block.tsx src/components/guides/guide-section.tsx src/content/types.ts src/app/globals.css tests/prompt-block.test.tsx
 git commit -m "feat: add copyable guide prompt block"
 ```
 
@@ -264,7 +248,22 @@ it.each([
 });
 ```
 
-- [ ] **Step 3: Run the content and page tests and verify failure**
+- [ ] **Step 3: Write a failing semantic guide rendering test**
+
+Add to `tests/guide-page.test.tsx`:
+
+```tsx
+it("renders the customize prompt as prose rather than a shell command", () => {
+  render(<GuidePage locale="zh" routeKey="customize" />);
+
+  const prompt = screen.getByText(/20:9 超宽电影感桌面壁纸/);
+  expect(prompt.closest(".prompt-block")).not.toBeNull();
+  expect(prompt.closest(".command-block")).toBeNull();
+  expect(screen.getByRole("button", { name: "复制提示词" })).toBeVisible();
+});
+```
+
+- [ ] **Step 4: Run the content and page tests and verify failure**
 
 Run:
 
@@ -274,7 +273,7 @@ npm test -- tests/content.test.ts tests/dream-skin-page.test.tsx tests/guide-pag
 
 Expected: FAIL because the new guide sections, prompt actions, practice note, and labels are missing.
 
-- [ ] **Step 4: Add content-driven practice-note typing**
+- [ ] **Step 5: Add content-driven practice-note typing**
 
 In `DreamSkinContent` add:
 
@@ -282,7 +281,7 @@ In `DreamSkinContent` add:
 materialsPracticeNote: string;
 ```
 
-- [ ] **Step 5: Add localized prompt action labels to every guide through guideAttribution**
+- [ ] **Step 6: Add localized prompt action labels to every guide through guideAttribution**
 
 English:
 
@@ -300,7 +299,7 @@ promptCopiedLabel: "提示词已复制",
 promptCopyFailedLabel: "请手动选择并复制提示词",
 ```
 
-- [ ] **Step 6: Add the exact English customize sections**
+- [ ] **Step 7: Add the exact English customize sections**
 
 After `prepare` and before `picker`, insert:
 

@@ -16,6 +16,9 @@ const guideAttribution = {
   sourceReviewNotice:
     "Before running third-party scripts, review the source code and confirm that you are downloading from the original repository.",
   overviewLabel: "About Codex Dream Skin",
+  promptCopyLabel: "Copy prompt",
+  promptCopiedLabel: "Prompt copied",
+  promptCopyFailedLabel: "Select and copy the prompt manually",
 };
 
 export const enContent: LocaleContent = {

@@ -14,6 +14,9 @@ const guideAttribution = {
   sourceNotice: "本教程引用第三方开源项目。CodexSkin.site 不是该项目开发者，也不托管或修改其安装包。",
   sourceReviewNotice: "运行第三方脚本前，请检查源代码，并确认文件来自原始仓库。",
   overviewLabel: "了解 Codex Dream Skin",
+  promptCopyLabel: "复制提示词",
+  promptCopiedLabel: "提示词已复制",
+  promptCopyFailedLabel: "请手动选择并复制提示词",
 };
 
 export const zhContent: LocaleContent = {
