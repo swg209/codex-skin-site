@@ -39,6 +39,8 @@ npm run build
 
 The Codex Dream Skin landing pages point visitors to the verified original `Fei-Away/Codex-Dream-Skin` source. They are independent project guides, not the upstream project's official website.
 
+The bilingual customize guides include tool-neutral, CodexSkin-tested safe-zone composition guidance and a copyable 20:9 source-image prompt. A dedicated 20:9 home image, separate 16:9 task image, and focal-position control remain future work; the site does not currently claim two-image support.
+
 Third-party behavior claims and installation commands are checked against the original project documentation. CodexSkin's guides and future customization resources remain independently maintained.
 
 See [docs/deployment.md](docs/deployment.md) for Vercel, domain, analytics, Google Search Console, and Google AdSense setup.
