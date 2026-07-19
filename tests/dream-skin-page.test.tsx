@@ -63,4 +63,13 @@ describe("DreamSkinPage search-intent landing page", () => {
       "/zh#themes",
     );
   });
+
+  it.each([
+    ["en", "One source image serves both the home banner and task background", "Get the usable source-image prompt", "/guide/customize"],
+    ["zh", "同一张原图会同时用于首页横幅和任务页背景", "获取可用原图提示词", "/zh/guide/customize"],
+  ] as const)("links %s visitors to the tested source-image guide", (locale, note, label, href) => {
+    render(<DreamSkinPage locale={locale} />);
+    expect(screen.getByText(new RegExp(note))).toBeVisible();
+    expect(screen.getByRole("link", { name: label })).toHaveAttribute("href", href);
+  });
 });

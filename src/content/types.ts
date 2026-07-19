@@ -170,6 +170,7 @@ export interface DreamSkinContent {
   guides: DreamSkinGuideCard[];
   materialsTitle: string;
   materialsDescription: string;
+  materialsPracticeNote: string;
   materialsDisclaimer: string;
   materialsLabel: string;
   customizeLabel: string;

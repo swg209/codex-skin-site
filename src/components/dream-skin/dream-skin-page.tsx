@@ -109,6 +109,7 @@ export function DreamSkinPage({ locale }: { locale: Locale }) {
               <p className="eyebrow">Codex skins</p>
               <h2>{content.materialsTitle}</h2>
               <p>{content.materialsDescription}</p>
+              <p className="dream-skin-materials__practice">{content.materialsPracticeNote}</p>
               <small>{content.materialsDisclaimer}</small>
             </div>
             <div className="button-row">

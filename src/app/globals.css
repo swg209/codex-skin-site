@@ -503,6 +503,7 @@ main {
 .dream-skin-guide-card h3 { margin: 24px 0 12px; font-size: clamp(26px,3vw,36px); line-height: 1.08; letter-spacing: -.03em; }
 .dream-skin-guide-card .button { width: 100%; margin-top: auto; }
 .dream-skin-materials { display: flex; align-items: flex-end; justify-content: space-between; gap: 34px; }
+.dream-skin-materials .dream-skin-materials__practice { color: #d6d1df; font-weight: 650; }
 .dream-skin-materials small { display: block; max-width: 720px; margin-top: 16px; color: #8f8b96; }
 @media (max-width: 820px) { .dream-skin-two-column, .dream-skin-guide-grid { grid-template-columns: 1fr; } .dream-skin-source-card, .dream-skin-materials { align-items: stretch; flex-direction: column; } }
 @media (max-width: 560px) { .dream-skin-source-card .button, .dream-skin-materials .button { width: 100%; } }
