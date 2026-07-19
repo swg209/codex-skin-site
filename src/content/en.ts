@@ -1,4 +1,5 @@
 import type { LocaleContent } from "@/content/types";
+import { enInfoContent } from "@/content/info";
 
 const nav = {
   themes: "Themes",
@@ -39,6 +40,13 @@ export const enContent: LocaleContent = {
       "This static site has no accounts, forms, or uploads. It uses Google AdSense and may use analytics; Google and other vendors may use cookies to serve and measure ads according to their policies.",
     disclaimer:
       "CodexSkin.site is an independent tutorial and customization website. It is not affiliated with OpenAI or the developers of the third-party tools referenced in these guides. Source code belongs to Fei-Away and its contributors.",
+    infoLabels: {
+      about: "About",
+      contact: "Contact",
+      privacy: "Privacy Policy",
+      terms: "Terms of Use",
+      disclaimer: "Disclaimer",
+    },
   },
   home: {
     seo: {
@@ -387,4 +395,5 @@ export const enContent: LocaleContent = {
       related: ["windows", "macos", "customize"],
     },
   },
+  info: enInfoContent,
 };

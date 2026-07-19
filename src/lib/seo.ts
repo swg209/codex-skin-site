@@ -2,17 +2,19 @@ import type { Metadata } from "next";
 
 import { siteConfig } from "@/config/site";
 import { contentByLocale } from "@/content";
-import type { GuideRouteKey, Locale, RouteKey } from "@/lib/site";
+import type { GuideRouteKey, InfoRouteKey, Locale, RouteKey } from "@/lib/site";
 import {
   SITE_URL,
   absoluteUrl,
   alternatePaths,
+  isInfoRoute,
   routePath,
 } from "@/lib/site";
 
 function seoCopy(locale: Locale, key: RouteKey) {
   if (key === "home") return contentByLocale[locale].home.seo;
   if (key === "dreamSkin") return contentByLocale[locale].dreamSkin.seo;
+  if (isInfoRoute(key)) return contentByLocale[locale].info[key].seo;
   return contentByLocale[locale].guides[key].seo;
 }
 
@@ -201,6 +203,47 @@ export function dreamSkinBreadcrumbSchema(locale: Locale) {
         position: 2,
         name: content.hero.h1,
         item: absoluteUrl(routePath(locale, "dreamSkin")),
+      },
+    ],
+  };
+}
+
+export function infoPageSchema(locale: Locale, key: InfoRouteKey) {
+  const copy = contentByLocale[locale].info[key];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: copy.seo.title,
+    description: copy.seo.description,
+    inLanguage: locale === "en" ? "en" : "zh-CN",
+    url: absoluteUrl(routePath(locale, key)),
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  };
+}
+
+export function infoBreadcrumbSchema(locale: Locale, key: InfoRouteKey) {
+  const copy = contentByLocale[locale].info[key];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: locale === "en" ? "Home" : "首页",
+        item: absoluteUrl(routePath(locale, "home")),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: copy.h1,
+        item: absoluteUrl(routePath(locale, key)),
       },
     ],
   };

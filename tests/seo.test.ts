@@ -32,15 +32,15 @@ describe("SEO output", () => {
   it("keeps every route title and description unique by locale", () => {
     for (const locale of ["en", "zh"] as const) {
       const metadata = ROUTES.map((key) => buildMetadata(locale, key));
-      expect(new Set(metadata.map((item) => item.title)).size).toBe(6);
-      expect(new Set(metadata.map((item) => item.description)).size).toBe(6);
+      expect(new Set(metadata.map((item) => item.title)).size).toBe(ROUTES.length);
+      expect(new Set(metadata.map((item) => item.description)).size).toBe(ROUTES.length);
     }
   });
 
-  it("lists all twelve canonical routes", () => {
+  it("lists all twenty-two canonical routes", () => {
     const entries = sitemap();
 
-    expect(entries).toHaveLength(12);
+    expect(entries).toHaveLength(22);
     expect(
       entries.every((entry) =>
         entry.url.startsWith("https://codexskin.site/"),
@@ -70,6 +70,18 @@ describe("SEO output", () => {
       );
       expect(entry.changeFrequency).toBe("monthly");
       expect(entry.priority).toBe(0.8);
+    }
+
+    const policyEntries = entries.filter((entry) =>
+      ["/about", "/contact", "/privacy", "/terms", "/disclaimer"].some((path) =>
+        entry.url.endsWith(path),
+      ),
+    );
+    expect(policyEntries).toHaveLength(10);
+    for (const entry of policyEntries) {
+      expect(entry.lastModified).toEqual(new Date("2026-07-20T00:00:00.000Z"));
+      expect(entry.changeFrequency).toBe("yearly");
+      expect(entry.priority).toBe(0.4);
     }
   });
 

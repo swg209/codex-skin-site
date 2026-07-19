@@ -37,8 +37,8 @@ describe("production verification helper", () => {
     );
   });
 
-  it("covers exactly twelve public content routes", () => {
-    expect(PUBLIC_PATHS).toHaveLength(12);
+  it("covers exactly twenty-two public content routes", () => {
+    expect(PUBLIC_PATHS).toHaveLength(22);
     expect(PUBLIC_PATHS.map((entry: { path: string }) => entry.path)).toContain(
       "/codex-dream-skin",
     );
@@ -47,6 +47,20 @@ describe("production verification helper", () => {
     );
     expect(PUBLIC_PATHS.map((entry: { path: string }) => entry.path)).toContain(
       "/zh/guide/restore",
+    );
+    expect(PUBLIC_PATHS.map((entry: { path: string }) => entry.path)).toEqual(
+      expect.arrayContaining([
+        "/about",
+        "/contact",
+        "/privacy",
+        "/terms",
+        "/disclaimer",
+        "/zh/about",
+        "/zh/contact",
+        "/zh/privacy",
+        "/zh/terms",
+        "/zh/disclaimer",
+      ]),
     );
   });
 

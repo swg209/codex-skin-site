@@ -9,14 +9,14 @@ import {
 } from "@/lib/site";
 
 describe("public route contract", () => {
-  it("defines twelve unique canonical routes", () => {
+  it("defines twenty-two unique bilingual canonical routes", () => {
     const paths = ROUTES.flatMap((key) => [
       routePath("en", key),
       routePath("zh", key),
     ]);
 
-    expect(paths).toHaveLength(12);
-    expect(new Set(paths).size).toBe(12);
+    expect(paths).toHaveLength(22);
+    expect(new Set(paths).size).toBe(22);
     expect(paths).toEqual(
       expect.arrayContaining([
         "/",
@@ -31,6 +31,16 @@ describe("public route contract", () => {
         "/zh/install/macos",
         "/zh/guide/customize",
         "/zh/guide/restore",
+        "/about",
+        "/contact",
+        "/privacy",
+        "/terms",
+        "/disclaimer",
+        "/zh/about",
+        "/zh/contact",
+        "/zh/privacy",
+        "/zh/terms",
+        "/zh/disclaimer",
       ]),
     );
   });
@@ -59,6 +69,8 @@ describe("public route contract", () => {
     expect(routeKeyFromPath("/zh/codex-dream-skin")).toBe("dreamSkin");
     expect(routeKeyFromPath("/zh/guide/restore")).toBe("restore");
     expect(routeKeyFromPath("/install/macos")).toBe("macos");
+    expect(routeKeyFromPath("/about")).toBe("about");
+    expect(routeKeyFromPath("/zh/privacy")).toBe("privacy");
     expect(routeKeyFromPath("/unknown")).toBe("home");
   });
 

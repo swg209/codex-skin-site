@@ -4,7 +4,7 @@ import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { contentByLocale } from "@/content";
 import type { Locale } from "@/lib/site";
-import { routePath } from "@/lib/site";
+import { INFO_ROUTES, routePath } from "@/lib/site";
 
 interface FooterProps {
   locale: Locale;
@@ -26,6 +26,9 @@ export function Footer({ locale }: FooterProps) {
           <Link href={routePath(locale, "windows") as Route}>{copy.guidesLabel}</Link>
           <a href={siteConfig.upstream.issuesUrl} rel="noopener noreferrer" target="_blank">{copy.issueLabel}</a>
           <a href={siteConfig.upstream.licenseUrl} rel="noopener noreferrer" target="_blank">{copy.licenseLabel}</a>
+          {INFO_ROUTES.map((key) => (
+            <Link key={key} href={routePath(locale, key) as Route}>{copy.infoLabels[key]}</Link>
+          ))}
         </nav>
       </div>
       <div id="privacy" className="privacy-note">

@@ -11,10 +11,19 @@ export const GUIDE_ROUTES = [
   "restore",
 ] as const;
 
-export const ROUTES = ["home", "dreamSkin", ...GUIDE_ROUTES] as const;
+export const INFO_ROUTES = [
+  "about",
+  "contact",
+  "privacy",
+  "terms",
+  "disclaimer",
+] as const;
+
+export const ROUTES = ["home", "dreamSkin", ...GUIDE_ROUTES, ...INFO_ROUTES] as const;
 
 export type RouteKey = (typeof ROUTES)[number];
 export type GuideRouteKey = (typeof GUIDE_ROUTES)[number];
+export type InfoRouteKey = (typeof INFO_ROUTES)[number];
 export type Locale = "en" | "zh";
 
 const englishPaths: Record<RouteKey, string> = {
@@ -24,7 +33,16 @@ const englishPaths: Record<RouteKey, string> = {
   macos: "/install/macos",
   customize: "/guide/customize",
   restore: "/guide/restore",
+  about: "/about",
+  contact: "/contact",
+  privacy: "/privacy",
+  terms: "/terms",
+  disclaimer: "/disclaimer",
 };
+
+export function isInfoRoute(key: RouteKey): key is InfoRouteKey {
+  return INFO_ROUTES.includes(key as InfoRouteKey);
+}
 
 export function routePath(locale: Locale, key: RouteKey): string {
   const path = englishPaths[key];

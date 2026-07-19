@@ -1,7 +1,7 @@
 import { enContent } from "@/content/en";
 import type { LocaleContent } from "@/content/types";
 import { zhContent } from "@/content/zh";
-import type { GuideRouteKey, Locale } from "@/lib/site";
+import type { GuideRouteKey, InfoRouteKey, Locale } from "@/lib/site";
 
 export const contentByLocale: Record<Locale, LocaleContent> = {
   en: enContent,
@@ -20,6 +20,10 @@ export function getGuideContent(locale: Locale, key: GuideRouteKey) {
   return contentByLocale[locale].guides[key];
 }
 
+export function getInfoContent(locale: Locale, key: InfoRouteKey) {
+  return contentByLocale[locale].info[key];
+}
+
 export type {
   FaqItem,
   GalleryItem,
@@ -27,5 +31,6 @@ export type {
   DreamSkinContent,
   GuideSection,
   HomeContent,
+  InfoPageContent,
   LocaleContent,
 } from "@/content/types";

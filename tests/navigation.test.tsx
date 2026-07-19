@@ -50,5 +50,10 @@ describe("Header", () => {
       "href",
       "/zh/codex-dream-skin",
     );
+    expect(screen.getByRole("link", { name: "关于本站" })).toHaveAttribute("href", "/zh/about");
+    expect(screen.getByRole("link", { name: "联系我们" })).toHaveAttribute("href", "/zh/contact");
+    expect(screen.getByRole("link", { name: "隐私政策" })).toHaveAttribute("href", "/zh/privacy");
+    expect(screen.getByRole("link", { name: "使用条款" })).toHaveAttribute("href", "/zh/terms");
+    expect(screen.getByRole("link", { name: "免责声明" })).toHaveAttribute("href", "/zh/disclaimer");
   });
 });

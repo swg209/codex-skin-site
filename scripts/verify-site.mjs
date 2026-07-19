@@ -27,6 +27,16 @@ export const PUBLIC_PATHS = [
   { path: "/zh/install/macos", locale: "zh" },
   { path: "/zh/guide/customize", locale: "zh" },
   { path: "/zh/guide/restore", locale: "zh" },
+  { path: "/about", locale: "en" },
+  { path: "/contact", locale: "en" },
+  { path: "/privacy", locale: "en" },
+  { path: "/terms", locale: "en" },
+  { path: "/disclaimer", locale: "en" },
+  { path: "/zh/about", locale: "zh" },
+  { path: "/zh/contact", locale: "zh" },
+  { path: "/zh/privacy", locale: "zh" },
+  { path: "/zh/terms", locale: "zh" },
+  { path: "/zh/disclaimer", locale: "zh" },
 ];
 
 function attribute(tag, name) {

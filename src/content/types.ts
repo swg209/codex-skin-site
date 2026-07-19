@@ -1,4 +1,4 @@
-import type { GuideRouteKey, Locale } from "@/lib/site";
+import type { GuideRouteKey, InfoRouteKey, Locale } from "@/lib/site";
 
 export interface SeoCopy {
   title: string;
@@ -193,6 +193,24 @@ export interface SiteChromeContent {
   privacyTitle: string;
   privacyText: string;
   disclaimer: string;
+  infoLabels: Record<InfoRouteKey, string>;
+}
+
+export interface InfoSection {
+  id: string;
+  title: string;
+  paragraphs: string[];
+  items?: string[];
+}
+
+export interface InfoPageContent {
+  seo: SeoCopy;
+  eyebrow: string;
+  h1: string;
+  summary: string;
+  updatedLabel: string;
+  updatedAt: string;
+  sections: InfoSection[];
 }
 
 export interface LocaleContent {
@@ -201,4 +219,5 @@ export interface LocaleContent {
   home: HomeContent;
   dreamSkin: DreamSkinContent;
   guides: Record<GuideRouteKey, GuideContent>;
+  info: Record<InfoRouteKey, InfoPageContent>;
 }

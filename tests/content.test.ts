@@ -4,6 +4,25 @@ import { contentByLocale } from "@/content";
 
 describe("localized product content", () => {
   it.each(["en", "zh"] as const)(
+    "provides five substantial %s trust and policy pages",
+    (locale) => {
+      const info = (contentByLocale[locale] as unknown as {
+        info?: Record<string, { seo: { title: string; description: string }; sections: unknown[] }>;
+      }).info;
+
+      expect(Object.keys(info ?? {})).toEqual(
+        expect.arrayContaining(["about", "contact", "privacy", "terms", "disclaimer"]),
+      );
+      expect(Object.keys(info ?? {})).toHaveLength(5);
+      for (const page of Object.values(info ?? {})) {
+        expect(page.seo.title.length).toBeGreaterThan(12);
+        expect(page.seo.description.length).toBeGreaterThan(40);
+        expect(page.sections.length).toBeGreaterThanOrEqual(3);
+      }
+    },
+  );
+
+  it.each(["en", "zh"] as const)(
     "contains complete %s home content",
     (locale) => {
       const home = contentByLocale[locale].home;
