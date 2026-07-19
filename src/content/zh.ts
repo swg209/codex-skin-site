@@ -14,6 +14,9 @@ const guideAttribution = {
   sourceNotice: "本教程引用第三方开源项目。CodexSkin.site 不是该项目开发者，也不托管或修改其安装包。",
   sourceReviewNotice: "运行第三方脚本前，请检查源代码，并确认文件来自原始仓库。",
   overviewLabel: "了解 Codex Dream Skin",
+  promptCopyLabel: "复制提示词",
+  promptCopiedLabel: "提示词已复制",
+  promptCopyFailedLabel: "请手动选择并复制提示词",
 };
 
 export const zhContent: LocaleContent = {
@@ -204,9 +207,10 @@ export const zhContent: LocaleContent = {
     ],
     materialsTitle: "Codex 皮肤与背景素材",
     materialsDescription: "浏览视觉示例，了解图片构图、文字对比度与 Codex 原生控件如何共同组成一套皮肤。",
+    materialsPracticeNote: "同一张原图会同时用于首页横幅和任务页背景，因此真正可用的结果需要按安全区构图。",
     materialsDisclaimer: "当前图库是所引用项目的演示示例，并非 CodexSkin 自有的主题下载素材。",
     materialsLabel: "查看 Codex 皮肤示例",
-    customizeLabel: "阅读背景定制教程",
+    customizeLabel: "获取可用原图提示词",
     faqTitle: "Codex Dream Skin 常见问题",
     faq: [
       {
@@ -292,7 +296,7 @@ export const zhContent: LocaleContent = {
     },
     customize: {
       key: "customize",
-      seo: { title: "定制 Codex Dream Skin 主题", description: "准备清晰易读的背景图片，并使用 macOS 主题编辑器定制 Codex Dream Skin。" },
+      seo: { title: "定制 Codex Dream Skin 主题", description: "使用 CodexSkin 实测安全区构图和可复制的 20:9 背景图提示词，生成可用于首页与任务页的 Codex 皮肤原图，再通过 macOS 流程应用。" },
       eyebrow: "主题教程",
       h1: "定制你的 Codex Dream Skin 主题",
       summary: "准备一张横向图片，保证原生文字可读，再用仓库记录的 macOS 编辑器生成主题资源。",
@@ -307,6 +311,11 @@ export const zhContent: LocaleContent = {
       sections: [
         { id: "platforms", title: "平台能力", tone: "note", blocks: [{ type: "paragraph", text: "仓库记录了 macOS 用户图片编辑器。当前 Windows 包使用随附装饰资源，没有提供相同的选择器。" }] },
         { id: "prepare", title: "准备图片", blocks: [{ type: "list", items: ["macOS 支持 PNG、JPEG、HEIC、TIFF 或 WebP。", "源文件不超过 50 MB，处理后资源不超过 16 MB。", "建议宽度至少 2000px，这是一项构图建议。", "左侧尽量安静，并为原生标题保留足够明暗对比。"] }] },
+        { id: "single-image", title: "为什么单图只能折中", blocks: [{ type: "paragraph", text: "同一张原图既会作为超宽首页横幅，也会作为任务页背景。只针对一个页面做得完美的裁切，在另一处可能遮住人脸、文字或关键细节，因此应优先围绕两处共用的安全区构图。" }] },
+        { id: "composition", title: "CodexSkin 实测构图建议", blocks: [{ type: "paragraph", text: "以下数值来自 CodexSkin 的实际使用经验，不是 OpenAI 或上游项目的官方要求。" }, { type: "list", items: ["使用 20:9 超宽画布。", "人脸中心放在画面宽度的 70% 至 82%、画面高度的 35% 至 50%。", "人物高度不超过画面 45%，并为完整头部保留充足头顶空间。", "左侧 55% 保留为暗色、低细节负空间，保证首页和任务正文可读。", "关键细节远离底部输入框区域，避免被任务页 composer 遮挡。", "背景细节保持克制，图片中不要生成文字、Logo、边框或界面元素。"] }] },
+        { id: "source-prompt", title: "复制可用原图提示词", blocks: [{ type: "paragraph", text: "可将下面这段中立提示词用于能够生成超宽原图的图片生成工具；生成后仍需按下一节检查两个页面的实际裁切。" }, { type: "prompt", text: "20:9 超宽电影感桌面壁纸，人物较小地位于右侧三分之一，完整头部可见并保留充足头顶空间，脸部中心位于画面宽度的70%至82%、画面高度约45%，人物高度不超过画面45%，左侧55%为暗色低细节负空间，关键主体位于中央垂直安全区，重要细节远离底部输入框区域，背景细节克制以保证正文可读性，无文字、无Logo、无边框、无界面元素。" }] },
+        { id: "validate", title: "应用前检查图片", blocks: [{ type: "list", items: ["使用上方提示词生成一张 20:9 原图。", "分别预览超宽首页横幅裁切和常规任务背景裁切。", "通过下方上游文档记录的 macOS 流程应用图片。", "实际检查首页和任务页，包括标题、正文与底部输入框。", "如果任一页面遮住主体或影响阅读，就移动主体、简化背景后重新生成并复查。"] }] },
+        { id: "future", title: "更理想的未来双图方案", tone: "note", blocks: [{ type: "paragraph", text: "更理想的 CodexSkin 后续能力，是分别提供一张 20:9 首页图和一张 16:9 任务背景，并加入焦点位置控制。当前并没有双图功能；上面的单图安全区方案仍是现阶段的实用折中。" }] },
         { id: "picker", title: "使用 Finder 选择器", blocks: [{ type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/customize-theme-macos.sh" }, { type: "paragraph", text: "不带参数运行即可在 Finder 选择图片，编辑器会处理本地资源并更新主题配置。" }] },
         { id: "cli", title: "使用 macOS 命令行", blocks: [{ type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/customize-theme-macos.sh \\\n  --image \"/path/to/image.png\" \\\n  --name \"My theme\" \\\n  --accent \"#7cff46\" \\\n  --secondary \"#36d7e8\" \\\n  --highlight \"#642a8c\"" }] },
         { id: "reload", title: "重新应用并检查可读性", blocks: [{ type: "paragraph", text: "更换图片后启动或重新应用 Dream Skin，同时检查主页和任务页。如果文字对比不足，请换用更安静的裁切或调整强调色。" }] },

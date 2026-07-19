@@ -6,13 +6,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return ROUTES.flatMap((key) =>
     (["en", "zh"] as const).map((locale) => {
       const isDreamSkin = key === "dreamSkin";
+      const isCustomize = key === "customize";
 
       return {
         url: absoluteUrl(routePath(locale, key)),
         lastModified: new Date(
-          isDreamSkin
-            ? "2026-07-18T00:00:00.000Z"
-            : "2026-07-16T00:00:00.000Z",
+          isCustomize
+            ? "2026-07-20T00:00:00.000Z"
+            : isDreamSkin
+              ? "2026-07-18T00:00:00.000Z"
+              : "2026-07-16T00:00:00.000Z",
         ),
         changeFrequency:
           key === "home" || isDreamSkin ? ("weekly" as const) : ("monthly" as const),

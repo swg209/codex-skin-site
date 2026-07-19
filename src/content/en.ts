@@ -16,6 +16,9 @@ const guideAttribution = {
   sourceReviewNotice:
     "Before running third-party scripts, review the source code and confirm that you are downloading from the original repository.",
   overviewLabel: "About Codex Dream Skin",
+  promptCopyLabel: "Copy prompt",
+  promptCopiedLabel: "Prompt copied",
+  promptCopyFailedLabel: "Select and copy the prompt manually",
 };
 
 export const enContent: LocaleContent = {
@@ -236,10 +239,12 @@ export const enContent: LocaleContent = {
     materialsTitle: "Codex skins and background materials",
     materialsDescription:
       "Explore visual examples and learn how image composition, contrast, and native controls work together in a Codex skin.",
+    materialsPracticeNote:
+      "One source image serves both the home banner and task background, so usable results need a deliberate safe-zone composition.",
     materialsDisclaimer:
       "The current gallery contains demonstration examples from the referenced project, not CodexSkin-owned theme downloads.",
     materialsLabel: "Browse Codex skin examples",
-    customizeLabel: "Read the background customization guide",
+    customizeLabel: "Get the usable source-image prompt",
     faqTitle: "Codex Dream Skin questions",
     faq: [
       {
@@ -332,7 +337,7 @@ export const enContent: LocaleContent = {
     },
     customize: {
       key: "customize",
-      seo: { title: "Customize a Codex Dream Skin Theme", description: "Prepare a readable background image and customize Codex Dream Skin on macOS with the documented theme studio." },
+      seo: { title: "Customize a Codex Dream Skin Theme", description: "Generate a usable Codex skin source image with tested safe-zone composition, a copyable 20:9 background prompt, and the documented macOS workflow." },
       eyebrow: "Theme guide",
       h1: "Customize Your Codex Dream Skin Theme",
       summary: "Prepare a wide image, keep native text readable, and use the documented macOS studio to generate the theme assets.",
@@ -347,6 +352,11 @@ export const enContent: LocaleContent = {
       sections: [
         { id: "platforms", title: "Platform availability", tone: "note", blocks: [{ type: "paragraph", text: "The repository documents a user-image studio for macOS. The current Windows package uses bundled decorative assets and does not expose the same picker." }] },
         { id: "prepare", title: "Prepare the image", blocks: [{ type: "list", items: ["Use PNG, JPEG, HEIC, TIFF, or WebP on macOS.", "Keep the source at or below 50 MB; the prepared asset must remain at or below 16 MB.", "A width of at least 2000px is recommended rather than enforced as a source minimum.", "Favor a calm left side and enough tonal contrast for native headings."] }] },
+        { id: "single-image", title: "Why one image needs a compromise", blocks: [{ type: "paragraph", text: "The same source image appears as the ultrawide home banner and as the task-page background. A crop that looks perfect on one surface can hide the face, text, or important details on the other, so compose for the shared safe zone instead of a single screenshot." }] },
+        { id: "composition", title: "CodexSkin tested composition guidance", blocks: [{ type: "paragraph", text: "These values come from CodexSkin hands-on testing, not from OpenAI or the upstream project." }, { type: "list", items: ["Start with a 20:9 ultrawide canvas.", "Place the face center at 70% to 82% of the canvas width and 35% to 50% of its height.", "Keep the subject height at no more than 45% and preserve generous headroom.", "Reserve the left 55% as dark, low-detail negative space for readable home and task text.", "Keep important details away from the bottom composer region, which can cover the image.", "Avoid dense background detail, and generate no text, logo, border, or UI elements."] }] },
+        { id: "source-prompt", title: "Copy a source-image prompt", blocks: [{ type: "paragraph", text: "Use this tool-neutral prompt with an image generator that can create a wide source image, then validate the crop before applying it." }, { type: "prompt", text: "20:9 ultrawide cinematic desktop wallpaper, a small subject positioned in the right third, full head visible with generous headroom, face center at 70% to 82% of the canvas width and approximately 45% of the canvas height, subject height no more than 45% of the canvas, left 55% reserved as dark low-detail negative space, key subject kept within the central vertical safe zone, important details kept away from the bottom composer area, restrained background detail for readable task text, no text, no logo, no border, no UI elements." }] },
+        { id: "validate", title: "Validate before you keep the image", blocks: [{ type: "list", items: ["Generate a 20:9 source image with the prompt above.", "Preview both an ultrawide banner crop and a conventional task-background crop.", "Apply the image using the upstream-documented macOS workflow below.", "Inspect the home page and a real task page, including headings and the bottom composer.", "Move the subject or simplify the background, regenerate, and repeat if either surface loses readability."] }] },
+        { id: "future", title: "A better future two-image workflow", tone: "note", blocks: [{ type: "paragraph", text: "The ideal future CodexSkin workflow would accept a dedicated 20:9 home image, a separate 16:9 task background, and a focal-position control. That two-image feature does not exist today; the single-image guidance above is the current practical compromise." }] },
         { id: "picker", title: "Use the Finder picker", blocks: [{ type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/customize-theme-macos.sh" }, { type: "paragraph", text: "Omit flags to choose an image in Finder. The studio prepares the local asset and updates the theme configuration." }] },
         { id: "cli", title: "Use the macOS CLI", blocks: [{ type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/customize-theme-macos.sh \\\n  --image \"/path/to/image.png\" \\\n  --name \"My theme\" \\\n  --accent \"#7cff46\" \\\n  --secondary \"#36d7e8\" \\\n  --highlight \"#642a8c\"" }] },
         { id: "reload", title: "Reapply and check readability", blocks: [{ type: "paragraph", text: "Start or reapply Dream Skin after changing the image. Check the home and task routes, including the project picker and composer. If text contrast is weak, choose a quieter crop or adjust the accent colors." }] },

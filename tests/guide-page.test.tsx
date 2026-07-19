@@ -53,4 +53,13 @@ describe("GuidePage source attribution", () => {
       screen.getByRole("link", { name: "了解 Codex Dream Skin" }),
     ).toHaveAttribute("href", "/zh/codex-dream-skin");
   });
+
+  it("renders the customize prompt as prose rather than a shell command", () => {
+    render(<GuidePage locale="zh" routeKey="customize" />);
+
+    const prompt = screen.getByText(/20:9 超宽电影感桌面壁纸/);
+    expect(prompt.closest(".prompt-block")).not.toBeNull();
+    expect(prompt.closest(".command-block")).toBeNull();
+    expect(screen.getByRole("button", { name: "复制提示词" })).toBeVisible();
+  });
 });

@@ -59,6 +59,18 @@ describe("SEO output", () => {
         new Date("2026-07-18T00:00:00.000Z"),
       );
     }
+
+    const customizeEntries = entries.filter((entry) =>
+      entry.url.endsWith("/guide/customize"),
+    );
+    expect(customizeEntries).toHaveLength(2);
+    for (const entry of customizeEntries) {
+      expect(entry.lastModified).toEqual(
+        new Date("2026-07-20T00:00:00.000Z"),
+      );
+      expect(entry.changeFrequency).toBe("monthly");
+      expect(entry.priority).toBe(0.8);
+    }
   });
 
   it("allows crawling and publishes the sitemap", () => {

@@ -139,4 +139,34 @@ describe("localized product content", () => {
       expect(content).not.toContain("Restore Codex Dream Skin.command");
     }
   });
+
+  it.each(["en", "zh"] as const)(
+    "contains complete %s tested source-image guidance",
+    (locale) => {
+      const guide = contentByLocale[locale].guides.customize;
+      const serialized = JSON.stringify(guide);
+      const prompt = guide.sections
+        .flatMap((section) => section.blocks)
+        .find((block) => block.type === "prompt");
+
+      expect(serialized).toContain("20:9");
+      expect(serialized).toMatch(/70%.*82%|70%至82%/);
+      expect(serialized).toMatch(/35%.*50%|35%至50%/);
+      expect(serialized).toContain("45%");
+      expect(serialized).toContain("55%");
+      expect(serialized).toContain("16:9");
+      expect(prompt?.type).toBe("prompt");
+      expect(contentByLocale[locale].dreamSkin.materialsPracticeNote).toBeTruthy();
+    },
+  );
+
+  it("keeps the source-image guide tool-neutral and future capabilities honest", () => {
+    const content = JSON.stringify({
+      en: contentByLocale.en.guides.customize,
+      zh: contentByLocale.zh.guides.customize,
+    });
+
+    expect(content).not.toMatch(/Midjourney|Stable Diffusion|Flux|DALL.E/i);
+    expect(content).not.toMatch(/currently supports two images|当前支持双图/i);
+  });
 });
