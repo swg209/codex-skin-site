@@ -26,7 +26,6 @@ export function getInfoContent(locale: Locale, key: InfoRouteKey) {
 
 export type {
   FaqItem,
-  GalleryItem,
   GuideContent,
   DreamSkinContent,
   GuideSection,

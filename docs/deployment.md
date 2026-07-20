@@ -60,5 +60,9 @@ After deployment:
 
 1. Add or verify `codexskin.site` in the AdSense dashboard.
 2. Confirm `https://codexskin.site/ads.txt` returns `google.com, pub-5491343418531814, DIRECT, f08c47fec0942fa0`.
-3. Enable Auto ads in AdSense if automatic placements are wanted. The website currently loads the publisher script but does not hard-code display-ad slots.
-4. Configure Google's Privacy & messaging/consent flow for the regions served by the site before enabling personalized advertising where consent is required.
+3. During review, keep **Auto ads turned off** in the AdSense dashboard. Source code cannot enforce this account-level setting. `siteConfig.adsense.reviewMode` is also `true`, so every manual slot is suppressed while the ownership script remains in `<head>`.
+4. Configure Google's Privacy & messaging flow or another Google-certified CMP for visitors in the EEA, United Kingdom, and Switzerland before serving personalized advertising where consent is required.
+5. After approval, inspect traffic quality and page depth before changing `reviewMode`. If manual inventory is enabled later, the exact route allowlist continues to reject home, index, identity, policy, contact, and unknown pages.
+6. Never click the site's own ads, ask another person to click them, use click exchanges, or buy incentivized traffic.
+
+Complete the account, ownership, content, advertising-layout, and privacy checks in [adsense-review-checklist.md](adsense-review-checklist.md) before requesting review.

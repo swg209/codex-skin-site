@@ -25,12 +25,6 @@ export interface FeatureItem {
   description: string;
 }
 
-export interface GalleryItem {
-  name: string;
-  description: string;
-  src: string;
-}
-
 export interface FaqItem {
   question: string;
   answer: string;
@@ -75,10 +69,6 @@ export interface HomeContent {
   seo: SeoCopy;
   nav: NavCopy;
   hero: HeroContent;
-  galleryTitle: string;
-  galleryIntro: string;
-  galleryDisclaimer: string;
-  gallery: GalleryItem[];
   quickStart: QuickStartContent;
   createLook: CreateLookContent;
   featuresTitle: string;

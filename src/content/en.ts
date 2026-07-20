@@ -64,21 +64,6 @@ export const enContent: LocaleContent = {
         "Explore setup guides, theme inspiration, and customization resources for Codex Desktop. Get referenced tools only from their original repositories.",
       proofLabels: ["Independent", "Windows Guides", "macOS Guides", "No Installer Hosting"],
     },
-    galleryTitle: "Eight moods. One real workspace.",
-    galleryIntro:
-      "These examples from the referenced open-source project show how a theme can reshape the home and task views while the native interface stays interactive.",
-    galleryDisclaimer:
-      "Theme images are provided for demonstration. Users are responsible for ensuring they have the right to use and redistribute their chosen images.",
-    gallery: [
-      { name: "Rose Workspace", description: "A soft rose Codex workspace with translucent content layers.", src: "/themes/skin-01.jpg" },
-      { name: "Golden Workday", description: "A warm gold theme framing the native project controls.", src: "/themes/skin-02.jpg" },
-      { name: "Red-White Future", description: "A crisp red and white science-fiction theme for Codex Desktop.", src: "/themes/skin-03.jpg" },
-      { name: "Clear Daylight", description: "A bright, low-noise workspace with cool glass-like surfaces.", src: "/themes/skin-04.jpg" },
-      { name: "Cosmic Muse", description: "A deep-space composition behind the native Codex interface.", src: "/themes/skin-05.jpg" },
-      { name: "Violet Night", description: "A restrained violet night theme with readable task content.", src: "/themes/skin-06.jpg" },
-      { name: "Virtual Stage", description: "A vivid virtual-stage composition shown as a theme example.", src: "/themes/skin-07.jpg" },
-      { name: "Black-Gold Stage", description: "A dramatic black and gold Codex workspace treatment.", src: "/themes/skin-08.jpg" },
-    ],
     quickStart: {
       eyebrow: "Quick Start",
       title: "Choose your platform.",
