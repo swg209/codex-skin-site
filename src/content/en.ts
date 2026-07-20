@@ -40,7 +40,7 @@ export const enContent: LocaleContent = {
     privacyText:
       "This static site has no accounts, forms, or uploads. It uses Google AdSense and may use analytics; Google and other vendors may use cookies to serve and measure ads according to their policies.",
     disclaimer:
-      "CodexSkin.site is an independent tutorial and customization website. It is not affiliated with OpenAI or the developers of the third-party tools referenced in these guides. Source code belongs to Fei-Away and its contributors.",
+      "OpenAI and Codex are names and marks used by OpenAI. CodexSkin.site is an independent editorial and customization website and is not affiliated with, endorsed by, sponsored by, or operated by OpenAI. Third-party project code and assets remain the property of their respective owners and contributors.",
     infoLabels: {
       about: "About",
       contact: "Contact",
@@ -134,7 +134,7 @@ export const enContent: LocaleContent = {
       { title: "Windows & macOS Support", description: "The repository includes separate, platform-aware install, start, verify, and restore workflows." },
       { title: "Documented App Boundary", description: "According to the upstream documentation, Dream Skin does not intentionally patch .app, app.asar, WindowsApps, or the official code signature." },
       { title: "One-click Restore", description: "Platform launchers and scripts stop the themed session and reopen the official appearance." },
-      { title: "Local CDP Injection", description: "The theme is applied to expected Codex renderer targets through a loopback-only debugging endpoint." },
+      { title: "Local Runtime Styling", description: "The theme helper connects through a loopback-only debugging endpoint and applies visual CSS at runtime to the expected Codex renderer targets." },
     ],
     stepsTitle: "From an independent guide to a new look",
     steps: [
@@ -158,7 +158,7 @@ export const enContent: LocaleContent = {
     ],
     faqTitle: "Frequently asked questions",
     faq: [
-      { question: "What is Codex Dream Skin?", answer: "It is an open-source theme layer that launches the official Codex Desktop app with CSS and decorative interface elements injected through local CDP." },
+      { question: "What is Codex Dream Skin?", answer: "It is an open-source visual theme layer that connects to a locally launched Codex Desktop session through CDP and applies CSS and decorative interface elements at runtime." },
       { question: "Is Codex Dream Skin an official OpenAI product?", answer: "No. It is an independent open-source project and is not affiliated with or endorsed by OpenAI." },
       { question: "Does it modify the Codex installation?", answer: "Based on the behavior documented by the upstream project, it does not intentionally patch the official .app, app.asar, WindowsApps package, or code signature." },
       { question: "Does it support Windows?", answer: "Yes. The repository includes Windows install, start, verify, and restore scripts for the official Store-installed Codex app." },
@@ -370,7 +370,7 @@ export const enContent: LocaleContent = {
         { id: "launch", title: "Start and customize", blocks: [{ type: "paragraph", text: "Use Codex Dream Skin.command to launch or reapply the theme. Use Codex Dream Skin - Customize.command to choose an image through Finder." }, { type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/customize-theme-macos.sh" }] },
         { id: "verify", title: "Verify the result", blocks: [{ type: "paragraph", text: "Double-click Codex Dream Skin - Verify.command. Inspect both the home screen and a normal task so the native sidebar, project picker, composer, and task content remain usable." }, { type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/doctor-macos.sh" }] },
         { id: "image", title: "Background image guidance", blocks: [{ type: "list", items: ["Supported source formats: PNG, JPEG, HEIC, TIFF, and WebP", "Source file limit: 50 MB", "Prepared file limit: 16 MB", "A wide image at least 2000px across is recommended", "Keep the left side relatively calm for native home titles"] }] },
-        { id: "restore", title: "Restore Codex", blocks: [{ type: "paragraph", text: "Double-click Codex Dream Skin - Restore.command. Restore stops only the recorded injector and matching themed Codex session, then reopens the official app." }, { type: "code", language: "bash", code: "./scripts/restore-dream-skin-macos.sh" }] },
+        { id: "restore", title: "Restore Codex", blocks: [{ type: "paragraph", text: "Double-click Codex Dream Skin - Restore.command. Restore stops only the recorded theme helper and matching themed Codex session, then reopens the official app." }, { type: "code", language: "bash", code: "./scripts/restore-dream-skin-macos.sh" }] },
         { id: "menu", title: "Optional menu bar", blocks: [{ type: "paragraph", text: "SwiftBar users can install the optional menu bar commands for apply, pause, and image changes." }, { type: "code", language: "bash", code: "./Install\\ Menu\\ Bar.command" }] },
       ],
       related: ["customize", "restore", "windows"],
@@ -408,7 +408,7 @@ export const enContent: LocaleContent = {
       seo: { title: "Restore the Default Codex Appearance", description: "Stop Codex Dream Skin safely and restore the official Codex appearance on Windows or macOS." },
       eyebrow: "Restore guide",
       h1: "Restore the Default Codex Appearance",
-      summary: "Use the platform's recorded restore workflow to stop the injector, close the local CDP session, and reopen the official app.",
+      summary: "Use the platform's recorded restore workflow to stop the theme helper, close the local CDP session, and reopen the official app.",
       ...guideAttribution,
       sourceLabel: "View Original Project",
       issueLabel: "View Upstream Issues",

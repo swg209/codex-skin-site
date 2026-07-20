@@ -44,6 +44,7 @@ describe("deployment configuration", () => {
       lastVerifiedAt: "2026-07-20",
       testedVersion: null,
     });
-    expect(siteConfig.contactEmail).toBeNull();
+    expect(siteConfig.contactEmail).toBe("weigensu@gmail.com");
+    expect(siteConfig.adsense.reviewMode).toBe(true);
   });
 });

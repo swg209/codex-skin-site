@@ -212,6 +212,7 @@ export interface InfoSection {
   title: string;
   paragraphs: string[];
   items?: string[];
+  links?: LinkCopy[];
 }
 
 export interface InfoPageContent {

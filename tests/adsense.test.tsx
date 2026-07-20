@@ -11,6 +11,7 @@ describe("Google AdSense integration", () => {
 
     const component = readFileSync(componentPath, "utf8");
     expect(siteConfig.adsense.publisherId).toBe("ca-pub-5491343418531814");
+    expect(siteConfig.adsense.reviewMode).toBe(true);
     expect(component).toContain("siteConfig.adsense.publisherId");
     expect(component).toContain("<script");
     expect(component).not.toContain('from "next/script"');
@@ -45,4 +46,22 @@ describe("Google AdSense integration", () => {
     expect(contentByLocale.zh.chrome.privacyText).toMatch(/Google AdSense/);
     expect(contentByLocale.zh.chrome.privacyText).toMatch(/Cookie/i);
   });
+
+  it.each(["en", "zh"] as const)(
+    "publishes complete %s advertising and consent disclosures",
+    (locale) => {
+      const privacy = JSON.stringify(contentByLocale[locale].info.privacy);
+
+      expect(privacy).toMatch(/Google/);
+      expect(privacy).toMatch(/third-party vendors|第三方供应商/i);
+      expect(privacy).toMatch(/cookies|Cookie/i);
+      expect(privacy).toMatch(/IP address|IP 地址/i);
+      expect(privacy).toMatch(/identifiers|标识符/i);
+      expect(privacy).toMatch(/personalized|个性化/i);
+      expect(privacy).toMatch(/EEA|欧洲经济区/i);
+      expect(privacy).toMatch(/United Kingdom|英国/i);
+      expect(privacy).toMatch(/Switzerland|瑞士/i);
+      expect(privacy).toContain("weigensu@gmail.com");
+    },
+  );
 });

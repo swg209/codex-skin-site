@@ -33,6 +33,15 @@ export function InfoPage({ locale, routeKey }: { locale: Locale; routeKey: InfoR
               <h2>{section.title}</h2>
               {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               {section.items ? <ul>{section.items.map((item) => <li key={item}>{item}</li>)}</ul> : null}
+              {section.links ? (
+                <p className="info-links">
+                  {section.links.map((link) => (
+                    <a key={link.href} href={link.href} rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined} target={link.href.startsWith("http") ? "_blank" : undefined}>
+                      {link.label}
+                    </a>
+                  ))}
+                </p>
+              ) : null}
             </section>
           ))}
         </div>

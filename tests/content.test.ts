@@ -200,4 +200,15 @@ describe("localized product content", () => {
     expect(content).not.toMatch(/Midjourney|Stable Diffusion|Flux|DALL.E/i);
     expect(content).not.toMatch(/currently supports two images|当前支持双图/i);
   });
+
+  it("uses completed contact channels and policy-safe public terminology", () => {
+    const content = JSON.stringify(contentByLocale);
+
+    expect(content).toContain("weigensu@gmail.com");
+    expect(content).not.toMatch(/Local CDP Injection|本机 CDP 注入/);
+    expect(content).not.toMatch(/stop the injector|停止注入器/i);
+    expect(content).toMatch(/Local Runtime Styling/);
+    expect(content).toMatch(/本机运行时样式层/);
+    expect(content).toMatch(/access controls|访问控制/);
+  });
 });

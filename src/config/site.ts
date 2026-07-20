@@ -9,9 +9,10 @@ export const siteConfig = {
   name: "CodexSkin",
   url: siteUrl,
   repositoryUrl: "https://github.com/swg209/codex-skin-site",
-  contactEmail: null,
+  contactEmail: "weigensu@gmail.com",
   adsense: {
     publisherId: "ca-pub-5491343418531814",
+    reviewMode: true,
   },
   upstream: {
     name: "Codex Dream Skin",
