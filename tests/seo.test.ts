@@ -37,19 +37,20 @@ describe("SEO output", () => {
     }
   });
 
-  it("lists all twenty-two canonical routes", () => {
+  it("lists all forty-eight canonical routes", () => {
     const entries = sitemap();
 
-    expect(entries).toHaveLength(22);
+    expect(entries).toHaveLength(48);
     expect(
       entries.every((entry) =>
         entry.url.startsWith("https://codexskin.site/"),
       ),
     ).toBe(true);
     expect(entries.some((entry) => entry.url.includes("www."))).toBe(false);
+    expect(entries.map((entry) => entry.url)).toEqual(expect.arrayContaining(["https://codexskin.site/themes/dark-aurora", "https://codexskin.site/zh/themes/dark-aurora", "https://codexskin.site/guides/background-image-composition", "https://codexskin.site/zh/guides/background-image-composition"]));
 
     const dreamSkinEntries = entries.filter((entry) =>
-      entry.url.endsWith("/codex-dream-skin"),
+      ["https://codexskin.site/codex-dream-skin", "https://codexskin.site/zh/codex-dream-skin"].includes(entry.url),
     );
     expect(dreamSkinEntries).toHaveLength(2);
     for (const entry of dreamSkinEntries) {

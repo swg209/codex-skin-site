@@ -23,6 +23,8 @@ describe("Header", () => {
       "href",
       "/codex-dream-skin",
     );
+    expect(screen.getAllByRole("link", { name: "Themes" })[0]).toHaveAttribute("href", "/themes");
+    expect(screen.getAllByRole("link", { name: "Guides" })[0]).toHaveAttribute("href", "/guides/background-image-composition");
     expect(screen.getAllByRole("link", { name: "GitHub" })[0]).toHaveAttribute(
       "href",
       "https://github.com/Fei-Away/Codex-Dream-Skin",
@@ -55,6 +57,8 @@ describe("Header", () => {
     expect(screen.getByRole("link", { name: "隐私政策" })).toHaveAttribute("href", "/zh/privacy");
     expect(screen.getByRole("link", { name: "使用条款" })).toHaveAttribute("href", "/zh/terms");
     expect(screen.getByRole("link", { name: "免责声明" })).toHaveAttribute("href", "/zh/disclaimer");
+    expect(screen.getByRole("link", { name: "原创主题" })).toHaveAttribute("href", "/zh/themes");
+    expect(screen.getByRole("link", { name: "背景图构图指南" })).toHaveAttribute("href", "/zh/guides/background-image-composition");
     expect(screen.getByRole("link", { name: "CodexSkin 网站源码" })).toHaveAttribute(
       "href",
       "https://github.com/swg209/codex-skin-site",

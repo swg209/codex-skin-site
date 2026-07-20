@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { contentByLocale } from "@/content";
 import { articlesByLocale, type ArticleKey } from "@/content/articles";
+import { getTheme, type ThemeSlug } from "@/content/themes";
 import type { GuideRouteKey, InfoRouteKey, Locale, RouteKey } from "@/lib/site";
 import {
   SITE_URL,
@@ -12,6 +13,9 @@ import {
   alternatePaths,
   isInfoRoute,
   routePath,
+  themeAlternatePaths,
+  themeIndexPath,
+  themePath,
 } from "@/lib/site";
 
 function seoCopy(locale: Locale, key: RouteKey) {
@@ -295,4 +299,16 @@ export function articleBreadcrumbSchema(locale: Locale, key: ArticleKey) {
       { "@type": "ListItem", position: 2, name: copy.h1, item: absoluteUrl(articlePath(locale, key)) },
     ],
   };
+}
+
+export function buildThemeIndexMetadata(locale: Locale): Metadata {
+  const title = locale === "en" ? "Original Codex Theme Backgrounds" : "原创 Codex 主题背景";
+  const description = locale === "en" ? "Browse original rights-recorded Codex background wallpapers by CodexSkin." : "浏览 CodexSkin 原创且具有完整权利记录的 Codex 背景壁纸。";
+  const canonical = absoluteUrl(themeIndexPath(locale));
+  return { metadataBase: new URL(SITE_URL), title, description, alternates: { canonical, languages: { en: absoluteUrl("/themes"), "zh-CN": absoluteUrl("/zh/themes"), "x-default": absoluteUrl("/themes") } }, openGraph: { type: "website", siteName: siteConfig.name, title, description, url: canonical, images: socialImages() } };
+}
+
+export function buildThemeMetadata(locale: Locale, slug: ThemeSlug): Metadata {
+  const copy = getTheme(slug).copy[locale]; const canonical = absoluteUrl(themePath(locale, slug));
+  return { metadataBase: new URL(SITE_URL), title: locale === "en" ? `${copy.name} – Original Codex Background` : `${copy.name} - 原创 Codex 背景`, description: copy.description, alternates: { canonical, languages: Object.fromEntries(Object.entries(themeAlternatePaths(slug)).map(([language, path]) => [language, absoluteUrl(path)])) }, openGraph: { type: "article", siteName: siteConfig.name, title: copy.name, description: copy.description, url: canonical, images: [{ url: absoluteUrl(getTheme(slug).imagePath), width: 1870, height: 841, alt: copy.alt }] } };
 }

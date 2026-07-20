@@ -37,6 +37,8 @@ export const PUBLIC_PATHS = [
   { path: "/zh/privacy", locale: "zh" },
   { path: "/zh/terms", locale: "zh" },
   { path: "/zh/disclaimer", locale: "zh" },
+  ...["/guides/background-image-composition", "/guides/readability-and-contrast", "/guides/image-rights-and-licensing", "/troubleshooting/theme-not-visible", "/troubleshooting/cdp-port-conflict", "/troubleshooting/macos-permissions", "/troubleshooting/restore-default-appearance", "/compatibility/codex-dream-skin"].flatMap((path) => [{ path, locale: "en" }, { path: `/zh${path}`, locale: "zh" }]),
+  ...["/themes", "/themes/dark-aurora", "/themes/warm-graphite", "/themes/quiet-ocean", "/themes/violet-glass"].flatMap((path) => [{ path, locale: "en" }, { path: `/zh${path}`, locale: "zh" }]),
 ];
 
 function attribute(tag, name) {

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  allPublicPaths,
   GUIDE_ROUTES,
   ROUTES,
   alternatePaths,
@@ -43,6 +44,13 @@ describe("public route contract", () => {
         "/zh/disclaimer",
       ]),
     );
+  });
+
+  it("publishes forty-eight discoverable localized URLs", () => {
+    const paths = allPublicPaths().map((entry) => entry.path);
+    expect(paths).toHaveLength(48);
+    expect(new Set(paths).size).toBe(48);
+    expect(paths).toEqual(expect.arrayContaining(["/themes", "/zh/themes", "/themes/dark-aurora", "/zh/themes/violet-glass", "/guides/background-image-composition", "/zh/troubleshooting/macos-permissions", "/compatibility/codex-dream-skin"]));
   });
 
   it("keeps the project overview separate from procedural guides", () => {

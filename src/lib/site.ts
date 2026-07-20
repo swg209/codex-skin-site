@@ -1,6 +1,6 @@
 import { siteConfig } from "@/config/site";
-import type { ArticleKey } from "@/content/articles/types";
-import type { ThemeSlug } from "@/content/themes/types";
+import { ARTICLE_KEYS, type ArticleKey } from "@/content/articles/types";
+import { THEME_SLUGS, type ThemeSlug } from "@/content/themes/types";
 
 export const SITE_URL = siteConfig.url;
 export const GITHUB_URL = siteConfig.upstream.repositoryUrl;
@@ -102,3 +102,16 @@ export function articleAlternatePaths(key: ArticleKey) {
 export function themeIndexPath(locale: Locale): string { return locale === "en" ? "/themes" : "/zh/themes"; }
 export function themePath(locale: Locale, slug: ThemeSlug): string { return `${themeIndexPath(locale)}/${slug}`; }
 export function themeAlternatePaths(slug: ThemeSlug) { return { en: themePath("en", slug), "zh-CN": themePath("zh", slug), "x-default": themePath("en", slug) }; }
+
+export function allPublicPaths(): Array<{ path: string; locale: Locale }> {
+  const fixed = ROUTES.flatMap((key) => (["en", "zh"] as const).map((locale) => ({ path: routePath(locale, key), locale })));
+  const articles = ARTICLE_KEYS.flatMap((key) => (["en", "zh"] as const).map((locale) => ({ path: articlePath(locale, key), locale })));
+  const themes = (["en", "zh"] as const).flatMap((locale) => [{ path: themeIndexPath(locale), locale }, ...THEME_SLUGS.map((slug) => ({ path: themePath(locale, slug), locale }))]);
+  return [...fixed, ...articles, ...themes];
+}
+
+export function localizedAlternatesForPath(path: string) {
+  const english = path.replace(/^\/zh(?=\/|$)/, "") || "/";
+  const chinese = english === "/" ? "/zh" : `/zh${english}`;
+  return { en: english, "zh-CN": chinese, "x-default": english };
+}

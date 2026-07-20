@@ -4,7 +4,7 @@ import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { contentByLocale } from "@/content";
 import type { Locale } from "@/lib/site";
-import { INFO_ROUTES, routePath } from "@/lib/site";
+import { INFO_ROUTES, articlePath, routePath, themeIndexPath } from "@/lib/site";
 
 interface FooterProps {
   locale: Locale;
@@ -21,6 +21,9 @@ export function Footer({ locale }: FooterProps) {
           <p>{copy.footerDescription}</p>
         </div>
         <nav aria-label={locale === "en" ? "Footer" : "页脚导航"}>
+          <Link href={themeIndexPath(locale) as Route}>{locale === "en" ? "Original Themes" : "原创主题"}</Link>
+          <Link href={articlePath(locale, "background-image-composition") as Route}>{locale === "en" ? "Background Composition Guide" : "背景图构图指南"}</Link>
+          <Link href={articlePath(locale, "theme-not-visible") as Route}>{locale === "en" ? "Troubleshooting" : "故障排查"}</Link>
           <Link href={routePath(locale, "dreamSkin") as Route}>{copy.dreamSkinLabel}</Link>
           <a href={siteConfig.upstream.repositoryUrl} rel="noopener noreferrer" target="_blank">{copy.repositoryLabel}</a>
           <Link href={routePath(locale, "windows") as Route}>{copy.guidesLabel}</Link>

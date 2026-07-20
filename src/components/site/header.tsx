@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 import { contentByLocale } from "@/content";
 import type { Locale } from "@/lib/site";
-import { GITHUB_URL, routePath } from "@/lib/site";
+import { GITHUB_URL, articlePath, routePath, themeIndexPath } from "@/lib/site";
 
 import { LocaleSwitcher } from "./locale-switcher";
 
@@ -23,7 +23,8 @@ function NavLinks({ locale, onNavigate }: NavLinksProps) {
   const nav = contentByLocale[locale].chrome.nav;
   const home = routePath(locale, "home");
   const links = [
-    { label: nav.themes, href: `${home}#themes` },
+    { label: nav.themes, href: themeIndexPath(locale) },
+    { label: locale === "en" ? "Guides" : "指南", href: articlePath(locale, "background-image-composition") },
     { label: nav.dreamSkin, href: routePath(locale, "dreamSkin") },
     { label: nav.install, href: `${home}#install` },
     { label: nav.faq, href: `${home}#faq` },
