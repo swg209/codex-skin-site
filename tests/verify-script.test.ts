@@ -9,6 +9,7 @@ const { PUBLIC_PATHS, inspectHtml } = siteVerifier;
 describe("production verification helper", () => {
   it("distinguishes a real head script from a preload-only response", () => {
     expect(siteVerifier).toHaveProperty("hasAdsenseHeadScript");
+    expect(siteVerifier).toHaveProperty("hasAdsenseOwnershipSignal");
 
     const hasAdsenseHeadScript = (
       siteVerifier as typeof siteVerifier & {
@@ -24,6 +25,18 @@ describe("production verification helper", () => {
     expect(
       hasAdsenseHeadScript(
         '<head><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5491343418531814" crossorigin="anonymous"></script></head><body></body>',
+      ),
+    ).toBe(true);
+
+    const hasAdsenseOwnershipSignal = (
+      siteVerifier as typeof siteVerifier & {
+        hasAdsenseOwnershipSignal: (html: string) => boolean;
+      }
+    ).hasAdsenseOwnershipSignal;
+
+    expect(
+      hasAdsenseOwnershipSignal(
+        '<head><meta name="google-adsense-account" content="ca-pub-5491343418531814" /></head><body></body>',
       ),
     ).toBe(true);
   });
@@ -104,5 +117,25 @@ describe("production verification helper", () => {
         locale: "en",
       }),
     ).toEqual([]);
+  });
+
+  it("rejects construction copy, archived artwork, and manual ads during review", () => {
+    const expectedCanonical = "https://codexskin.site/";
+    const html = `
+      <html><head>
+        <link rel="canonical" href="https://codexskin.site" />
+        <link rel="alternate" hrefLang="en" href="https://codexskin.site" />
+        <link rel="alternate" hrefLang="zh-CN" href="https://codexskin.site/zh" />
+        <link rel="alternate" hrefLang="x-default" href="https://codexskin.site" />
+      </head><body><h1>Home</h1><p>Coming Soon</p><img src="/themes/skin-01.jpg" /><ins class="adsbygoogle"></ins></body></html>
+    `;
+
+    expect(inspectHtml(html, { expectedCanonical, locale: "en" })).toEqual(
+      expect.arrayContaining([
+        expect.stringMatching(/construction copy/i),
+        expect.stringMatching(/archived theme/i),
+        expect.stringMatching(/manual AdSense inventory/i),
+      ]),
+    );
   });
 });

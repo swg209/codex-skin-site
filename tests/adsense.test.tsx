@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site";
 import { contentByLocale } from "@/content";
 
 describe("Google AdSense integration", () => {
-  it("places a native publisher script inside both root heads", () => {
+  it("uses a non-serving ownership meta tag during review mode", () => {
     const componentPath = "src/components/site/adsense-script.tsx";
     expect(existsSync(componentPath)).toBe(true);
 
@@ -13,6 +13,9 @@ describe("Google AdSense integration", () => {
     expect(siteConfig.adsense.publisherId).toBe("ca-pub-5491343418531814");
     expect(siteConfig.adsense.reviewMode).toBe(true);
     expect(component).toContain("siteConfig.adsense.publisherId");
+    expect(component).toContain("siteConfig.adsense.reviewMode");
+    expect(component).toContain('name="google-adsense-account"');
+    expect(component).toContain("content={siteConfig.adsense.publisherId}");
     expect(component).toContain("<script");
     expect(component).not.toContain('from "next/script"');
     expect(component).toContain("async");

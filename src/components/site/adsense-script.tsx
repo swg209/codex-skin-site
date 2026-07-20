@@ -1,6 +1,15 @@
 import { siteConfig } from "@/config/site";
 
 export function AdSenseHeadScript() {
+  if (siteConfig.adsense.reviewMode) {
+    return (
+      <meta
+        name="google-adsense-account"
+        content={siteConfig.adsense.publisherId}
+      />
+    );
+  }
+
   return (
     <script
       async

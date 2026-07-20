@@ -54,13 +54,13 @@ Create a GA4 web data stream for `https://codexskin.site`, add its `G-...` Measu
 
 ## 7. Google AdSense
 
-The site loads the AdSense publisher script globally for `ca-pub-5491343418531814`. The publisher ID is public configuration and does not require a Vercel environment variable.
+The site publishes the AdSense account identity `ca-pub-5491343418531814`. During review mode it uses Google's non-serving `google-adsense-account` meta tag instead of loading the advertising script. The publisher ID is public configuration and does not require a Vercel environment variable.
 
 After deployment:
 
 1. Add or verify `codexskin.site` in the AdSense dashboard.
 2. Confirm `https://codexskin.site/ads.txt` returns `google.com, pub-5491343418531814, DIRECT, f08c47fec0942fa0`.
-3. During review, keep **Auto ads turned off** in the AdSense dashboard. Source code cannot enforce this account-level setting. `siteConfig.adsense.reviewMode` is also `true`, so every manual slot is suppressed while the ownership script remains in `<head>`.
+3. During review, keep **Auto ads turned off** in the AdSense dashboard. Source code cannot enforce this account-level setting. `siteConfig.adsense.reviewMode` is also `true`, so every manual slot and the ad-serving script are suppressed while the ownership meta tag remains in `<head>`.
 4. Configure Google's Privacy & messaging flow or another Google-certified CMP for visitors in the EEA, United Kingdom, and Switzerland before serving personalized advertising where consent is required.
 5. After approval, inspect traffic quality and page depth before changing `reviewMode`. If manual inventory is enabled later, the exact route allowlist continues to reject home, index, identity, policy, contact, and unknown pages.
 6. Never click the site's own ads, ask another person to click them, use click exchanges, or buy incentivized traffic.

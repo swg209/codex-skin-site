@@ -45,7 +45,7 @@ The Codex Dream Skin landing pages point visitors to the verified original `Fei-
 
 The bilingual customize guides include tool-neutral, CodexSkin-tested safe-zone composition guidance and a copyable 20:9 source-image prompt. The knowledge base expands this work with image rights, readability, permissions, recovery, compatibility, and troubleshooting articles. The original theme collection uses CodexSkin-created artwork with per-theme provenance and license records.
 
-The public sitemap contains 48 localized URLs. AdSense review mode is enabled in `src/config/site.ts`: the ownership script and `ads.txt` remain published, while manual ad inventory is suppressed. Even after review mode is intentionally disabled, only complete guide, knowledge-base, and theme-detail pages pass the exact route allowlist.
+The public sitemap contains 48 localized URLs. AdSense review mode is enabled in `src/config/site.ts`: a non-serving ownership meta tag and `ads.txt` remain published, while the ad-serving script and manual inventory are suppressed. Even after review mode is intentionally disabled, only complete guide, knowledge-base, and theme-detail pages pass the exact route allowlist.
 
 Third-party behavior claims and installation commands are checked against the original project documentation. CodexSkin's guides and future customization resources remain independently maintained.
 

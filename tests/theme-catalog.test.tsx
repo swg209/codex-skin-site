@@ -38,7 +38,10 @@ describe("original theme catalog", () => {
   it("renders rights, source, and application guidance on a detail page", () => {
     render(<ThemeDetailPage locale="zh" slug="violet-glass" />);
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("紫晶玻璃");
-    expect(screen.getByText("CodexSkin-Theme-1.0")).toBeVisible();
+    expect(screen.getByRole("link", { name: "CodexSkin-Theme-1.0" })).toHaveAttribute(
+      "href",
+      "/original-themes/LICENSE.md",
+    );
     expect(screen.getByText(/无人物、角色、商标或文字/)).toBeVisible();
     expect(screen.getByRole("link", { name: "阅读背景图构图指南" })).toHaveAttribute("href", "/zh/guides/background-image-composition");
   });

@@ -59,6 +59,18 @@ export function hasAdsenseHeadScript(html) {
   return scripts.some((tag) => attribute(tag, "src") === ADSENSE_SCRIPT_URL);
 }
 
+export function hasAdsenseOwnershipSignal(html) {
+  if (hasAdsenseHeadScript(html)) return true;
+
+  const head = html.match(/<head\b[^>]*>[\s\S]*?<\/head>/i)?.[0] ?? "";
+  const metas = head.match(/<meta\b[^>]*>/gi) ?? [];
+  return metas.some(
+    (tag) =>
+      attribute(tag, "name")?.toLowerCase() === "google-adsense-account" &&
+      attribute(tag, "content") === "ca-pub-5491343418531814",
+  );
+}
+
 function localizedPaths(path, locale) {
   const englishPath = locale === "zh" ? path.replace(/^\/zh(?=\/|$)/, "") || "/" : path;
   const chinesePath = englishPath === "/" ? "/zh" : `/zh${englishPath}`;
@@ -106,6 +118,18 @@ export function inspectHtml(html, { expectedCanonical, locale }) {
     errors.push("preview or local host leaked into indexable metadata");
   }
 
+  if (/Coming Soon|即将上线/i.test(html)) {
+    errors.push("construction copy remains on a public page");
+  }
+
+  if (/\/themes\/skin-0[1-8]\.jpg/i.test(html)) {
+    errors.push("archived theme artwork remains on a public page");
+  }
+
+  if (/<ins\b[^>]*class=["'][^"']*\badsbygoogle\b/i.test(html)) {
+    errors.push("manual AdSense inventory rendered during review mode");
+  }
+
   return errors;
 }
 
@@ -123,8 +147,11 @@ export async function verifySite(origin = process.env.SITE_ORIGIN || "http://127
       failures.push(`${entry.path}: expected 200, received ${response.status}`);
       continue;
     }
-    if (!hasAdsenseHeadScript(text)) {
-      failures.push(`${entry.path}: missing AdSense script in head`);
+    if (!hasAdsenseOwnershipSignal(text)) {
+      failures.push(`${entry.path}: missing AdSense ownership signal in head`);
+    }
+    if (hasAdsenseHeadScript(text)) {
+      failures.push(`${entry.path}: AdSense serving script loaded during review mode`);
     }
     const canonical = productionUrl(entry.path);
     for (const error of inspectHtml(text, { expectedCanonical: canonical, locale: entry.locale })) {
@@ -149,6 +176,23 @@ export async function verifySite(origin = process.env.SITE_ORIGIN || "http://127
   const ads = await request(origin, "/ads.txt");
   if (ads.response.status !== 200) failures.push(`/ads.txt: ${ads.response.status}`);
   if (!ads.text.includes(ADSENSE_SELLER_RECORD)) failures.push("/ads.txt: missing AdSense publisher record");
+
+  for (const path of ["/privacy", "/zh/privacy"]) {
+    const privacy = await request(origin, path);
+    if (!privacy.text.includes("https://policies.google.com/technologies/partner-sites")) {
+      failures.push(`${path}: missing Google partner-sites disclosure`);
+    }
+    if (!privacy.text.includes("https://adssettings.google.com/")) {
+      failures.push(`${path}: missing Google advertising controls link`);
+    }
+  }
+
+  for (const path of ["/contact", "/zh/contact"]) {
+    const contact = await request(origin, path);
+    if (!contact.text.includes("mailto:weigensu@gmail.com")) {
+      failures.push(`${path}: missing public contact email`);
+    }
+  }
 
   const missing = await request(origin, "/definitely-not-a-real-page");
   if (missing.response.status !== 404) failures.push(`/404: expected 404, received ${missing.response.status}`);

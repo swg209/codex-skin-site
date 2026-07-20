@@ -2,7 +2,7 @@
 
 更新日期：2026-07-20
 
-这份清单同时覆盖代码可验证项与只能由站长在 Google、域名或流量后台确认的项目。当前源码保留 AdSense 所有权验证脚本与 `ads.txt`，但 `siteConfig.adsense.reviewMode` 为 `true`，所有手动广告位均停止输出。审核期间还必须在 AdSense 后台关闭 Auto ads，因为源码无法覆盖账号级自动广告设置。
+这份清单同时覆盖代码可验证项与只能由站长在 Google、域名或流量后台确认的项目。当前源码保留非广告投放型 AdSense 所有权 meta 标签与 `ads.txt`，但 `siteConfig.adsense.reviewMode` 为 `true`，广告投放脚本与所有手动广告位均停止输出。审核期间还必须在 AdSense 后台关闭 Auto ads，因为源码无法覆盖账号级自动广告设置。
 
 ## Blocker、High 与 Medium 整改结果
 
@@ -23,7 +23,7 @@
 
 - [ ] **ADS-ELIG-01**：核对 AdSense 收款人出生日期或主体资料，确认申请人年满 18 岁；未成年必须由监护人账号管理。
 - [ ] **ADS-ELIG-02**：在所有常用 Google 账号中搜索 AdSense 邮件，并登录 AdSense 核对账号；确认同一收款主体只有一个 AdSense 账号，新网站添加到现有账号而不是重复开户。
-- [ ] **ADS-OWN-01**：在浏览器“查看源代码”中搜索 `ca-pub-5491343418531814`，确认每种公开页面的 `<head>` 都含官方脚本。
+- [ ] **ADS-OWN-01**：在浏览器“查看源代码”中搜索 `ca-pub-5491343418531814`，确认每种公开页面的 `<head>` 都含 `google-adsense-account` 所有权 meta 标签。
 - [ ] **ADS-OWN-02**：登录 Namecheap，确认 `codexskin.site` 在本人账号、联系人邮箱可用、DNS 可编辑；保存域名与 DNS 页面截图作为所有权记录。
 - [ ] **ADS-SITE-01**：在 AdSense 后台“网站”中确认 `codexskin.site` 已添加、验证状态正常，并记录当前审核状态。
 - [ ] **ADS-SITE-02**：分别打开 `/ads.txt` 和任一页面源代码，确认 ads.txt 授权行与 `<head>` 脚本至少一种验证方式被 AdSense 识别。
@@ -33,7 +33,7 @@
 - [ ] **ADS-PROG-01**：确认本人、团队、测试人员没有点击本站广告；测试布局时使用审核模式或 Google 提供的测试方式，不点击真实素材。
 - [ ] **ADS-PROG-03**：在桌面与手机实机查看每个广告位，确认显示中性“Advertisement/广告”标签，且与下载、安装、GitHub 按钮保持明显间距。
 - [ ] **ADS-PROG-04**：在 GA4、Vercel Analytics 和 GSC 对照来源；确认没有 PTC、互点、激励流量、垃圾邮件、垃圾评论或来源突增无法解释的访问。
-- [ ] **ADS-PROG-05**：对照 Google 提供的脚本，确认未改写 `adsbygoogle.js` 地址、publisher ID、事件或点击行为，也没有代理广告请求。
+- [ ] **ADS-PROG-05**：审核模式下确认页面没有加载 `adsbygoogle.js`；审核通过并主动启用投放后，再对照 Google 提供的脚本确认未改写地址、publisher ID、事件或点击行为，也没有代理广告请求。
 - [ ] **ADS-PROG-06**：关闭审核模式前抽查准入清单；只有完整教程、知识库文章和原创主题详情页可展示广告，首页、目录、政策、联系、弹窗和未知路径均不可展示。
 - [ ] **ADS-UX-06 / ADS-PUB-10 / ADS-PUB-12 / ADS-REST-08**：用 375px 手机、768px 平板和桌面宽度人工检查；广告不得首屏压过正文、遮挡导航、悬浮覆盖内容、位于屏幕外或制造无法离开的死屏。
 
