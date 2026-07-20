@@ -111,6 +111,14 @@ export type GuideBlock =
   | { type: "paragraph"; text: string }
   | { type: "list"; items: string[] }
   | { type: "prompt"; text: string }
+  | { type: "callout"; label: string; text: string }
+  | {
+      type: "evidence";
+      label: string;
+      environment: string;
+      reviewed: string;
+      distinction: string;
+    }
   | { type: "code"; code: string; language: "bash" | "powershell" };
 
 export interface GuideSection {

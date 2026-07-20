@@ -62,4 +62,12 @@ describe("GuidePage source attribution", () => {
     expect(prompt.closest(".command-block")).toBeNull();
     expect(screen.getByRole("button", { name: "复制提示词" })).toBeVisible();
   });
+
+  it("labels first-party review context separately from upstream facts", () => {
+    render(<GuidePage locale="en" routeKey="windows" />);
+
+    expect(screen.getAllByText("Editorial review context").length).toBeGreaterThanOrEqual(2);
+    expect(screen.getByText(/First-party editorial review/)).toBeVisible();
+    expect(screen.getByText("Safety boundary")).toBeVisible();
+  });
 });

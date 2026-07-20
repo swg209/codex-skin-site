@@ -1,5 +1,6 @@
 import type { LocaleContent } from "@/content/types";
 import { zhInfoContent } from "@/content/info";
+import { zhGuideDepth } from "@/content/guide-depth-zh";
 
 const nav = {
   themes: "主题效果",
@@ -303,6 +304,7 @@ export const zhContent: LocaleContent = {
         { id: "change", title: "在 Windows 更换背景", tone: "note", blocks: [{ type: "paragraph", text: "安装后可使用当前 Windows 托盘应用打开本机主题库，导入背景图片、保存主题，并应用到主题化 Codex 会话。其控件与 macOS 编辑器不同，请以原始仓库的当前 Windows 文档为准。" }] },
         { id: "restore", title: "恢复官方外观", blocks: [{ type: "code", language: "powershell", code: ".\\scripts\\restore-dream-skin.ps1 -RestoreBaseTheme" }, { type: "paragraph", text: "恢复流程会关闭记录的 CDP 会话、还原保存的外观项并重新打开官方应用。只有同时想移除快捷方式时才添加 -Uninstall。" }] },
         { id: "troubleshooting", title: "常见问题", blocks: [{ type: "list", items: ["默认 9335 端口被占用时，普通启动器会选择空闲端口；明确指定了被占用端口则会停止。", "Codex 更新后重新运行安装和启动，让脚本重新发现当前商店包。", "本机 CDP 会话运行时不要启动不可信软件。", "主题没有出现时，通过 GitHub Issue 提交 verify 输出。"] }] },
+        ...zhGuideDepth.windows,
       ],
       related: ["macos", "restore", "customize"],
     },
@@ -329,6 +331,7 @@ export const zhContent: LocaleContent = {
         { id: "image", title: "背景图片建议", blocks: [{ type: "list", items: ["支持 PNG、JPEG、HEIC、TIFF 和 WebP", "源文件不超过 50 MB", "处理后文件不超过 16 MB", "建议使用宽度至少 2000px 的横图", "左侧尽量简洁，为原生主页标题留出空间"] }] },
         { id: "restore", title: "恢复 Codex", blocks: [{ type: "paragraph", text: "双击 Codex Dream Skin - Restore.command。恢复流程只停止记录的主题辅助进程和匹配的主题 Codex 会话，然后重新打开官方应用。" }, { type: "code", language: "bash", code: "./scripts/restore-dream-skin-macos.sh" }] },
         { id: "menu", title: "可选菜单栏", blocks: [{ type: "paragraph", text: "使用 SwiftBar 时可以安装菜单栏命令，用于应用、暂停和更换图片。" }, { type: "code", language: "bash", code: "./Install\\ Menu\\ Bar.command" }] },
+        ...zhGuideDepth.macos,
       ],
       related: ["customize", "restore", "windows"],
     },
@@ -357,6 +360,7 @@ export const zhContent: LocaleContent = {
         { id: "picker", title: "使用 Finder 选择器", blocks: [{ type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/customize-theme-macos.sh" }, { type: "paragraph", text: "不带参数运行即可在 Finder 选择图片，编辑器会处理本地资源并更新主题配置。" }] },
         { id: "cli", title: "使用 macOS 命令行", blocks: [{ type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/customize-theme-macos.sh \\\n  --image \"/path/to/image.png\" \\\n  --name \"My theme\" \\\n  --accent \"#7cff46\" \\\n  --secondary \"#36d7e8\" \\\n  --highlight \"#642a8c\"" }] },
         { id: "reload", title: "重新应用并检查可读性", blocks: [{ type: "paragraph", text: "更换图片后启动或重新应用 Dream Skin，同时检查主页和任务页。如果文字对比不足，请换用更安静的裁切或调整强调色。" }] },
+        ...zhGuideDepth.customize,
       ],
       related: ["macos", "restore", "windows"],
     },
@@ -380,6 +384,7 @@ export const zhContent: LocaleContent = {
         { id: "preserved", title: "会保留什么", blocks: [{ type: "list", items: ["官方 Codex 应用与签名", "对话、项目、宠物/插件和登录状态", "API Key、Base URL 和模型供应商设置", "Dream Skin 状态目录中的用户图片与日志，除非另行删除"] }] },
         { id: "verify", title: "验证恢复结果", blocks: [{ type: "paragraph", text: "确认 Codex 重新打开后不再显示主题，并且回环调试会话已经关闭。状态不明确时使用对应平台的验证或 doctor 脚本。" }] },
         { id: "failure", title: "恢复失败时", tone: "warning", blocks: [{ type: "paragraph", text: "不要先删除状态文件。保留日志和记录状态；脚本要求时再手动关闭无法验证的 Codex 进程，并在 GitHub Issue 中附上平台和完整错误。" }] },
+        ...zhGuideDepth.restore,
       ],
       related: ["windows", "macos", "customize"],
     },

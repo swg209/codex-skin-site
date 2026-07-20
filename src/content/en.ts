@@ -1,5 +1,6 @@
 import type { LocaleContent } from "@/content/types";
 import { enInfoContent } from "@/content/info";
+import { enGuideDepth } from "@/content/guide-depth-en";
 
 const nav = {
   themes: "Themes",
@@ -346,6 +347,7 @@ export const enContent: LocaleContent = {
         { id: "change", title: "Change the background on Windows", tone: "note", blocks: [{ type: "paragraph", text: "After installation, use the current Windows tray app to open the local theme store, import a background image, save the theme, and apply it to the themed Codex session. Controls differ from the macOS studio, so follow the current Windows documentation in the original repository." }] },
         { id: "restore", title: "Restore the official appearance", blocks: [{ type: "code", language: "powershell", code: ".\\scripts\\restore-dream-skin.ps1 -RestoreBaseTheme" }, { type: "paragraph", text: "Restore closes the recorded CDP session, restores saved appearance keys, and reopens the official app. Add -Uninstall only when you also want the shortcuts removed." }] },
         { id: "troubleshooting", title: "Common problems", blocks: [{ type: "list", items: ["If port 9335 is occupied, the normal launcher chooses a free port unless you explicitly requested the occupied port.", "After a Codex update, rerun install and start so the scripts rediscover the current Store package.", "Do not run untrusted local software while the loopback CDP session is active.", "Use GitHub Issues and include the verify output when the theme does not appear."] }] },
+        ...enGuideDepth.windows,
       ],
       related: ["macos", "restore", "customize"],
     },
@@ -372,6 +374,7 @@ export const enContent: LocaleContent = {
         { id: "image", title: "Background image guidance", blocks: [{ type: "list", items: ["Supported source formats: PNG, JPEG, HEIC, TIFF, and WebP", "Source file limit: 50 MB", "Prepared file limit: 16 MB", "A wide image at least 2000px across is recommended", "Keep the left side relatively calm for native home titles"] }] },
         { id: "restore", title: "Restore Codex", blocks: [{ type: "paragraph", text: "Double-click Codex Dream Skin - Restore.command. Restore stops only the recorded theme helper and matching themed Codex session, then reopens the official app." }, { type: "code", language: "bash", code: "./scripts/restore-dream-skin-macos.sh" }] },
         { id: "menu", title: "Optional menu bar", blocks: [{ type: "paragraph", text: "SwiftBar users can install the optional menu bar commands for apply, pause, and image changes." }, { type: "code", language: "bash", code: "./Install\\ Menu\\ Bar.command" }] },
+        ...enGuideDepth.macos,
       ],
       related: ["customize", "restore", "windows"],
     },
@@ -400,6 +403,7 @@ export const enContent: LocaleContent = {
         { id: "picker", title: "Use the Finder picker", blocks: [{ type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/customize-theme-macos.sh" }, { type: "paragraph", text: "Omit flags to choose an image in Finder. The studio prepares the local asset and updates the theme configuration." }] },
         { id: "cli", title: "Use the macOS CLI", blocks: [{ type: "code", language: "bash", code: "~/.codex/codex-dream-skin-studio/scripts/customize-theme-macos.sh \\\n  --image \"/path/to/image.png\" \\\n  --name \"My theme\" \\\n  --accent \"#7cff46\" \\\n  --secondary \"#36d7e8\" \\\n  --highlight \"#642a8c\"" }] },
         { id: "reload", title: "Reapply and check readability", blocks: [{ type: "paragraph", text: "Start or reapply Dream Skin after changing the image. Check the home and task routes, including the project picker and composer. If text contrast is weak, choose a quieter crop or adjust the accent colors." }] },
+        ...enGuideDepth.customize,
       ],
       related: ["macos", "restore", "windows"],
     },
@@ -423,6 +427,7 @@ export const enContent: LocaleContent = {
         { id: "preserved", title: "What stays in place", blocks: [{ type: "list", items: ["The official Codex application and signature", "Threads, projects, pets/plugins, and authentication state", "API keys, Base URLs, and model-provider settings", "User images and logs in the Dream Skin state directory unless you remove them separately"] }] },
         { id: "verify", title: "Verify the restore", blocks: [{ type: "paragraph", text: "Confirm that Codex reopens without the theme and that the loopback debugging session has closed. Use the platform verification or doctor script if the state is unclear." }] },
         { id: "failure", title: "If restore fails", tone: "warning", blocks: [{ type: "paragraph", text: "Do not delete state files first. Preserve the logs and recorded state, close unverified Codex processes manually if instructed, and open a GitHub Issue with your platform and exact error." }] },
+        ...enGuideDepth.restore,
       ],
       related: ["windows", "macos", "customize"],
     },

@@ -475,6 +475,13 @@ main {
 .guide-section ul { padding-left: 21px; }
 .guide-section--note, .guide-section--warning { margin-bottom: 46px; padding: 22px 24px; border: 1px solid #4a405b; border-radius: 14px; background: #15121b; }
 .guide-section--warning { border-color: #6d4549; background: #1a1214; }
+.guide-callout, .guide-evidence { margin: 24px 0; padding: 18px 20px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.035); }
+.guide-callout strong, .guide-evidence figcaption { display: block; margin-bottom: 8px; color: var(--text); font-weight: 700; }
+.guide-callout p { margin: 0; }
+.guide-evidence dl { display: grid; gap: 8px; margin: 0; }
+.guide-evidence dl div { display: grid; grid-template-columns: 100px 1fr; gap: 12px; }
+.guide-evidence dt { color: var(--muted); }
+.guide-evidence dd { margin: 0; }
 .command-block { position: relative; margin: 18px 0; }
 .command-block pre { overflow-x: auto; margin: 0; padding: 22px 96px 22px 20px; border: 1px solid var(--line); border-radius: 13px; background: #060608; color: #e8e5ee; font: 13px/1.7 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre; }
 .command-block button { position: absolute; top: 10px; right: 10px; min-width: 70px; min-height: 38px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-raised); font-size: 12px; font-weight: 700; cursor: pointer; }

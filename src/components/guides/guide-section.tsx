@@ -10,6 +10,21 @@ export function GuideSection({ section, content }: { section: GuideSectionData; 
       {section.blocks.map((block, index) => {
         if (block.type === "paragraph") return <p key={index}>{block.text}</p>;
         if (block.type === "list") return <ul key={index}>{block.items.map((item) => <li key={item}>{item}</li>)}</ul>;
+        if (block.type === "callout") {
+          return <aside className="guide-callout" key={index}><strong>{block.label}</strong><p>{block.text}</p></aside>;
+        }
+        if (block.type === "evidence") {
+          return (
+            <figure className="guide-evidence" key={index}>
+              <figcaption>{block.label}</figcaption>
+              <dl>
+                <div><dt>Environment</dt><dd>{block.environment}</dd></div>
+                <div><dt>Reviewed</dt><dd>{block.reviewed}</dd></div>
+                <div><dt>Basis</dt><dd>{block.distinction}</dd></div>
+              </dl>
+            </figure>
+          );
+        }
         if (block.type === "prompt") {
           return (
             <PromptBlock
