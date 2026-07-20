@@ -1,41 +1,18 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 
 import { ThemeGallery } from "@/components/home/theme-gallery";
-import { contentByLocale } from "@/content";
 
 describe("ThemeGallery", () => {
-  it("opens, navigates, and closes from the keyboard", async () => {
-    const user = userEvent.setup();
-    render(
-      <ThemeGallery
-        locale="en"
-        items={contentByLocale.en.home.gallery}
-      />,
-    );
-
-    await user.click(screen.getByRole("button", { name: /Rose Workspace/i }));
-    expect(screen.getByRole("dialog")).toBeVisible();
-
-    await user.keyboard("{ArrowRight}");
-    expect(screen.getByRole("dialog")).toHaveAccessibleName(
-      /Golden Workday/i,
-    );
-
-    await user.keyboard("{Escape}");
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  it("links all original English previews to theme details", () => {
+    render(<ThemeGallery locale="en" />);
+    expect(screen.getAllByRole("article")).toHaveLength(4);
+    expect(screen.getByRole("link", { name: /Dark Aurora/ })).toHaveAttribute("href", "/themes/dark-aurora");
   });
 
-  it("renders all theme previews with descriptive images", () => {
-    render(
-      <ThemeGallery
-        locale="zh"
-        items={contentByLocale.zh.home.gallery}
-      />,
-    );
-
-    expect(screen.getAllByRole("button")).toHaveLength(8);
-    expect(screen.getByAltText(/红白科幻 Codex 桌面主题/)).toBeVisible();
+  it("renders localized previews without archived demonstration images", () => {
+    const { container } = render(<ThemeGallery locale="zh" />);
+    expect(screen.getByAltText(/翡翠极光集中在右侧/)).toBeVisible();
+    expect(container.innerHTML).not.toMatch(/\/themes\/skin-0/);
   });
 });

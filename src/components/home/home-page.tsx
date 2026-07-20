@@ -11,6 +11,7 @@ import { HowItWorks } from "./how-it-works";
 import { CreateYourLook } from "./create-your-look";
 import { QuickStart } from "./quick-start";
 import { Safety } from "./safety";
+import { ThemeGallery } from "./theme-gallery";
 
 function Heading({ title, intro }: { title: string; intro?: string }) {
   return <div className="section-heading"><h2>{title}</h2>{intro ? <p>{intro}</p> : null}</div>;
@@ -24,6 +25,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       <JsonLd data={websiteSchema(locale)} />
       <JsonLd data={faqSchema(locale)} />
       <Hero locale={locale} content={content} />
+      <section id="themes" className="section"><div className="container"><Heading title={locale === "en" ? "Original themes with clear rights" : "权利清晰的原创主题"} intro={locale === "en" ? "Four abstract 20:9 backgrounds created specifically for CodexSkin, with source records, reuse terms, and detailed home/task composition notes." : "四张专为 CodexSkin 创作的 20:9 抽象背景，均提供来源记录、再利用条款和首页/任务页构图说明。"} /><ThemeGallery locale={locale} /></div></section>
       <QuickStart locale={locale} content={content.quickStart} />
       <CreateYourLook content={content.createLook} locale={locale} />
       <section id="features" className="section section--tinted"><div className="container"><Heading title={content.featuresTitle} intro={content.featuresIntro} /><Features items={content.features} /></div></section>

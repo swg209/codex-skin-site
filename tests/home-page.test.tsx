@@ -76,5 +76,7 @@ describe("HomePage conversion path", () => {
     );
     expect(screen.queryByRole("button", { name: /Coming Soon/i })).not.toBeInTheDocument();
     expect(container.innerHTML).not.toMatch(/\/themes\/skin-0[1-8]\.jpg/);
+    expect(screen.getAllByRole("article").length).toBeGreaterThanOrEqual(6);
+    expect(screen.getByRole("link", { name: /Dark Aurora/ })).toHaveAttribute("href", "/themes/dark-aurora");
   });
 });

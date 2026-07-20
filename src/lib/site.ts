@@ -1,5 +1,6 @@
 import { siteConfig } from "@/config/site";
 import type { ArticleKey } from "@/content/articles/types";
+import type { ThemeSlug } from "@/content/themes/types";
 
 export const SITE_URL = siteConfig.url;
 export const GITHUB_URL = siteConfig.upstream.repositoryUrl;
@@ -97,3 +98,7 @@ export function articleAlternatePaths(key: ArticleKey) {
     "x-default": articlePath("en", key),
   };
 }
+
+export function themeIndexPath(locale: Locale): string { return locale === "en" ? "/themes" : "/zh/themes"; }
+export function themePath(locale: Locale, slug: ThemeSlug): string { return `${themeIndexPath(locale)}/${slug}`; }
+export function themeAlternatePaths(slug: ThemeSlug) { return { en: themePath("en", slug), "zh-CN": themePath("zh", slug), "x-default": themePath("en", slug) }; }
