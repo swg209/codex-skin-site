@@ -1,6 +1,11 @@
-import type { CreateLookContent } from "@/content/types";
+import type { Route } from "next";
+import Link from "next/link";
 
-export function CreateYourLook({ content }: { content: CreateLookContent }) {
+import type { CreateLookContent } from "@/content/types";
+import type { Locale } from "@/lib/site";
+import { routePath } from "@/lib/site";
+
+export function CreateYourLook({ content, locale }: { content: CreateLookContent; locale: Locale }) {
   return (
     <section className="section section--tinted">
       <div className="container create-look">
@@ -10,18 +15,12 @@ export function CreateYourLook({ content }: { content: CreateLookContent }) {
           <p>{content.description}</p>
         </div>
         <div className="button-row">
-          <a className="button button--primary" href={content.href}>
+          <Link className="button button--primary" href={routePath(locale, content.primaryRoute) as Route}>
             {content.browseLabel}
-          </a>
-          <button
-            aria-label={`${content.createLabel} — ${content.comingSoon}`}
-            className="button button--disabled"
-            disabled
-            type="button"
-          >
+          </Link>
+          <Link className="button" href={routePath(locale, content.secondaryRoute) as Route}>
             {content.createLabel}
-            <span>{content.comingSoon}</span>
-          </button>
+          </Link>
         </div>
       </div>
     </section>

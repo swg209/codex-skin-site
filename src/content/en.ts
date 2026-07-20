@@ -119,11 +119,11 @@ export const enContent: LocaleContent = {
       eyebrow: "Original resources",
       title: "Create Your Own Look",
       description:
-        "Use original background artwork and readability presets to personalize your Codex workspace.",
-      browseLabel: "Browse Themes",
-      createLabel: "Create a Skin",
-      comingSoon: "Coming Soon",
-      href: "#themes",
+        "Learn the composition rules that keep a single background usable across the home and task views, then review how the independent visual layer works before using it.",
+      browseLabel: "Read the Background Guide",
+      createLabel: "Understand Dream Skin",
+      primaryRoute: "customize",
+      secondaryRoute: "dreamSkin",
     },
     featuresTitle: "A theme layer, not a fake interface",
     featuresIntro:

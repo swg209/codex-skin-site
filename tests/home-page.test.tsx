@@ -4,18 +4,18 @@ import { describe, expect, it } from "vitest";
 import { HomePage } from "@/components/home/home-page";
 
 describe("HomePage conversion path", () => {
-  it("places platform Quick Start after the theme gallery", () => {
+  it("places platform Quick Start after the editorial hero", () => {
     render(<HomePage locale="en" />);
 
-    const gallery = screen.getByRole("heading", {
-      name: "Eight moods. One real workspace.",
+    const hero = screen.getByRole("heading", {
+      name: "Independent Themes, Tools & Guides for Codex Desktop",
     });
     const quickStart = screen.getByRole("heading", {
       name: "Choose your platform.",
     });
 
     expect(
-      gallery.compareDocumentPosition(quickStart) &
+      hero.compareDocumentPosition(quickStart) &
         Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
     expect(screen.getByRole("link", { name: "View macOS Guide" })).toHaveAttribute(
@@ -60,18 +60,21 @@ describe("HomePage conversion path", () => {
     expect(overview).not.toHaveAttribute("target", "_blank");
   });
 
-  it("links original themes and keeps the generator non-navigating", () => {
-    render(<HomePage locale="en" />);
+  it("links only to completed resources and removes uncertain demo artwork", () => {
+    const { container } = render(<HomePage locale="en" />);
 
     expect(
       screen.getByRole("heading", { name: "Create Your Own Look" }),
     ).toBeVisible();
-    expect(screen.getByRole("link", { name: "Browse Themes" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Read the Background Guide" })).toHaveAttribute(
       "href",
-      "#themes",
+      "/guide/customize",
     );
-    expect(
-      screen.getByRole("button", { name: "Create a Skin — Coming Soon" }),
-    ).toBeDisabled();
+    expect(screen.getByRole("link", { name: "Understand Dream Skin" })).toHaveAttribute(
+      "href",
+      "/codex-dream-skin",
+    );
+    expect(screen.queryByRole("button", { name: /Coming Soon/i })).not.toBeInTheDocument();
+    expect(container.innerHTML).not.toMatch(/\/themes\/skin-0[1-8]\.jpg/);
   });
 });

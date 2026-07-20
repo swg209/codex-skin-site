@@ -27,7 +27,6 @@ describe("localized product content", () => {
     (locale) => {
       const home = contentByLocale[locale].home;
 
-      expect(home.gallery).toHaveLength(8);
       expect(home.faq).toHaveLength(10);
       expect(home.features).toHaveLength(6);
       expect(home.hero.h1.length).toBeGreaterThan(15);
@@ -127,26 +126,29 @@ describe("localized product content", () => {
     expect(chinese).toContain("不托管、不修改、不重新打包");
   });
 
-  it("defines two platform quick-start cards and a future-tool teaser", () => {
+  it("defines two platform quick-start cards and completed editorial actions", () => {
     const englishHome = contentByLocale.en.home as unknown as {
       quickStart?: { platforms: unknown[] };
-      createLook?: { href: string; comingSoon: string };
+      createLook?: { primaryRoute: string; secondaryRoute: string };
     };
     const chineseHome = contentByLocale.zh.home as unknown as {
       quickStart?: { platforms: unknown[] };
-      createLook?: { href: string; comingSoon: string };
+      createLook?: { primaryRoute: string; secondaryRoute: string };
     };
 
     expect(englishHome.quickStart?.platforms).toHaveLength(2);
     expect(chineseHome.quickStart?.platforms).toHaveLength(2);
     expect(englishHome.createLook).toMatchObject({
-      href: "#themes",
-      comingSoon: "Coming Soon",
+      primaryRoute: "customize",
+      secondaryRoute: "dreamSkin",
     });
     expect(chineseHome.createLook).toMatchObject({
-      href: "#themes",
-      comingSoon: "即将上线",
+      primaryRoute: "customize",
+      secondaryRoute: "dreamSkin",
     });
+    expect(JSON.stringify([englishHome, chineseHome])).not.toMatch(
+      /Coming Soon|即将上线/,
+    );
   });
 
   it("uses the launcher names documented by the current macOS upstream guide", () => {

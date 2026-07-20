@@ -1,5 +1,4 @@
 import type { Route } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
 import type { HomeContent } from "@/content";
@@ -23,8 +22,14 @@ export function Hero({ locale, content }: { locale: Locale; content: HomeContent
             {content.hero.proofLabels.map((label) => <li key={label}>{label}</li>)}
           </ul>
         </div>
-        <div className="hero__visual">
-          <Image src="/themes/skin-03.jpg" alt={content.gallery[2].description} fill priority sizes="(max-width: 900px) 100vw, 50vw" />
+        <div className="hero__visual hero-preview" aria-hidden="true">
+          <div className="hero-preview__sidebar" />
+          <div className="hero-preview__workspace">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="hero-preview__composer" />
         </div>
       </div>
     </section>

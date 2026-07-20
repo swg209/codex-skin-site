@@ -67,8 +67,8 @@ export interface CreateLookContent {
   description: string;
   browseLabel: string;
   createLabel: string;
-  comingSoon: string;
-  href: "#themes";
+  primaryRoute: "customize";
+  secondaryRoute: "dreamSkin";
 }
 
 export interface HomeContent {
