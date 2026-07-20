@@ -58,8 +58,7 @@ Option A is a staged review-safe rollout:
 
 - Repackaging, mirroring, modifying, or distributing Codex Dream Skin.
 - Changes to the third-party tool repository or its code.
-- A user image-upload service, account system, payment system, or private support form.
-- Inventing a public email address before a real site-owned mailbox exists.
+- A user image-upload service, account system, payment system, private support form, or storage of email submissions in a site database.
 - Claiming an AdSense approval guarantee or a Google-mandated page/word minimum.
 - Enabling an uncertified custom cookie banner as a substitute for a Google-certified CMP.
 
@@ -127,17 +126,17 @@ Each slot uses `Advertisement` / `广告`, remains at least 32 pixels away from 
 
 The home `Create Your Own Look` block becomes a completed editorial CTA. It links to the existing customization guide and no longer contains a `comingSoon` field or badge.
 
-Until a real domain mailbox is verified, Contact uses the public CodexSkin site repository as the working channel for broken links, factual corrections, accessibility problems, and translation feedback. It does not say that a channel will arrive later and does not contain the word `placeholder`.
+Contact publishes `weigensu@gmail.com` as the confirmed site contact address. It uses a normal `mailto:` link and explains that visitors may use it for private website feedback, privacy questions, and other messages that should not be posted publicly. The public CodexSkin site repository remains the working channel for broken links, factual corrections, accessibility problems, and translation feedback that can be discussed openly. The page does not say that a channel will arrive later and does not contain the word `placeholder`.
 
 Third-party installation failures and feature requests continue to point to the original Fei-Away/Codex-Dream-Skin issue tracker. The two responsibilities are visually and textually separated.
 
-Private submissions are not accepted. Visitors are warned not to post passwords, API keys, authentication material, or private images in public issues.
+Visitors are warned not to send passwords, API keys, authentication material, or unnecessary sensitive information by email or public issue. Public issues must not contain private images or personal data.
 
 ## Privacy and Consent Design
 
 The privacy policy contains these sections:
 
-1. Scope and site operator.
+1. Scope, site operator, and `weigensu@gmail.com` contact address.
 2. Information visitors actively provide.
 3. Hosting, request, and security logs.
 4. Vercel Analytics.
@@ -218,7 +217,7 @@ Each guide uses first-party screenshots or diagrams. A caption names the tested 
 
 ## Component and Data Boundaries
 
-- `src/config/site.ts` owns review mode, publisher identity, upstream links, site repository, and verified contact configuration.
+- `src/config/site.ts` owns review mode, publisher identity, upstream links, site repository, and the confirmed `weigensu@gmail.com` contact address.
 - localized content files own editorial copy but not operational URLs duplicated elsewhere.
 - route registries own sitemap and locale counterparts.
 - theme data owns asset-rights metadata separately from page rendering.
@@ -230,6 +229,7 @@ Each guide uses first-party screenshots or diagrams. A caption names the tested 
 Automated tests must verify:
 
 - no `Coming Soon`, `即将上线`, `placeholder`, or future-contact language remains in rendered production content;
+- Contact renders a valid `mailto:weigensu@gmail.com` link in both locales;
 - Privacy and footer contain required trust links and advertising disclosures in both locales;
 - policy and utility routes are excluded from ad inventory;
 - review mode renders no manual ad slots;
@@ -267,6 +267,7 @@ The site owner must perform these dashboard and account checks because source co
 - applicant is at least 18 years old;
 - only one AdSense publisher account exists for the owner;
 - the domain and DNS are controlled by the applicant;
+- `weigensu@gmail.com` can receive a test message from an unrelated sender and is monitored for site inquiries;
 - `codexskin.site` is present in the AdSense Sites list;
 - the active ownership-verification method matches production;
 - Auto ads is off during remediation;
@@ -280,7 +281,7 @@ The site owner must perform these dashboard and account checks because source co
 The remediation is ready for an AdSense recheck when:
 
 1. Production contains no construction or future-contact language.
-2. Contact exposes a functioning public channel without inventing an email.
+2. Contact exposes `weigensu@gmail.com` and the public site-issue channel with clear privacy boundaries.
 3. Privacy contains complete Google advertising and consent disclosures.
 4. The current uncertain-rights composites are no longer primary gallery inventory.
 5. All replacement theme assets have complete rights records.
