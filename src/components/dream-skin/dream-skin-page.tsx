@@ -38,14 +38,39 @@ export function DreamSkinPage({ locale }: { locale: Locale }) {
           <h1>{content.hero.h1}</h1>
           <p className="lead">{content.hero.summary}</p>
           <aside className="dream-skin-identity">{content.identityNotice}</aside>
+          <div className="button-row dream-skin-hero__actions">
+            <a
+              className="button button--primary"
+              href={siteConfig.upstream.repositoryUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              {content.heroActions.source}
+              <span aria-hidden="true" className="external-mark">↗</span>
+            </a>
+            <Link className="button" href={routePath(locale, "windows") as Route}>
+              {content.heroActions.windows}
+            </Link>
+            <Link className="button" href={routePath(locale, "macos") as Route}>
+              {content.heroActions.macos}
+            </Link>
+          </div>
         </header>
 
         <section className="section dream-skin-source-section">
           <div className="container dream-skin-source-card">
-            <div>
+            <div className="dream-skin-source-card__copy">
               <p className="eyebrow">GitHub</p>
               <h2>{content.sourceTitle}</h2>
               <p>{content.sourceHint}</p>
+              <dl className="dream-skin-source-facts">
+                {content.sourceFacts.map((fact) => (
+                  <div key={fact.label}>
+                    <dt>{fact.label}</dt>
+                    <dd>{fact.value}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
             <a
               className="button button--primary"
@@ -63,6 +88,9 @@ export function DreamSkinPage({ locale }: { locale: Locale }) {
           <div className="container dream-skin-two-column">
             <div>
               <div className="section-heading"><h2>{content.whatTitle}</h2></div>
+              <div className="dream-skin-overview">
+                {content.overviewParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              </div>
               <div className="dream-skin-capabilities">
                 {content.whatItems.map((item, index) => (
                   <article key={item.title}>
@@ -79,6 +107,15 @@ export function DreamSkinPage({ locale }: { locale: Locale }) {
                 {content.boundaryItems.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </aside>
+          </div>
+        </section>
+
+        <section className="section dream-skin-workflow-section">
+          <div className="container dream-skin-workflow">
+            <p className="eyebrow">Workflow</p>
+            <h2>{content.workflowTitle}</h2>
+            <p className="dream-skin-workflow__flow">{content.workflowSteps.join(" → ")}</p>
+            <p>{content.workflowNote}</p>
           </div>
         </section>
 

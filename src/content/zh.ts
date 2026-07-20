@@ -27,7 +27,8 @@ export const zhContent: LocaleContent = {
     localeLabel: "English",
     skipLabel: "跳到正文",
     footerDescription: "独立的 Codex 桌面端主题、工具与安装指南。",
-    repositoryLabel: "查看原始项目",
+  repositoryLabel: "查看原始项目",
+  siteRepositoryLabel: "CodexSkin 网站源码",
     dreamSkinLabel: "了解 Codex Dream Skin",
     guidesLabel: "安装教程",
     issueLabel: "反馈问题",
@@ -107,7 +108,7 @@ export const zhContent: LocaleContent = {
     featuresIntro: "本站引用的 Dream Skin 项目会改变官方应用周围的视觉氛围，但不会拿一张截图替代你正在使用的控件。",
     features: [
       { title: "真实可交互界面", description: "侧栏、建议卡、项目选择、任务内容、菜单和输入框仍然是 Codex 原生控件。" },
-      { title: "macOS 支持自己的图片", description: "macOS 主题编辑器可以处理本地图片，并生成主页横幅和任务背景。" },
+      { title: "使用自己的背景图片", description: "当前 Windows 与 macOS 工作流都可以导入本机图片，为 Codex 设置定制背景。" },
       { title: "支持 Windows 与 macOS", description: "仓库按平台提供安装、启动、验证和恢复流程。" },
       { title: "明确的应用边界", description: "根据上游文档，Dream Skin 不会主动修改 .app、app.asar、WindowsApps 或官方代码签名。" },
       { title: "一键恢复", description: "平台启动器和脚本可以停止主题会话，并重新打开官方外观。" },
@@ -138,7 +139,7 @@ export const zhContent: LocaleContent = {
       { question: "它会修改 Codex 安装包吗？", answer: "按照上游项目记录的行为，它不会主动修改官方 .app、app.asar、WindowsApps 包或代码签名。" },
       { question: "支持 Windows 吗？", answer: "支持。仓库提供面向微软商店版 Codex 的 Windows 安装、启动、验证和恢复脚本。" },
       { question: "支持 Apple Silicon 和 Intel Mac 吗？", answer: "支持。macOS 流程会验证官方 Codex 应用，并兼容 Apple Silicon 与 Intel Mac。" },
-      { question: "可以使用自己的背景图吗？", answer: "仓库记录的 macOS 编辑器支持 PNG、JPEG、HEIC、TIFF 和 WebP。本版 Windows 流程没有同样的图片选择器。" },
+      { question: "可以使用自己的背景图吗？", answer: "可以。当前上游 Windows 托盘应用和 macOS 编辑器都支持导入本机背景图，但平台操作方式不同。" },
       { question: "如何恢复官方外观？", answer: "使用对应平台的 Restore 启动器或恢复脚本，它会停止记录的主题会话并重新打开官方应用。" },
       { question: "Codex 更新后还能继续用吗？", answer: "不保证完全无需处理。应用更新可能改变渲染结构，届时需要重装、重新应用或等待兼容更新。" },
       { question: "它会改 API 配置吗？", answer: "不会自动修改 API Key、Base URL 或模型供应商。主题配置与 API 供应商配置彼此独立。" },
@@ -159,21 +160,34 @@ export const zhContent: LocaleContent = {
   },
   dreamSkin: {
     seo: {
-      title: "Codex Dream Skin - GitHub、安装教程与 Codex 皮肤",
+      title: "Codex Dream Skin：GitHub地址、安装教程与主题效果",
       description:
-        "了解 Codex Dream Skin，访问原始 GitHub 仓库，并查看 CodexSkin 提供的 Windows、macOS 独立安装教程与皮肤素材说明。",
+        "查看Codex Dream Skin原始GitHub仓库，以及Windows、macOS安装、自定义背景、恢复官方界面和安全注意事项。",
     },
     hero: {
       eyebrow: "独立项目指南",
-      h1: "Codex Dream Skin：原始 GitHub、安装教程与 Codex 皮肤",
-      summary:
-        "Codex Dream Skin 是面向官方 Codex 桌面端的独立开源视觉主题层。请先核对原始源码，再阅读 CodexSkin 提供的独立平台教程。",
+      h1: "Codex Dream Skin：GitHub与安装指南",
+      summary: "Codex Dream Skin独立使用指南，包含原始仓库、Windows和macOS安装、自定义背景及恢复官方界面的方法。",
     },
     identityNotice:
       "CodexSkin.site 不是 OpenAI 网站，也不是 Codex Dream Skin 官方网站。本站维护者不是上游作者，不托管、不修改、不重新打包其安装程序。",
+    heroActions: { source: "查看原始 GitHub 仓库", windows: "查看 Windows 安装教程", macos: "查看 macOS 安装教程" },
     sourceTitle: "已核验的原始 GitHub 仓库",
     sourceLabel: "打开原始 GitHub 仓库",
     sourceHint: "将在新标签页打开第三方仓库；运行脚本前请先检查源码。",
+    sourceFacts: [
+      { label: "原始项目", value: "Fei-Away/Codex-Dream-Skin" },
+      { label: "维护者", value: "Fei-Away" },
+      { label: "许可", value: "macOS studio：MIT；其他素材可能适用单独条款" },
+      { label: "最后核验", value: "2026年7月20日" },
+    ],
+    overviewParagraphs: [
+      "Codex Dream Skin 是面向官方 Codex 桌面端的独立开源主题层，分别提供 Windows 与 macOS 的主题和本机背景图工作流。",
+      "它不同于 Codex 内置外观选项：项目通过 Chrome DevTools Protocol（CDP）连接到本机启动的 Codex 会话，并在运行时注入主题样式和装饰元素。",
+    ],
+    workflowTitle: "视觉主题层如何工作",
+    workflowSteps: ["Codex 桌面端", "本机 CDP 连接", "运行时注入主题与背景", "定制后的外观"],
+    workflowNote: "上游文档说明监听地址仅绑定本机回环，且不会有意修改官方安装文件。调试会话仍属于敏感本机能力，使用前请检查源码。",
     whatTitle: "Codex Dream Skin 能做什么",
     whatItems: [
       {
@@ -203,14 +217,14 @@ export const zhContent: LocaleContent = {
         label: "Windows",
         title: "在 Windows 安装 Codex Dream Skin",
         description: "查看微软商店官方 Codex 应用的环境要求、上游 PowerShell 流程、验证方法与安全恢复步骤。",
-        linkLabel: "查看 Windows 安装教程",
+        linkLabel: "阅读 Windows 完整安装教程",
       },
       {
         routeKey: "macos",
         label: "macOS",
         title: "在 macOS 安装 Codex Dream Skin",
         description: "查看适用于 Apple Silicon 与 Intel Mac 的独立教程，包括选图和恢复流程。",
-        linkLabel: "查看 macOS 安装教程",
+        linkLabel: "阅读 macOS 完整安装教程",
       },
     ],
     materialsTitle: "Codex 皮肤与背景素材",
@@ -234,16 +248,32 @@ export const zhContent: LocaleContent = {
         answer: "不是。它是独立开源项目，与 OpenAI 没有隶属关系，也未获得 OpenAI 官方认可。",
       },
       {
-        question: "CodexSkin.site 是否维护或分发 Codex Dream Skin？",
-        answer: "不会。CodexSkin.site 是独立教程、主题素材与工具网站；本站维护者不是上游作者，也不托管、不修改、不重新打包其安装程序。",
+        question: "如何在 Windows 安装 Codex Dream Skin？",
+        answer: "使用本页 Windows 安装教程，确认微软商店版 Codex 和 Node.js 等要求，再按照原始仓库的当前脚本操作。",
       },
       {
-        question: "如何在 Windows 或 macOS 安装 Codex Dream Skin？",
-        answer: "请在本页选择 Windows 或 macOS 教程，检查平台要求、核对上游源码，并保留对应的验证与恢复步骤。",
+        question: "Codex Dream Skin 支持 Apple Silicon 和 Intel Mac 吗？",
+        answer: "支持。当前 macOS 文档覆盖 Apple Silicon 与 Intel Mac，并提供安装、定制、验证和恢复启动器。",
       },
       {
         question: "可以使用自己的 Codex 皮肤或背景图吗？",
-        answer: "上游 macOS 流程记录了支持多种图片格式的本机编辑器；当前 Windows 流程没有记录相同的图片选择器。本站图库目前展示演示示例，并非 CodexSkin 自有下载素材。",
+        answer: "可以。当前上游 Windows 托盘应用与 macOS 编辑器都支持导入本机图片。建议使用超宽、低细节、安全区明确的构图，兼顾首页横幅和任务页背景。",
+      },
+      {
+        question: "本机 CDP 工作流安全吗？",
+        answer: "CDP 能力较强。上游文档描述的是仅限本机回环的连接，且不会有意修改官方安装；仍建议先检查源码，并在会话期间避免运行不可信本机软件。",
+      },
+      {
+        question: "Codex 更新后主题还能继续使用吗？",
+        answer: "不保证。Codex 更新可能改变渲染细节，届时可能需要重新安装、重新应用，或等待上游兼容更新。",
+      },
+      {
+        question: "如何恢复 Codex 官方外观？",
+        answer: "使用对应平台教程中的恢复启动器或脚本，停止主题会话、恢复已保存的外观设置，并重新打开官方应用。",
+      },
+      {
+        question: "CodexSkin.site 会托管安装程序吗？",
+        answer: "不会。本站不托管、不修改、不重新打包第三方安装程序，请只从已核验的原始仓库获取项目。",
       },
     ],
     finalTitle: "安装前先核对源码",
@@ -270,7 +300,7 @@ export const zhContent: LocaleContent = {
         { id: "install", title: "安装启动器", blocks: [{ type: "code", language: "powershell", code: ".\\scripts\\install-dream-skin.ps1" }, { type: "paragraph", text: "安装器会记录现有外观值、设置配套基础主题，并在未使用 -NoShortcuts 时创建启动和恢复快捷方式。" }] },
         { id: "launch", title: "启动主题会话", blocks: [{ type: "code", language: "powershell", code: ".\\scripts\\start-dream-skin.ps1" }, { type: "paragraph", text: "如果 Codex 已经打开但没有经过验证的 Dream Skin 端点，请先关闭它。命令行调用者只有明确添加 -RestartExisting 才会重启已打开窗口。" }] },
         { id: "verify", title: "验证主题", blocks: [{ type: "code", language: "powershell", code: ".\\scripts\\verify-dream-skin.ps1 -ScreenshotPath \"$env:USERPROFILE\\Desktop\\codex-dream-skin.png\"" }, { type: "paragraph", text: "同时检查主页和普通任务页。缺少横幅、原生输入框、侧栏主题或注入标记都属于验证失败。" }] },
-        { id: "change", title: "Windows 主题变更", tone: "note", blocks: [{ type: "paragraph", text: "当前 Windows 包使用随仓库提供的装饰资源，没有记录 macOS 的图片选择器流程。请优先查看仓库更新记录，不要直接套用第三方教程。" }] },
+        { id: "change", title: "在 Windows 更换背景", tone: "note", blocks: [{ type: "paragraph", text: "安装后可使用当前 Windows 托盘应用打开本机主题库，导入背景图片、保存主题，并应用到主题化 Codex 会话。其控件与 macOS 编辑器不同，请以原始仓库的当前 Windows 文档为准。" }] },
         { id: "restore", title: "恢复官方外观", blocks: [{ type: "code", language: "powershell", code: ".\\scripts\\restore-dream-skin.ps1 -RestoreBaseTheme" }, { type: "paragraph", text: "恢复流程会关闭记录的 CDP 会话、还原保存的外观项并重新打开官方应用。只有同时想移除快捷方式时才添加 -Uninstall。" }] },
         { id: "troubleshooting", title: "常见问题", blocks: [{ type: "list", items: ["默认 9335 端口被占用时，普通启动器会选择空闲端口；明确指定了被占用端口则会停止。", "Codex 更新后重新运行安装和启动，让脚本重新发现当前商店包。", "本机 CDP 会话运行时不要启动不可信软件。", "主题没有出现时，通过 GitHub Issue 提交 verify 输出。"] }] },
       ],
@@ -317,7 +347,7 @@ export const zhContent: LocaleContent = {
       contentsLabel: "本页内容",
       relatedLabel: "相关教程",
       sections: [
-        { id: "platforms", title: "平台能力", tone: "note", blocks: [{ type: "paragraph", text: "仓库记录了 macOS 用户图片编辑器。当前 Windows 包使用随附装饰资源，没有提供相同的选择器。" }] },
+        { id: "platforms", title: "平台能力", tone: "note", blocks: [{ type: "paragraph", text: "当前上游 Windows 托盘应用与 macOS 编辑器都支持导入本机背景图片，但界面、保存方式和可用控件因平台而异。" }] },
         { id: "prepare", title: "准备图片", blocks: [{ type: "list", items: ["macOS 支持 PNG、JPEG、HEIC、TIFF 或 WebP。", "源文件不超过 50 MB，处理后资源不超过 16 MB。", "建议宽度至少 2000px，这是一项构图建议。", "左侧尽量安静，并为原生标题保留足够明暗对比。"] }] },
         { id: "single-image", title: "为什么单图只能折中", blocks: [{ type: "paragraph", text: "同一张原图既会作为超宽首页横幅，也会作为任务页背景。只针对一个页面做得完美的裁切，在另一处可能遮住人脸、文字或关键细节，因此应优先围绕两处共用的安全区构图。" }] },
         { id: "composition", title: "CodexSkin 实测构图建议", blocks: [{ type: "paragraph", text: "以下数值来自 CodexSkin 的实际使用经验，不是 OpenAI 或上游项目的官方要求。" }, { type: "list", items: ["使用 20:9 超宽画布。", "人脸中心放在画面宽度的 70% 至 82%、画面高度的 35% 至 50%。", "人物高度不超过画面 45%，并为完整头部保留充足头顶空间。", "左侧 55% 保留为暗色、低细节负空间，保证首页和任务正文可读。", "关键细节远离底部输入框区域，避免被任务页 composer 遮挡。", "背景细节保持克制，图片中不要生成文字、Logo、边框或界面元素。"] }] },

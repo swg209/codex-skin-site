@@ -35,6 +35,8 @@ npm run build
 - `/install/macos` and `/zh/install/macos`
 - `/guide/customize` and `/zh/guide/customize`
 - `/guide/restore` and `/zh/guide/restore`
+- `/about`, `/contact`, `/privacy`, `/terms`, and `/disclaimer`
+- `/zh/about`, `/zh/contact`, `/zh/privacy`, `/zh/terms`, and `/zh/disclaimer`
 - `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest`, and `/ads.txt`
 
 The Codex Dream Skin landing pages point visitors to the verified original `Fei-Away/Codex-Dream-Skin` source. They are independent project guides, not the upstream project's official website.

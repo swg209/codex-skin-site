@@ -34,4 +34,16 @@ describe("deployment configuration", () => {
     expect(source).toContain("https://github.com/Fei-Away/Codex-Dream-Skin");
     expect(GITHUB_URL).toBe("https://github.com/Fei-Away/Codex-Dream-Skin");
   });
+
+  it("records source trust facts without claiming an untested release", async () => {
+    const { siteConfig } = await import("@/config/site");
+
+    expect(siteConfig.upstream).toMatchObject({
+      name: "Codex Dream Skin",
+      owner: "Fei-Away",
+      lastVerifiedAt: "2026-07-20",
+      testedVersion: null,
+    });
+    expect(siteConfig.contactEmail).toBeNull();
+  });
 });

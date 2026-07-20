@@ -55,5 +55,9 @@ describe("Header", () => {
     expect(screen.getByRole("link", { name: "隐私政策" })).toHaveAttribute("href", "/zh/privacy");
     expect(screen.getByRole("link", { name: "使用条款" })).toHaveAttribute("href", "/zh/terms");
     expect(screen.getByRole("link", { name: "免责声明" })).toHaveAttribute("href", "/zh/disclaimer");
+    expect(screen.getByRole("link", { name: "CodexSkin 网站源码" })).toHaveAttribute(
+      "href",
+      "https://github.com/swg209/codex-skin-site",
+    );
   });
 });

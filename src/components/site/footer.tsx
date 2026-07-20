@@ -26,6 +26,7 @@ export function Footer({ locale }: FooterProps) {
           <Link href={routePath(locale, "windows") as Route}>{copy.guidesLabel}</Link>
           <a href={siteConfig.upstream.issuesUrl} rel="noopener noreferrer" target="_blank">{copy.issueLabel}</a>
           <a href={siteConfig.upstream.licenseUrl} rel="noopener noreferrer" target="_blank">{copy.licenseLabel}</a>
+          <a href={siteConfig.repositoryUrl} rel="noopener noreferrer" target="_blank">{copy.siteRepositoryLabel}</a>
           {INFO_ROUTES.map((key) => (
             <Link key={key} href={routePath(locale, key) as Route}>{copy.infoLabels[key]}</Link>
           ))}

@@ -159,9 +159,19 @@ export interface DreamSkinContent {
     summary: string;
   };
   identityNotice: string;
+  heroActions: {
+    source: string;
+    windows: string;
+    macos: string;
+  };
   sourceTitle: string;
   sourceLabel: string;
   sourceHint: string;
+  sourceFacts: Array<{ label: string; value: string }>;
+  overviewParagraphs: string[];
+  workflowTitle: string;
+  workflowSteps: string[];
+  workflowNote: string;
   whatTitle: string;
   whatItems: FeatureItem[];
   boundaryTitle: string;
@@ -186,6 +196,7 @@ export interface SiteChromeContent {
   skipLabel: string;
   footerDescription: string;
   repositoryLabel: string;
+  siteRepositoryLabel: string;
   dreamSkinLabel: string;
   guidesLabel: string;
   issueLabel: string;

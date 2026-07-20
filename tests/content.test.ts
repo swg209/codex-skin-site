@@ -34,15 +34,12 @@ describe("localized product content", () => {
     },
   );
 
-  it("does not claim Windows supports custom images", () => {
-    const windows = JSON.stringify({
-      en: contentByLocale.en.guides.windows,
-      zh: contentByLocale.zh.guides.windows,
-    }).toLowerCase();
+  it("reflects the current upstream Windows image-import workflow", () => {
+    const content = JSON.stringify(contentByLocale);
 
-    expect(windows).not.toMatch(
-      /use your own image|custom user image|自定义图片|用户选图/,
-    );
+    expect(content).not.toMatch(/does not expose the same picker|没有提供相同的选择器|没有同样的图片选择器/);
+    expect(JSON.stringify(contentByLocale.en.guides.windows)).toMatch(/image|background/i);
+    expect(JSON.stringify(contentByLocale.zh.guides.windows)).toMatch(/图片|背景/);
   });
 
   it("keeps source-backed platform requirements", () => {
@@ -75,7 +72,7 @@ describe("localized product content", () => {
       const dreamSkin = localeContent.dreamSkin;
 
       expect(dreamSkin.hero.h1).toContain("Codex Dream Skin");
-      expect(dreamSkin.faq).toHaveLength(6);
+      expect(dreamSkin.faq).toHaveLength(10);
       expect(dreamSkin.guides).toHaveLength(2);
       expect(dreamSkin.whatItems).toHaveLength(3);
       expect(dreamSkin.boundaryItems).toHaveLength(4);
@@ -92,15 +89,30 @@ describe("localized product content", () => {
 
   it("uses the approved GSC-aligned Dream Skin metadata", () => {
     expect(contentByLocale.en.dreamSkin.seo).toEqual({
-      title: "Codex Dream Skin – GitHub, Install Guides & Themes",
+      title: "Codex Dream Skin – GitHub, Installation Guide & Themes",
       description:
-        "Learn what Codex Dream Skin is, open the original GitHub repository, and follow independent Windows and macOS install guides from CodexSkin.",
+        "Find the original Codex Dream Skin GitHub repository, Windows and macOS setup guides, safety notes, custom backgrounds and restore instructions.",
     });
     expect(contentByLocale.zh.dreamSkin.seo).toEqual({
-      title: "Codex Dream Skin - GitHub、安装教程与 Codex 皮肤",
+      title: "Codex Dream Skin：GitHub地址、安装教程与主题效果",
       description:
-        "了解 Codex Dream Skin，访问原始 GitHub 仓库，并查看 CodexSkin 提供的 Windows、macOS 独立安装教程与皮肤素材说明。",
+        "查看Codex Dream Skin原始GitHub仓库，以及Windows、macOS安装、自定义背景、恢复官方界面和安全注意事项。",
     });
+  });
+
+  it.each(["en", "zh"] as const)("publishes complete %s project trust content", (locale) => {
+    const dreamSkin = contentByLocale[locale].dreamSkin as typeof contentByLocale.en.dreamSkin & {
+      sourceFacts?: unknown[];
+      workflowSteps?: string[];
+      overviewParagraphs?: string[];
+      heroActions?: Record<string, string>;
+    };
+
+    expect(dreamSkin.faq).toHaveLength(10);
+    expect(dreamSkin.sourceFacts).toHaveLength(4);
+    expect(dreamSkin.workflowSteps).toHaveLength(4);
+    expect(dreamSkin.overviewParagraphs?.length).toBeGreaterThanOrEqual(2);
+    expect(Object.keys(dreamSkin.heroActions ?? {})).toEqual(["source", "windows", "macos"]);
   });
 
   it("states the Dream Skin site identity without official or ownership claims", () => {

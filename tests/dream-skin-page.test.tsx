@@ -10,7 +10,7 @@ describe("DreamSkinPage search-intent landing page", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: "Codex Dream Skin: GitHub Source, Install Guides & Themes",
+        name: "Codex Dream Skin: GitHub & Installation Guide",
       }),
     ).toBeVisible();
     expect(
@@ -18,9 +18,9 @@ describe("DreamSkinPage search-intent landing page", () => {
     ).toBeVisible();
 
     const sourceLinks = screen.getAllByRole("link", {
-      name: "Open Original GitHub Repository",
+      name: "View Original GitHub Repository",
     });
-    expect(sourceLinks).toHaveLength(2);
+    expect(sourceLinks).toHaveLength(3);
     for (const source of sourceLinks) {
       expect(source).toHaveAttribute(
         "href",
@@ -31,10 +31,10 @@ describe("DreamSkinPage search-intent landing page", () => {
     }
 
     expect(
-      screen.getByRole("link", { name: "View Windows install guide" }),
+      screen.getByRole("link", { name: "Windows Installation Guide" }),
     ).toHaveAttribute("href", "/install/windows");
     expect(
-      screen.getByRole("link", { name: "View macOS install guide" }),
+      screen.getByRole("link", { name: "macOS Installation Guide" }),
     ).toHaveAttribute("href", "/install/macos");
     expect(
       screen.getByRole("link", { name: "Browse Codex skin examples" }),
@@ -47,7 +47,7 @@ describe("DreamSkinPage search-intent landing page", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: "Codex Dream Skin：原始 GitHub、安装教程与 Codex 皮肤",
+        name: "Codex Dream Skin：GitHub与安装指南",
       }),
     ).toBeVisible();
     expect(screen.getByRole("link", { name: "查看 Windows 安装教程" })).toHaveAttribute(
@@ -62,6 +62,17 @@ describe("DreamSkinPage search-intent landing page", () => {
       "href",
       "/zh#themes",
     );
+  });
+
+  it("shows verified source facts without inventing a tested version", () => {
+    render(<DreamSkinPage locale="en" />);
+
+    expect(screen.getByText("Fei-Away/Codex-Dream-Skin")).toBeVisible();
+    expect(screen.getByText("Fei-Away")).toBeVisible();
+    expect(screen.getByText(/macOS studio: MIT/)).toBeVisible();
+    expect(screen.getByText("July 20, 2026")).toBeVisible();
+    expect(screen.queryByText(/tested version/i)).toBeNull();
+    expect(screen.getByText("Codex Desktop → Local CDP connection → Runtime theme/background injection → Customized appearance")).toBeVisible();
   });
 
   it.each([

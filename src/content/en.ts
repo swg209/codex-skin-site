@@ -30,7 +30,8 @@ export const enContent: LocaleContent = {
     skipLabel: "Skip to content",
     footerDescription:
       "Independent themes, tools, and setup guides for Codex Desktop.",
-    repositoryLabel: "View Original Project",
+  repositoryLabel: "View Original Project",
+  siteRepositoryLabel: "CodexSkin Site Source",
     dreamSkinLabel: "About Codex Dream Skin",
     guidesLabel: "Installation Guides",
     issueLabel: "Report an Issue",
@@ -129,7 +130,7 @@ export const enContent: LocaleContent = {
       "The referenced Dream Skin project changes the atmosphere around the official app while preserving the controls you already use.",
     features: [
       { title: "Real Interactive Interface", description: "The sidebar, suggestion cards, project picker, task content, menus, and composer remain native Codex controls." },
-      { title: "Use Your Own Image on macOS", description: "The macOS studio can prepare a supported local image and turn it into a home banner and task background." },
+      { title: "Use Your Own Background Image", description: "The current Windows and macOS workflows can import a local image for a customized Codex background." },
       { title: "Windows & macOS Support", description: "The repository includes separate, platform-aware install, start, verify, and restore workflows." },
       { title: "Documented App Boundary", description: "According to the upstream documentation, Dream Skin does not intentionally patch .app, app.asar, WindowsApps, or the official code signature." },
       { title: "One-click Restore", description: "Platform launchers and scripts stop the themed session and reopen the official appearance." },
@@ -162,7 +163,7 @@ export const enContent: LocaleContent = {
       { question: "Does it modify the Codex installation?", answer: "Based on the behavior documented by the upstream project, it does not intentionally patch the official .app, app.asar, WindowsApps package, or code signature." },
       { question: "Does it support Windows?", answer: "Yes. The repository includes Windows install, start, verify, and restore scripts for the official Store-installed Codex app." },
       { question: "Does it support Apple Silicon and Intel Mac?", answer: "Yes. The macOS workflow validates the installed official Codex app and supports both Apple Silicon and Intel Macs." },
-      { question: "Can I use my own background image?", answer: "The documented macOS studio supports local PNG, JPEG, HEIC, TIFF, and WebP images. The current Windows workflow does not document the same image picker." },
+      { question: "Can I use my own background image?", answer: "Yes. The current upstream Windows tray app and macOS studio both support local background images, with platform-specific controls and workflows." },
       { question: "How do I restore the default Codex appearance?", answer: "Use the platform Restore launcher or restore script. It stops the recorded themed session and reopens the official app." },
       { question: "Will it continue working after Codex updates?", answer: "Not always without action. App updates can change renderer details, so you may need to reinstall, reapply, or wait for a compatibility update." },
       { question: "Does it change my API configuration?", answer: "It does not automatically change API keys, Base URLs, or model providers. Theme configuration and API provider configuration are separate." },
@@ -184,22 +185,40 @@ export const enContent: LocaleContent = {
   },
   dreamSkin: {
     seo: {
-      title: "Codex Dream Skin – GitHub, Install Guides & Themes",
+      title: "Codex Dream Skin – GitHub, Installation Guide & Themes",
       description:
-        "Learn what Codex Dream Skin is, open the original GitHub repository, and follow independent Windows and macOS install guides from CodexSkin.",
+        "Find the original Codex Dream Skin GitHub repository, Windows and macOS setup guides, safety notes, custom backgrounds and restore instructions.",
     },
     hero: {
       eyebrow: "Independent project guide",
-      h1: "Codex Dream Skin: GitHub Source, Install Guides & Themes",
+      h1: "Codex Dream Skin: GitHub & Installation Guide",
       summary:
-        "Codex Dream Skin is an independent open-source visual theme layer for the official Codex Desktop app. Start with the verified source, then use CodexSkin's independent platform guides.",
+        "An independent guide to Codex Dream Skin, including the original repository, Windows and macOS setup instructions, customization tips and restore steps.",
     },
     identityNotice:
       "CodexSkin.site is not an OpenAI website or the official Codex Dream Skin website. We are not the upstream author and do not host, modify, or repackage its installer.",
+    heroActions: {
+      source: "View Original GitHub Repository",
+      windows: "Windows Installation Guide",
+      macos: "macOS Installation Guide",
+    },
     sourceTitle: "Verified original GitHub repository",
-    sourceLabel: "Open Original GitHub Repository",
+    sourceLabel: "View Original GitHub Repository",
     sourceHint:
       "Opens the third-party repository in a new tab. Review its source before running scripts.",
+    sourceFacts: [
+      { label: "Original project", value: "Fei-Away/Codex-Dream-Skin" },
+      { label: "Maintainer", value: "Fei-Away" },
+      { label: "License", value: "macOS studio: MIT; other assets may have separate terms" },
+      { label: "Last checked", value: "July 20, 2026" },
+    ],
+    overviewParagraphs: [
+      "Codex Dream Skin is an independent open-source theme layer for the official Codex Desktop app. It provides separate Windows and macOS workflows for applying visual themes and local background images.",
+      "It is different from Codex's built-in appearance setting: the project connects to a locally launched Codex session through Chrome DevTools Protocol (CDP), then injects theme styles and decorative elements at runtime.",
+    ],
+    workflowTitle: "How the visual layer works",
+    workflowSteps: ["Codex Desktop", "Local CDP connection", "Runtime theme/background injection", "Customized appearance"],
+    workflowNote: "The upstream documentation says the listener is bound to local loopback and the official installation is not intentionally patched. Treat any debugging session as sensitive and review the source before use.",
     whatTitle: "What Codex Dream Skin does",
     whatItems: [
       {
@@ -271,19 +290,32 @@ export const enContent: LocaleContent = {
           "No. It is an independent open-source project and is not affiliated with or endorsed by OpenAI.",
       },
       {
-        question: "Does CodexSkin.site maintain or distribute Codex Dream Skin?",
-        answer:
-          "No. CodexSkin.site is an independent guide, theme-material, and tools website. Its maintainer is not the upstream author, and the site does not host, modify, or repackage the installer.",
+        question: "How do I install Codex Dream Skin on Windows?",
+        answer: "Use the Windows installation guide on this page, confirm the Microsoft Store Codex app and Node.js requirements, then follow the current scripts from the original repository.",
       },
       {
-        question: "How do I install Codex Dream Skin on Windows or macOS?",
-        answer:
-          "Choose the Windows or macOS guide on this page, check the platform requirements, review the upstream source, and keep the documented verification and restore steps nearby.",
+        question: "Does Codex Dream Skin support Apple Silicon and Intel Macs?",
+        answer: "Yes. The current macOS documentation covers both Apple Silicon and Intel Macs and includes install, customize, verify, and restore launchers.",
       },
       {
         question: "Can I use my own Codex skin or background image?",
-        answer:
-          "The upstream macOS workflow documents a local image studio for supported image formats. The current Windows workflow does not document the same image picker. The gallery on this site currently shows demonstration examples rather than CodexSkin-owned downloads.",
+        answer: "Yes. The current upstream Windows tray app and macOS studio support local image import. Use a wide, low-detail composition so both the home banner and task background remain readable.",
+      },
+      {
+        question: "Is the local CDP workflow safe?",
+        answer: "CDP is powerful. The upstream documentation describes a loopback-only connection and no intentional patching of the official installation, but you should still review the source and avoid untrusted local software during the session.",
+      },
+      {
+        question: "Will Codex Dream Skin keep working after Codex updates?",
+        answer: "Compatibility is not guaranteed. Codex updates can change renderer details, so reinstalling, reapplying, or waiting for an upstream compatibility update may be necessary.",
+      },
+      {
+        question: "How do I restore the official Codex appearance?",
+        answer: "Use the platform restore launcher or restore script documented in the guide. It stops the themed session, restores saved appearance settings, and reopens the official app.",
+      },
+      {
+        question: "Does CodexSkin.site host the installer?",
+        answer: "No. CodexSkin.site does not host, modify, or repackage third-party installers. Get the project only from the verified original repository.",
       },
     ],
     finalTitle: "Verify the source before you install",
@@ -311,7 +343,7 @@ export const enContent: LocaleContent = {
         { id: "install", title: "Install the launcher", blocks: [{ type: "code", language: "powershell", code: ".\\scripts\\install-dream-skin.ps1" }, { type: "paragraph", text: "The installer records the existing appearance values, sets the matching base theme, and creates launch and restore shortcuts unless -NoShortcuts is used." }] },
         { id: "launch", title: "Launch the themed session", blocks: [{ type: "code", language: "powershell", code: ".\\scripts\\start-dream-skin.ps1" }, { type: "paragraph", text: "If Codex is already open without the verified Dream Skin endpoint, close it first. Command-line callers must explicitly add -RestartExisting when they want the script to restart an open window." }] },
         { id: "verify", title: "Verify the theme", blocks: [{ type: "code", language: "powershell", code: ".\\scripts\\verify-dream-skin.ps1 -ScreenshotPath \"$env:USERPROFILE\\Desktop\\codex-dream-skin.png\"" }, { type: "paragraph", text: "Check both the home view and a normal task. A missing hero, native composer, sidebar treatment, or injection marker is a verification failure." }] },
-        { id: "change", title: "Theme changes on Windows", tone: "note", blocks: [{ type: "paragraph", text: "The current Windows package uses its bundled decorative assets. It does not document the macOS image-picker workflow. Check the repository changelog before following advice from third-party posts." }] },
+        { id: "change", title: "Change the background on Windows", tone: "note", blocks: [{ type: "paragraph", text: "After installation, use the current Windows tray app to open the local theme store, import a background image, save the theme, and apply it to the themed Codex session. Controls differ from the macOS studio, so follow the current Windows documentation in the original repository." }] },
         { id: "restore", title: "Restore the official appearance", blocks: [{ type: "code", language: "powershell", code: ".\\scripts\\restore-dream-skin.ps1 -RestoreBaseTheme" }, { type: "paragraph", text: "Restore closes the recorded CDP session, restores saved appearance keys, and reopens the official app. Add -Uninstall only when you also want the shortcuts removed." }] },
         { id: "troubleshooting", title: "Common problems", blocks: [{ type: "list", items: ["If port 9335 is occupied, the normal launcher chooses a free port unless you explicitly requested the occupied port.", "After a Codex update, rerun install and start so the scripts rediscover the current Store package.", "Do not run untrusted local software while the loopback CDP session is active.", "Use GitHub Issues and include the verify output when the theme does not appear."] }] },
       ],
@@ -358,7 +390,7 @@ export const enContent: LocaleContent = {
       contentsLabel: "On this page",
       relatedLabel: "Related guides",
       sections: [
-        { id: "platforms", title: "Platform availability", tone: "note", blocks: [{ type: "paragraph", text: "The repository documents a user-image studio for macOS. The current Windows package uses bundled decorative assets and does not expose the same picker." }] },
+        { id: "platforms", title: "Platform availability", tone: "note", blocks: [{ type: "paragraph", text: "The current upstream Windows tray app and macOS studio both support local background-image import, with platform-specific interfaces, save behavior, and controls." }] },
         { id: "prepare", title: "Prepare the image", blocks: [{ type: "list", items: ["Use PNG, JPEG, HEIC, TIFF, or WebP on macOS.", "Keep the source at or below 50 MB; the prepared asset must remain at or below 16 MB.", "A width of at least 2000px is recommended rather than enforced as a source minimum.", "Favor a calm left side and enough tonal contrast for native headings."] }] },
         { id: "single-image", title: "Why one image needs a compromise", blocks: [{ type: "paragraph", text: "The same source image appears as the ultrawide home banner and as the task-page background. A crop that looks perfect on one surface can hide the face, text, or important details on the other, so compose for the shared safe zone instead of a single screenshot." }] },
         { id: "composition", title: "CodexSkin tested composition guidance", blocks: [{ type: "paragraph", text: "These values come from CodexSkin hands-on testing, not from OpenAI or the upstream project." }, { type: "list", items: ["Start with a 20:9 ultrawide canvas.", "Place the face center at 70% to 82% of the canvas width and 35% to 50% of its height.", "Keep the subject height at no more than 45% and preserve generous headroom.", "Reserve the left 55% as dark, low-detail negative space for readable home and task text.", "Keep important details away from the bottom composer region, which can cover the image.", "Avoid dense background detail, and generate no text, logo, border, or UI elements."] }] },

@@ -138,7 +138,7 @@ describe("SEO output", () => {
         codeRepository: "https://github.com/Fei-Away/Codex-Dream-Skin",
       },
     });
-    expect(dreamSkinFaqSchema("zh").mainEntity).toHaveLength(6);
+    expect(dreamSkinFaqSchema("zh").mainEntity).toHaveLength(10);
     expect(
       dreamSkinBreadcrumbSchema("zh").itemListElement.at(-1)?.item,
     ).toBe("https://codexskin.site/zh/codex-dream-skin");
