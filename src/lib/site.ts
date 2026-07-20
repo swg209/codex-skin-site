@@ -1,4 +1,5 @@
 import { siteConfig } from "@/config/site";
+import type { ArticleKey } from "@/content/articles/types";
 
 export const SITE_URL = siteConfig.url;
 export const GITHUB_URL = siteConfig.upstream.repositoryUrl;
@@ -71,4 +72,28 @@ export function routeKeyFromPath(pathname: string): RouteKey {
 
 export function absoluteUrl(path: string): string {
   return `${SITE_URL}${path}`;
+}
+
+const articleRoutes: Record<ArticleKey, string> = {
+  "background-image-composition": "/guides/background-image-composition",
+  "readability-and-contrast": "/guides/readability-and-contrast",
+  "image-rights-and-licensing": "/guides/image-rights-and-licensing",
+  "theme-not-visible": "/troubleshooting/theme-not-visible",
+  "cdp-port-conflict": "/troubleshooting/cdp-port-conflict",
+  "macos-permissions": "/troubleshooting/macos-permissions",
+  "restore-default-appearance": "/troubleshooting/restore-default-appearance",
+  "codex-dream-skin-compatibility": "/compatibility/codex-dream-skin",
+};
+
+export function articlePath(locale: Locale, key: ArticleKey): string {
+  const path = articleRoutes[key];
+  return locale === "en" ? path : `/zh${path}`;
+}
+
+export function articleAlternatePaths(key: ArticleKey) {
+  return {
+    en: articlePath("en", key),
+    "zh-CN": articlePath("zh", key),
+    "x-default": articlePath("en", key),
+  };
 }

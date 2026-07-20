@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 
 import { siteConfig } from "@/config/site";
 import { contentByLocale } from "@/content";
+import { articlesByLocale, type ArticleKey } from "@/content/articles";
 import type { GuideRouteKey, InfoRouteKey, Locale, RouteKey } from "@/lib/site";
 import {
   SITE_URL,
   absoluteUrl,
+  articleAlternatePaths,
+  articlePath,
   alternatePaths,
   isInfoRoute,
   routePath,
@@ -245,6 +248,51 @@ export function infoBreadcrumbSchema(locale: Locale, key: InfoRouteKey) {
         name: copy.h1,
         item: absoluteUrl(routePath(locale, key)),
       },
+    ],
+  };
+}
+
+export function buildArticleMetadata(locale: Locale, key: ArticleKey): Metadata {
+  const copy = articlesByLocale[locale][key];
+  const canonical = absoluteUrl(articlePath(locale, key));
+  const images = socialImages();
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: copy.seo.title,
+    description: copy.seo.description,
+    alternates: {
+      canonical,
+      languages: Object.fromEntries(Object.entries(articleAlternatePaths(key)).map(([language, path]) => [language, absoluteUrl(path)])),
+    },
+    openGraph: { type: "article", siteName: siteConfig.name, title: copy.seo.title, description: copy.seo.description, url: canonical, locale: locale === "en" ? "en_US" : "zh_CN", images },
+    twitter: { card: "summary_large_image", title: copy.seo.title, description: copy.seo.description, images: images.map((image) => image.url) },
+  };
+}
+
+export function articleSchema(locale: Locale, key: ArticleKey) {
+  const copy = articlesByLocale[locale][key];
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: copy.h1,
+    description: copy.summary,
+    dateModified: copy.reviewedDate,
+    author: { "@type": "Organization", name: copy.authorLabel },
+    inLanguage: locale === "en" ? "en" : "zh-CN",
+    mainEntityOfPage: absoluteUrl(articlePath(locale, key)),
+    isPartOf: { "@type": "WebSite", name: siteConfig.name, url: siteConfig.url },
+  };
+}
+
+export function articleBreadcrumbSchema(locale: Locale, key: ArticleKey) {
+  const copy = articlesByLocale[locale][key];
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: locale === "en" ? "Home" : "首页", item: absoluteUrl(routePath(locale, "home")) },
+      { "@type": "ListItem", position: 2, name: copy.h1, item: absoluteUrl(articlePath(locale, key)) },
     ],
   };
 }
