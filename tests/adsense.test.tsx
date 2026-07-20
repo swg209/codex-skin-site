@@ -40,6 +40,15 @@ describe("Google AdSense integration", () => {
     );
   });
 
+  it("keeps manual inventory behind an explicit content eligibility gate", () => {
+    const component = readFileSync("src/components/site/ad-slot.tsx", "utf8");
+
+    expect(component).toContain("isAdEligiblePath(pathname)");
+    expect(component).toContain('locale === "zh" ? "广告" : "Advertisement"');
+    expect(component).toContain("data-ad-client={siteConfig.adsense.publisherId}");
+    expect(component).not.toMatch(/Install for Windows|Get from Original Repository/);
+  });
+
   it("discloses advertising in both privacy notices", () => {
     expect(contentByLocale.en.chrome.privacyText).toMatch(/Google AdSense/);
     expect(contentByLocale.en.chrome.privacyText).toMatch(/cookies/i);
